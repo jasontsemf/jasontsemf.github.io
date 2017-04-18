@@ -17,6 +17,8 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/main.css" rel="stylesheet">
 
+	<script src="assets/js/Chart.js"></script>
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,8 +42,8 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html">HOME</a></li>
-            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="index.html">HOME</a></li>
+            <li class="active"><a href="about.html">ABOUT</a></li>
             <li><a href="services.html">SERVICES</a></li>
             <li><a href="works.html">WORKS</a></li>
             <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
@@ -50,38 +52,49 @@
       </div>
     </div>
 
-	<div id="headerwrap">
+	<div id="blue">
 		<div class="container">
 			<div class="row centered">
 				<div class="col-lg-8 col-lg-offset-2">
-				<h1>It Doesn't Take a Rocket <b>Scientist</b></h1>
-				<h2>It Takes a Designer</h2>
+				<h4>LEARN MORE ABOUT US</h4>
+				<p>WE ARE COOL PEOPLE</p>
 				</div>
 			</div><!-- row -->
 		</div><!-- container -->
-	</div><!-- headerwrap -->
+	</div><!--  bluewrap -->
 
 
 	<div class="container w">
 		<div class="row centered">
 			<br><br>
-			<div class="col-lg-4">
-				<i class="fa fa-heart"></i>
-				<h4>DESIGN</h4>
-				<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-			</div><!-- col-lg-4 -->
+			<div class="col-lg-3">
+				<img class="img-circle" src="assets/img/pic.jpg" width="110" height="110" alt="">
+				<h4>Frank Lampard</h4>
+				<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+				<p><a href="#">@Frank_BlackTie</a></p>
+			</div><!-- col-lg-3 -->
 
-			<div class="col-lg-4">
-				<i class="fa fa-laptop"></i>
-				<h4>BOOTSTRAP</h4>
-				<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-			</div><!-- col-lg-4 -->
+			<div class="col-lg-3">
+				<img class="img-circle" src="assets/img/pic2.jpg" width="110" height="110" alt="">
+				<h4>David Wright</h4>
+				<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+				<p><a href="#">@David_BlackTie</a></p>
+			</div><!-- col-lg-3 -->
 
-			<div class="col-lg-4">
-				<i class="fa fa-trophy"></i>
-				<h4>SUPPORT</h4>
-				<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even believable.</p>
-			</div><!-- col-lg-4 -->
+			<div class="col-lg-3">
+				<img class="img-circle" src="assets/img/pic3.jpg" width="110" height="110" alt="">
+				<h4>Mark Milestone</h4>
+				<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+				<p><a href="#">@Mark_BlackTie</a></p>
+			</div><!-- col-lg-3 -->
+
+			<div class="col-lg-3">
+				<img class="img-circle" src="assets/img/pic4.jpg" width="110" height="110" alt="">
+				<h4>Tania Tissen</h4>
+				<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+				<p><a href="#">@Tania_BlackTie</a></p>
+			</div><!-- col-lg-3 -->
+
 		</div><!-- row -->
 		<br>
 		<br>
@@ -92,70 +105,100 @@
 	<div id="dg">
 		<div class="container">
 			<div class="row centered">
-				<h4>LATEST WORKS</h4>
+				<h4>OUR SKILLS</h4>
 				<br>
-				<div class="col-lg-4">
-					<div class="tilt">
-					<a href="#"><img src="assets/img/p01.png" alt=""></a>
-					</div>
-				</div>
+				
+			<!-- First Chart -->
+			<div class="col-lg-3">
+				<canvas id="canvas" height="130" width="130"></canvas>
+				<br>
+				<script>
+					var doughnutData = [
+							{
+								value: 70,
+								color:"#3498db"
+							},
+							{
+								value : 30,
+								color : "#ecf0f1"
+							}
+						];
+						var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);
+				</script>
+				<p><b>Design & Brand</b></p>
+				<p><small>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</small></p>
+			</div><!-- /col-lg-3 -->
 
-				<div class="col-lg-4">
-					<div class="tilt">
-					<a href="#"><img src="assets/img/p03.png" alt=""></a>
-					</div>
-				</div>
-
-				<div class="col-lg-4">
-					<div class="tilt">
-					<a href="#"><img src="assets/img/p02.png" alt=""></a>
-					</div>
-				</div>
+			<!-- Second Chart -->
+			<div class="col-lg-3">
+				<canvas id="canvas2" height="130" width="130"></canvas>
+				<br>
+				<script>
+					var doughnutData = [
+							{
+								value: 90,
+								color:"#3498db"
+							},
+							{
+								value : 10,
+								color : "#ecf0f1"
+							}
+						];
+						var myDoughnut = new Chart(document.getElementById("canvas2").getContext("2d")).Doughnut(doughnutData);
+				</script>
+				<p><b>Web Development</b></p>
+				<p><small>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</small></p>
+			</div><!-- /col-lg-3 -->
+			
+			<!-- Third Chart -->
+			<div class="col-lg-3">
+				<canvas id="canvas3" height="130" width="130"></canvas>
+				<br>
+				<script>
+					var doughnutData = [
+							{
+								value: 50,
+								color:"#3498db"
+							},
+							{
+								value : 50,
+								color : "#ecf0f1"
+							}
+						];
+						var myDoughnut = new Chart(document.getElementById("canvas3").getContext("2d")).Doughnut(doughnutData);
+				</script>
+				<p><b>Seo Services</b></p>
+				<p><small>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</small></p>
+			</div><!-- /col-lg-3 -->
+			
+			<!-- Fourth Chart -->
+			<div class="col-lg-3">
+				<canvas id="canvas4" height="130" width="130"></canvas>
+				<br>
+				<script>
+					var doughnutData = [
+							{
+								value: 80,
+								color:"#3498db"
+							},
+							{
+								value : 20,
+								color : "#ecf0f1"
+							}
+						];
+						var myDoughnut = new Chart(document.getElementById("canvas4").getContext("2d")).Doughnut(doughnutData);
+				</script>
+				<p><b>Printing</b></p>
+				<p><small>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</small></p>
+			</div><!-- /col-lg-3 -->
+				
+				
 			</div><!-- row -->
 		</div><!-- container -->
 	</div><!-- DG -->
 
 
-	<!-- FEATURE SECTION -->
-	<div class="container wb">
-		<div class="row centered">
-			<br><br>
-			<div class="col-lg-8 col-lg-offset-2">
-				<h4>WE CREATE FIRST CLASS DESIGN</h4>
-				<p>By being true to the brand we represent, we elevate the audiences’ relationship to it. Like becomes love becomes a passion. Passion becomes advocacy. And we see the brand blossom from within, creating a whole story the audience embraces. That’s when the brand can truly flex its muscles.</p>
-			<p><br/><br/></p>
-			</div>
-			<div class="col-lg-2"></div>
-			<div class="col-lg-10 col-lg-offset-1">
-				<img class="img-responsive" src="assets/img/munter.png" alt="">
-			</div>
-		</div><!-- row -->
-	</div><!-- container -->
 
-
-	<div id="lg">
-		<div class="container">
-			<div class="row centered">
-				<h4>OUR AWESOME CLIENTS</h4>
-				<div class="col-lg-2 col-lg-offset-1">
-					<img src="assets/img/c01.gif" alt="">
-				</div>
-				<div class="col-lg-2">
-					<img src="assets/img/c02.gif" alt="">
-				</div>
-				<div class="col-lg-2">
-					<img src="assets/img/c03.gif" alt="">
-				</div>
-				<div class="col-lg-2">
-					<img src="assets/img/c04.gif" alt="">
-				</div>
-				<div class="col-lg-2">
-					<img src="assets/img/c05.gif" alt="">
-				</div>
-			</div><!-- row -->
-		</div><!-- container -->
-	</div><!-- dg -->
-	
 	
 	<div id="r">
 		<div class="container">

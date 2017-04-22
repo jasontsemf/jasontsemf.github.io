@@ -1,5 +1,5 @@
 // Wait for window load
-$(window).load(function() {
+$(document).ready(function() {
   // Animate loader off screen
   $(".se-pre-con").fadeOut("slow");
 });

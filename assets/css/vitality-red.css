@@ -94,7 +94,7 @@ fieldset[disabled] .btn-primary.active {
   background-color: #ffffff;
 }
 body {
-  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", "Roboto", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 300;
 }
@@ -815,7 +815,7 @@ aside.cta-quote span.quote {
   width: 31%;
   margin: 1%;
   display: none;
-  float: left;
+  /* float: left; */
   overflow: hidden;
 }
 #portfoliolist .portfolio .portfolio-wrapper {

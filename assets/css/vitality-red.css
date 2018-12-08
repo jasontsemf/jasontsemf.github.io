@@ -745,16 +745,18 @@ aside.cta-quote span.quote {
   margin: 30px 0;
 }
 .portfolio-modal .close-modal {
-  position: absolute;
+  position: fixed;
   width: 75px;
   height: 75px;
   background-color: transparent;
   top: 25px;
   right: 25px;
   cursor: pointer;
+  z-index: 1;
 }
 .portfolio-modal .close-modal:hover {
   opacity: 0.3;
+  z-index: 1;
 }
 .portfolio-modal .close-modal .lr {
   height: 75px;
@@ -1159,3 +1161,4 @@ body.vintage .testimonials .testimonials-carousel .owl-controls .owl-prev,
 body.vintage .testimonials .testimonials-carousel .owl-controls .owl-next {
   line-height: 55px;
 }
+r

@@ -13,6 +13,9 @@ body {
 .content-row {
   margin-top: 30px;
 }
+.p-just{
+  text-align: justify;
+}
 section {
   padding: 100px 0;
 }

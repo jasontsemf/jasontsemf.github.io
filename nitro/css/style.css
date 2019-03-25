@@ -625,6 +625,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 .fh5co-heading {
   font-size: 45px;
   margin-bottom: 1em;
+  margin-top: 1em;
 }
 .fh5co-heading.fh5co-light {
   color: #fff;

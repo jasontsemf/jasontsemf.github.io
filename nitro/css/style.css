@@ -286,6 +286,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
+  border-radius: 17px;
 }
 .work-item a h3 {
   font-size: 20px;
@@ -301,7 +302,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   text-decoration: none;
 }
 .work-item a:hover img, .work-item a:active img, .work-item a:focus img {
-  border: 10px solid #000;
+  border: 5px solid rgba(0, 0, 0, 0.342);
 }
 
 .fh5co-services {

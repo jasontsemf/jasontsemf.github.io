@@ -286,7 +286,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
-  border-radius: 17px;
+  border-radius: 1em;
 }
 .work-item a h3 {
   font-size: 20px;
@@ -302,7 +302,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   text-decoration: none;
 }
 .work-item a:hover img, .work-item a:active img, .work-item a:focus img {
-  border: 5px solid rgba(0, 0, 0, 0.342);
+  border: 10px solid rgba(0, 0, 0, 0.185);
 }
 
 .fh5co-services {
@@ -442,6 +442,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   background: #fff;
   padding: 30px;
   margin-bottom: 10px;
+  border-radius: 1em;
 }
 .fh5co-cards .fh5co-flex-wrap > div:nth-of-type(1) {
   float: left;
@@ -625,7 +626,6 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 .fh5co-heading {
   font-size: 45px;
   margin-bottom: 1em;
-  margin-top: 1em;
 }
 .fh5co-heading.fh5co-light {
   color: #fff;
@@ -822,6 +822,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   -o-transition: 0.5s;
   transition: 0.5s;
   padding: 8px 20px !important;
+  border-radius: 0.4em;
 }
 .btn.btn-sm {
   padding: 4px 15px !important;
@@ -1116,6 +1117,10 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 
 .js .animate-box {
   opacity: 0;
+}
+
+.img-responsive{
+  border-radius: 1em;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,46 @@
+@charset "UTF-8";
+/* CSS Document */
+#wrapper {
+        display: block;
+        margin: 0px;
+		 padding: 0px;
+        height: 100%;
+        width: 100%;
+}
+#container {
+        overflow: auto;
+}
+#slider {
+	display: block;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: absolute;
+}
+#prev {
+       background-image: url(image/leftArrow.png);
+		background-repeat: no-repeat;
+		background-position: center center;
+		display: block;
+		float: left;
+		height: 720px;
+		width: 100px;
+		position: relative;
+		z-index: 99;
+}
+#next {
+       background-image: url(image/rightArrow.png);
+		background-repeat: no-repeat;
+		background-position: center center;
+		display: block;
+		float: right;
+		height: 720px;
+		width: 100px;
+		position: relative;
+		z-index: 99;
+}
+
+	

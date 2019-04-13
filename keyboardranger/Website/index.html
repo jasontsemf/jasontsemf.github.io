@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>TA3 Group 4 CS1303 Project</title>
+
+
+	<link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="examples.css" />
+	<style>
+
+	/* Style for our header texts
+	* --------------------------------------- */
+
+#section0,
+	#section1,
+	#section2,
+	#section3{
+		background-size: cover;
+	}
+
+.section{
+		background-image: url('website.png');
+		padding: 0 0 0 0;
+	}
+	
+	
+ 	/*Adding background for the slides
+
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+	/* Overwriting styles for control arrows for slides
+	* --------------------------------------- */
+	.controlArrow.prev {
+		left: 50px;
+	}
+	.controlArrow.next{
+		right: 50px;
+	}
+
+
+	/* Bottom menu
+	* --------------------------------------- */
+	#infoMenu li a {
+		color: #fff;
+	}
+	#tech
+	{
+		text-align: left;
+		margin: 5%;
+		list-style-type:upper-roman;
+		padding: 2%;
+		font-size: 140%;
+	}
+	#f
+	{
+		font-size: 160%;
+		color: #FF66CC;
+	}
+	#5
+	{
+		position: absolute;
+		left: 30px;
+	}
+	#briefing{
+		margin-left: 2%;
+	}
+	#group{
+		margin-left: 2%
+	}
+	
+	</style>
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="jquery.slimscroll.min.js"></script>
+
+	<script type="text/javascript" src="jquery.fullPage.js"></script>
+	<script type="text/javascript" src="examples.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				anchors: ['firstpage', 'secondpage', '3rdPage', '4thPage', '5thPage'],
+				navigation: true,
+				navigationPosition: 'right',
+				navigationTooltips: ['Welcome', 'Team member', 'Inroduction', 'Process', 'Enjoy it']
+			});
+		});
+	</script>
+
+</head>
+<body>
+
+<div id="fullpage">
+	<div class="section" id="section0">
+		<div class="intro">
+			<h1>Welcome</h1>
+		</div>
+			<img src="logo1.png" style="height: 40%">
+			<h2>WE ARE KEYBOARD RANGER</h2>
+
+	</div>
+	<div class="section" id="section1">
+		<div class="intro">
+			<h1>Team Members</h1>
+		</div>
+			<ul>
+			<li>LAI SUM YI - MANNI: Website and Graphics</li>
+			<li>TSE MAN FUNG - JASON: Game and Graphics</li>
+			<li>NG HIN WING - VICKY: Game and Slide Show</li>
+			<li>PUN KA WAI - CARRIE: Website and Graphics</li>
+			<li>LAM HON HEI - TERRENCE: Graphics and Website</li>
+			</ul>
+	</div>
+	
+	<div class="section" id="section2">
+		<div class='slide' id="slide 1">
+			<div class="intro">
+				<h1>Introduction</h1>
+			</div>
+		</div>
+		<div class='slide' id="slide 2">
+		<h1>Story</h1>
+		<p>Once upon a time, outer space aliens attacked Hong Kong and damaged all the places. But all in sudden, a team of warriors was raised on the Internet and they called themselves, "Keyboard Rangers"!</p>
+		<h2> Keyboard Rangers is a typing game, which is related to social issue.  Our goal is to enhance teenagers and even children's awareness in society and social movement by playing our game.</h2>
+			</div>
+		<div class='slide' id="slide 3">
+			<h1>Inspiration</h1>
+			<p> As a university student now, we all are curious in society and what's happening in our home, Hong Kong. While our discussion, we have a lot of ideas on making what kinds of games. First of all, we are thinking of making an online storybook. But then a Facebook post about "locusts" inspires us. Therefore, we next created an imagined story. Finally, the idea and outline of the game have been developed.</p>
+		</div>
+		<div class='slide' id="slide 4">
+			<h1>How to play??</h1>
+			<h2>As a member of the keyboard rangers, all you need to do is type in the characters which show on each alien's bally!!!</h2>
+	</div>
+	</div>
+	
+	<div class="section" id="section3">
+	    <div class="slide" id="slide1">
+			<div class="intro">
+				<h1>Our Process</h1>
+				
+			</div>
+		</div>
+	    <div class='slide' id="slide1">
+		<h1>BraInStORmINg</h1>
+		<p>This is all we started....<br>This is the sketch of our graphic design and game setting  </p>
+		<a href="20141110_170746.jpg" target="_blank"><img src="20141110_170746.jpg" alt="sketch" style="width: 30%;height: auto"></a>
+		<span id="briefing">
+		<a href="IMG_2140.jpg" target="_blank"><img src="IMG_2140.jpg" alt="brief" style="width: auto%;height: 35%"></a>
+			</span>
+	<span id="group">
+<img src="IMG_2142.JPG" alt="group photo" style="width: auto%;height: 35%">
+	</span>	
+		</div>
+
+	    <div class='slide' id="slide2"> 
+		
+			<h1>Game Coding Technique</h1>
+			<ol id="tech">
+<li><span id=f>The function,genLetter </span>= generate characters randomly</li>
+<li><span id=f>String from charCode method, CSS and some math properties</span> = appear on the browser randomly </li>
+<li><span id=f>An array and background-image of css</span> = random selection of the aliens that behind the characters within 5 png images</li>
+<li><span id=f>Basic operation</span>= gets the keycode from the keyboard; character disappears when the keycode matches the character which was generated; auto disapperance of unmatched character; Score is added with each match; sound effect with each keydown; scores and level write on the html</li>
+<li><span id=f>Game level logic</span>= game starts with a 60-seconds count down, generating interval of characters and the passing score increase as the game level increase, if the score reaches a certain level, alert pop up to notify players, stop the basic game operation with a boolean, then the game passes to another level</li>
+<li><span id=f>Slide show</span>= javascript with jquery using cycle plugin</li>
+<li><span id=f>Entering the game</span>=we link the final slide and the game with a hyperlink simply using an a tag </li>
+<li><span id=f>Relative width and height for the background image</span> = the white margin will not exist</li> 
+</ol>
+		</div>
+	    
+	    <div class='slide' id="slide3">
+		<h1>Graphics</h1>
+		<p>At the very beginning, we came up a rough idea that using pixel style graphics like Mario Game as our graphic design. However, when we settled down the final theme of our project -- Keyboard Rangers, which is a typing game. Therefore, we decided to use 2D Flat Design style that using simple graphics to bring out the focus of this game and make it more understandable yet attractive. Due to the appropriate colors-combination and shapes, we are able to present our background story and the appearance of game clearly. Here you can see there is a lot of graphics that were applied 2D Flat Design style.</p>
+		<img src="slide 5--.png" alt="slide 5" style="width: 30%;height: auto">
+		<span id="slide3show">
+		<img src="Untitled-2.png" alt="slide 3" style="width: 28%;height: auto">
+		</span>
+</span>
+	    </div>
+	</div>
+	
+	<div class='section' id="section4">
+		<div class="intro">
+			<h1>Enjoy it</h1>
+			<h2>Players will act like one of the Keyboard Rangers and save our beautiful Hong Kong. It's time for you to cooperate with us to complete the mission, ACTION NOW!!</h2>
+			<script>function changeImage()
+{
+document.images["jsbutton"].src= "botton2.png";
+return true;
+}
+function changeImageBack()
+{
+ document.images["jsbutton"].src = "botton1.png";
+ return true;
+}
+
+</script>
+			<a href="../slider.html" onMouseOver="return changeImage()" onMouseOut= "return changeImageBack()"  ><img
+name="jsbutton" src="botton1.png" width="20%"
+alt="javascript button"></a>
+			
+
+		</div>
+	</div>
+</div>
+
+
+</body>
+/* credit to alvarotrig */
+</html>

@@ -1,0 +1,192 @@
+<head>
+	<link rel="stylesheet" href="game.css">
+	<script type="text/javascript" src="jq/jquery-1.11.1.min.js"></script>
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Expires" content="-1">
+	
+</head>
+
+<body onLoad="window.resizeTo(720,1280)">
+	
+	<div id="score">SCORE: 0</div>
+	<div id="start">Defeat Me</br></br></br></br></br></br>Click Me To Start</div>
+	<div id="back"><a href="slider.html">Back To Story</a></div>
+    <div id="whatlevel">LEVEL 1</div>
+    <div id="reachscore">Reach 900!</div>
+    <span id="timer"></span>
+    <input id="restart" type="button" value="-Restart-" onClick="document.location.reload(true)">
+    <audio id="myAudio" loop>
+		<source src="audio/bgmusic.mp3" type="audio/mpeg">
+	</audio>
+	<audio id="myGunfire">
+		<source src="audio/laserblast.mp3" type="audio/mpeg">
+    </audio>
+</body>
+
+<script type="text/javascript">
+//Configure
+var gameTime = 60;//
+var monsterEscapeTime = 3000;
+
+//global variable
+var isGameover = false;
+var level = 1;
+var count = gameTime + 1;
+var counter;
+
+var monsters = Array.apply(null, new Array(26)).map(Number.prototype.valueOf,0);
+
+
+$(document).ready(function()
+{
+// Getting screen resolutions and positioning the start button
+var width = screen.width - 400;
+var height = screen.height - 600;
+var code = 0;
+var bgm = document.getElementById("myAudio");
+
+$('#start').click( function()
+{
+	counter = setInterval(timer, 1000);
+	$(this).fadeOut('fast');
+	$('#score').fadeIn('fast');
+	$('#whatlevel').fadeIn('slow');
+	$('#reachscore').fadeIn('slow');
+	genLetter();
+	bgm.play();
+	timer();
+});
+
+
+// Dealing KeyEvents and fading out matched bubble
+$(document).keydown( function(event)
+{
+	var keycode = event.keyCode;
+	if (!isGameover)
+	{
+		var gunfire = document.getElementById("myGunfire");
+		gunfire.play();
+		
+		$('.bubb'+keycode).animate({"top" : height+"px", "opacity" : 0}, 'slow'	);
+		$('.bubb'+keycode).fadeOut('slow').hide( 'slow', function()
+		{	
+			monsters[keycode-65] = 0;
+			code += 20;			
+			$('#score').html("SCORE: "+code);
+			$(this).remove();
+		});
+		
+		
+		if(code >= 500 + 400*level)//set target score
+		{
+			level++;
+			if(level <= 3)
+			{			
+				if(level == 2)
+				{alert("Next Stage! More aliens are coming!");}
+				if(level == 3)
+				{alert("Final Stage! Defeat the BOSS!");}
+				$('#whatlevel').html("LEVEL "+level);
+				var reachScore = 500 + 400*level;
+				$('#reachscore').html("Reach "+reachScore+"!");
+				count = gameTime + 1;
+				code = 0;
+				$('#score').html("SCORE: "+code);
+				clearAllMonster();
+			}
+			else
+			{
+				isGameover = true;
+				alert("Congratulations! You have defeated the BOSS! You have saved the EARTH");
+				clearInterval(counter);
+				clearAllMonster();
+				$('#restart').show();
+			}
+		}
+	}
+});
+
+// Generating a random alphabet between A-Z
+function genLetter()
+{
+	if(!isGameover)
+	{
+		var insect = ['image/insect1.png', 'image/insect2.png', 'image/insect3.png', 'image/insect4.png', 'image/insect5.png'];
+		var rand = insect[Math.floor(Math.random() * insect.length)];
+		var k = Math.floor(Math.random() * ( 90 - 65 + 1 )) + 65;
+		
+		while(monsters[k-65] != 0)
+		{
+			k = Math.floor(Math.random() * ( 90 - 65 + 1 )) + 65;
+			if(checkAllAppear() == true)
+			{
+				setTimeout(genLetter, 1000 - (level-1)*300); // set appear rate
+				return;
+			}
+			
+		}
+		if(checkAllAppear() == false)
+		{
+			monsters[k-65] = 1;
+			var ch = String.fromCharCode(k);
+			var top = Math.floor(Math.random() * height + 100 );
+			var left = Math.floor(Math.random() * width + 100);
+			$('body').append('<span class="bubb bubb'+ k +'" style="left: '+ left +'; top: '+ top +'; background-image:'+ 'url(' + rand +')' +'">'+ ch +'</span>');
+					
+			var monster = $('.bubb'+k);
+			setTimeout(function(){monsterEscape(monster,k);}, monsterEscapeTime - (level-1)*500);// set escape time
+		}
+		setTimeout(genLetter, 1000 - (level-1)*200);
+	}
+}
+
+ 
+// Counting down
+function timer()
+{
+	count = count-1;
+	document.getElementById("timer").innerHTML=count + " secs";
+	
+	if (count <= 0)
+	{
+		isGameover = true;
+		alert("TIME IS UP! You have lost, RANGER!");
+		clearInterval(counter);
+		clearAllMonster();
+		$('#restart').show();
+	}
+}
+
+function monsterEscape(monster,k)
+{
+	//monster.animate({"top" : height+"px", "opacity" : 0}, 'slow'	);
+	monster.fadeOut('slow').hide( 'slow', function()
+	{
+		monsters[k-65] = 0;
+		$(this).remove();
+	});
+}
+
+function checkAllAppear()
+{
+	for(var  i = 0; i < monsters.length; i++)
+	{
+		if(monsters[i] == 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+function clearAllMonster()
+{
+	for(var  i = 0; i < monsters.length; i++)
+	{
+		monsters[i] = 0;
+	}
+	$('.bubb*').remove();
+}
+
+});
+</script>

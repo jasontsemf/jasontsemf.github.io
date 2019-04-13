@@ -1,0 +1,85 @@
+@CHARSET "ISO-8859-1";
+/* Reset CSS
+ * --------------------------------------- */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+form,fieldset,input,textarea,p,blockquote,th,td {
+    padding: 0;
+    margin: 0;
+}
+a{
+	text-decoration:none;
+}
+table {
+    border-spacing: 0;
+}
+fieldset,img {
+    border: 0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+    font-weight: normal;
+    font-style: normal;
+}
+strong{
+	font-weight: bold;
+}
+ol,ul {
+    list-style: none;
+    color: #00FFFF;
+    margin: 0.5%;
+    font-size: 170%;
+    
+}
+caption,th {
+    text-align: left;
+
+}
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+    font-size: 230%;
+    margin-bottom: 10%;
+    margin: 5%;
+    color: #84BCF4;
+}
+q:before,q:after {
+    content:'';
+}
+abbr,acronym { border: 0;
+}
+
+p {
+    color: #BFA0E8;
+    margin: 5%;
+}
+
+
+/* Custom CSS
+ * --------------------------------------- */
+body{
+	font-family: arial,helvetica;
+	color: #333;
+	color: rgba(0,0,0,0.5);
+}
+.wrap{
+	margin-left: auto;
+	margin-right: auto;
+	width: 200%;
+	position: relative;
+}
+h1{
+	font-size: 600%;
+}
+p{
+	font-size: 190%;
+	margin: 5%
+}
+.intro p{
+	width: 50%;
+	margin: 0 auto;
+	font-size: 130%;
+}
+
+.section{
+	text-align:center;
+	background-position: center;
+	background-size: cover;
+}

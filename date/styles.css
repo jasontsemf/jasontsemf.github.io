@@ -198,7 +198,7 @@ body {
 .fa-heart {
     margin-left: auto;
     margin-right: auto;
-    font-size: 150px;
+    font-size: 150px !important;
     color: red;
     animation-duration: 2s;
     animation-name: beating;

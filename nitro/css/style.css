@@ -499,6 +499,10 @@ body.offcanvas .fh5co-nav-toggle {
     line-height: 1.5;
 }
 
+.fh5co-passage {
+    font-size: 16px;
+}
+
 .fh5co-heading-colored {
     color: rgb(231, 86, 125);
 }
@@ -745,6 +749,7 @@ body.offcanvas .fh5co-nav-toggle {
 .fh5co-heading {
     font-size: 45px;
     margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 .fh5co-heading.fh5co-light {

@@ -48,14 +48,50 @@
 	var testimonialCarousel = function(){
 		var owl = $('.owl-carousel-fullwidth');
 		owl.owlCarousel({
-			items: 1,
-		    loop: true,
-		    margin: 0,
-		    responsiveClass: true,
-		    nav: false,
-		    dots: true,
-		    smartSpeed: 500,
-		    autoHeight: true
+			// items: 1,
+		    // loop: true,
+		    // margin: 0,
+		    // responsiveClass: true,
+		    // nav: false,
+		    // dots: true,
+		    // smartSpeed: 500,
+			// autoHeight: true
+
+			navigation : true, // Show next and prev buttons
+
+			slideSpeed : 300,
+			paginationSpeed : 400,
+
+			items : 1, 
+			itemsDesktop : false,
+			itemsDesktopSmall : false,
+			itemsTablet: false,
+			itemsMobile : false
+		});
+	};
+
+	var galleryCarousel = function(){
+		var owl = $('.owl-gallery-carousel');
+		owl.owlCarousel({
+			loop: true,
+			margin: 0,
+			responsiveClass: true,
+			nav: false,
+			dots: true,
+			smartSpeed: 500,
+			autoHeight: true,
+			responsive:{
+				0:{
+					items:1,
+				},
+				600:{
+					items:3,
+				},
+				1000:{
+					items:5,
+					loop:false
+				}
+			}
 		});
 	};
 
@@ -171,6 +207,7 @@
 		fullHeight();
 		parallax();
 		testimonialCarousel();
+		galleryCarousel();
 		contentWayPoint();
 		counterWayPoint();
 		burgerMenu();

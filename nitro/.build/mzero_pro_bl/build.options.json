@@ -1,0 +1,11 @@
+{
+  "additionalFiles": "",
+  "builtInLibrariesFolders": "/Applications/Arduino.app/Contents/Java/libraries",
+  "customBuildProperties": "build.path=/Users/jasontse/Documents/jasontsemf.github.io/nitro/.build/mzero_pro_bl,build.warn_data_percentage=75,runtime.tools.CMSIS.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/CMSIS/4.5.0,runtime.tools.CMSIS-4.5.0.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/CMSIS/4.5.0,runtime.tools.bossac.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/bossac/1.7.0-arduino3,runtime.tools.bossac-1.7.0-arduino3.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/bossac/1.7.0-arduino3,runtime.tools.openocd.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/openocd/0.10.0-arduino7,runtime.tools.openocd-0.10.0-arduino7.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/openocd/0.10.0-arduino7,runtime.tools.arm-none-eabi-gcc.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/arm-none-eabi-gcc/7-2017q4,runtime.tools.arm-none-eabi-gcc-7-2017q4.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/arm-none-eabi-gcc/7-2017q4,runtime.tools.CMSIS-Atmel.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/CMSIS-Atmel/1.2.0,runtime.tools.CMSIS-Atmel-1.2.0.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/CMSIS-Atmel/1.2.0,runtime.tools.arduinoOTA.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/arduinoOTA/1.2.1,runtime.tools.arduinoOTA-1.2.1.path=/Users/jasontse/Library/Arduino15/packages/arduino/tools/arduinoOTA/1.2.1",
+  "fqbn": "arduino:samd:mzero_pro_bl",
+  "hardwareFolders": "/Applications/Arduino.app/Contents/Java/hardware,/Users/jasontse/Library/Arduino15/packages",
+  "otherLibrariesFolders": "/Users/jasontse/Documents/Arduino/libraries",
+  "runtime.ide.version": "10810",
+  "sketchLocation": "/Users/jasontse/Documents/jasontsemf.github.io/nitro/app.ino",
+  "toolsFolders": "/Applications/Arduino.app/Contents/Java/tools-builder,/Applications/Arduino.app/Contents/Java/hardware/tools/avr,/Users/jasontse/Library/Arduino15/packages"
+}

@@ -58,7 +58,7 @@ h6 {
     color: #7e7e7e;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    margin: 30px 0 30px 0;
+    margin: 0px 0 30px 0;
 }
 
 figure {
@@ -128,8 +128,8 @@ figure {
 }
 
 #fh5co-aside #fh5co-main-menu ul {
-    text-align: center;
-    margin: 0;
+    /* text-align: center; */
+    margin: auto;
     padding: 0;
 }
 
@@ -140,7 +140,7 @@ figure {
 }
 
 #fh5co-aside #fh5co-main-menu ul li {
-    margin: 0 0 10px 0;
+    margin: 0 0 10px 25%;
     padding: 0;
     list-style: none;
 }
@@ -148,8 +148,8 @@ figure {
 #fh5co-aside #fh5co-main-menu ul li a {
     color: #7e7e7e;
     text-decoration: none;
-    letter-spacing: .1em;
-    text-transform: uppercase;
+    /* letter-spacing: .1em; */
+    /* text-transform: uppercase; */
     font-size: 15px;
     font-weight: 300;
     position: relative;
@@ -157,7 +157,7 @@ figure {
     -o-transition: 0.3s;
     transition: 0.3s;
     padding: 10px 10px;
-    letter-spacing: .2em;
+    /* letter-spacing: .2em; */
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -213,10 +213,11 @@ figure {
     position: absolute;
     bottom: 40px;
     font-size: 14px;
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.6);
+    margin: 0 0 10px 25%;
 }
 
 @media screen and (max-width: 768px) {
@@ -233,7 +234,7 @@ figure {
 #fh5co-aside .fh5co-footer ul {
     padding: 0;
     margin: 0;
-    text-align: center;
+    /* text-align: center; */
 }
 
 #fh5co-aside .fh5co-footer ul li {
@@ -295,7 +296,7 @@ figure {
 #fh5co-main .fh5co-wide-content {
     position: relative;
     width: 100%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 #fh5co-main .fh5co-center-content {
@@ -308,7 +309,7 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
-    #fh5co-main .fh5co-narrow-content {
+    #fh5co-main .fh5co-narrow-content-top {
         width: 100%;
         padding-left: 2em;
         padding-right: 2em;
@@ -317,9 +318,18 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
+    #fh5co-main .fh5co-narrow-content {
+        width: 100%;
+        padding-left: 2em;
+        padding-right: 2em;
+        padding-top: 1.5em;
+    }
+}
+
+@media screen and (max-width: 768px) {
     #fh5co-main .fh5co-wide-content {
         width: 100%;
-        padding-top: 4.5em;
+        /* padding-top: 1.5em; */
     }
 }
 
@@ -447,6 +457,19 @@ body.offcanvas .fh5co-nav-toggle {
     height: 100%;
     background: black;
 }
+
+.fh5co-youtube-video-wide {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: 100%;
+    height: 100%;
+    background: black;
+}
+
 .fh5co-vimeo-video {
     position: absolute;
     left: 50%;
@@ -454,7 +477,7 @@ body.offcanvas .fh5co-nav-toggle {
     -webkit-transform: translateX(-50%) translateY(-50%);
     -moz-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
-    width: 90%;
+    width: 100%;
     height: 100%;
     background: black;
 }
@@ -465,7 +488,8 @@ body.offcanvas .fh5co-nav-toggle {
 
 @media screen and (max-width: 768px) {
     .fh5co-testimonial {
-        padding: 3em 0;
+        /* padding-left: 3em;
+        padding-right: 3em; */
     }
 }
 
@@ -481,8 +505,8 @@ body.offcanvas .fh5co-nav-toggle {
 
 @media screen and (max-width: 768px) {
     .fh5co-testimonial .item {
-        padding-left: 1em;
-        padding-right: 1em;
+        padding-left: 0em;
+        padding-right: 0em;   
         display: block;
         width: 100%;
         height: auto;
@@ -600,12 +624,15 @@ body.offcanvas .fh5co-nav-toggle {
 }
 
 .fh5co-cards .fh5co-flex-wrap>div {
-    width: 49.5%;
-    margin-right: 1%;
+    width: 65%;
+    /* width: 49.5%; */
+    /* margin-right: 1%; */
     background: #fff;
     padding: 30px;
     margin-bottom: 10px;
     border-radius: 1em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .fh5co-cards .fh5co-flex-wrap>div:nth-of-type(1) {
@@ -630,7 +657,7 @@ body.offcanvas .fh5co-nav-toggle {
 
 .fh5co-cards .fh5co-flex-wrap .fh5co-card h5 {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 16px;
     letter-spacing: .2em;
     padding: 4px 8px;
     background: #ebebeb;
@@ -760,6 +787,14 @@ body.offcanvas .fh5co-nav-toggle {
     width: 10%;
     display: block;
     margin-top: 5px;
+    font-size: 50px;
+}
+.fh5co-feature .fh5co-icon-contact {
+    /* float: left; */
+    /* width: 10%; */
+    /* display: block; */
+    /* margin-top: 5px; */
+    font-size: 50px;
 }
 
 .fh5co-feature .fh5co-icon i {
@@ -1493,21 +1528,67 @@ p.cursor::after {
 }
 
 .img-caption{
-    position: absolute;
-    top: 95%;
+    font-size: 14px;
+    /* position: absolute;
+    text-align: center;
+    top: 100%;
     left: 50%;
-    transform: translate(-50%, -95%);
+    transform: translate(0, 50%); */
+}
+
+.owl-gallery-carousel{
+    /* margin: 3px 3px 3px 3px; */
+    width: 100%;
+    position: relative;
+    /* margin: auto; */
 }
 
 .owl-gallery-carousel .item{
-    margin: 3px;
-  }
+    /* margin: 3px 3px 3px 3px; */
+    padding-bottom: 2em;
+}
 
 .owl-gallery-carousel .item img{
     display: block;
-    width: 95%;
+    width: 90%;
+    transform: translate(5%, 0);
     height: auto;
 }
+
+.fh5co-wide-content h3{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fh5co-wide-content .title{
+    width: 80%; 
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+
+}
+
+@media screen and (max-width: 768px) {
+    .fh5co-wide-content h3{
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .owl-gallery-carousel .item img{
+        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        transform: translate(0, 0);
+        height: auto;
+    }
+}
+
 
 
 

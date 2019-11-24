@@ -1,0 +1,17 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "/Users/jasontse/Library/Arduino15/packages/arduino/hardware/samd/1.8.4/cores/arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "/Users/jasontse/Library/Arduino15/packages/arduino/hardware/samd/1.8.4/variants/arduino_mzero"
+  },
+  {
+    "Sourcefile": "/Users/jasontse/Documents/jasontsemf.github.io/nitro/.build/mzero_pro_bl/sketch/app.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

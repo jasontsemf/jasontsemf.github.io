@@ -316,6 +316,9 @@ figure {
     padding: 4em 0;
 }
 
+    padding: 4em 0;
+}
+
 #fh5co-main .fh5co-center-content {
     position: relative;
     width: 80%;
@@ -516,6 +519,20 @@ body.offcanvas .fh5co-nav-toggle {
     .fh5co-testimonial {
         /* padding-left: 3em;
         padding-right: 3em; */
+    padding: 3em 0;
+    background: rgb(231, 86, 125);
+}
+
+.fh5co-youtube {
+    background: #000000;
+}
+
+.fh5co-full-height {
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .fh5co-testimonial {
         padding: 3em 0;
     }
 }
@@ -663,6 +680,26 @@ body.offcanvas .fh5co-nav-toggle {
     border-radius: 1em;
     margin-left: auto;
     margin-right: auto;
+}
+
+.fh5co-cards .fh5co-flex-wrap>div:nth-of-type(1) {
+    float: left;
+}
+
+.fh5co-cards .fh5co-flex-wrap>div:nth-of-type(2) {
+    float: right;
+    margin-right: 0%;
+}
+
+}
+
+.fh5co-cards .fh5co-flex-wrap>div {
+    width: 49.5%;
+    margin-right: 1%;
+    background: #fff;
+    padding: 30px;
+    margin-bottom: 10px;
+    border-radius: 1em;
 }
 
 .fh5co-cards .fh5co-flex-wrap>div:nth-of-type(1) {
@@ -846,6 +883,7 @@ body.offcanvas .fh5co-nav-toggle {
     /* display: block; */
     /* margin-top: 5px; */
     font-size: 50px;
+}
 }
 }
 
@@ -1525,6 +1563,21 @@ body.offcanvas .fh5co-nav-toggle {
     animation-iteration-count: infinite;
 }
 
+}
+
+
+/* Cursor Styling */
+
+.cursor::after {
+    content: '';
+    display: inline-block;
+    margin-left: 3px;
+    background-color: rgb(133, 236, 235);
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
 h1.cursor::after {
     height: 24px;
     width: 13px;
@@ -1694,6 +1747,8 @@ p.cursor::after {
     100% {
         opacity: 0;
     }
+}
+
 }
 
 

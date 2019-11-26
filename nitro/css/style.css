@@ -59,6 +59,7 @@ h6 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     margin: 0px 0 30px 0;
+    margin: 0 0 30px 0;
 }
 
 figure {
@@ -85,6 +86,7 @@ figure {
 #fh5co-page {
     width: 100%;
     overflow: auto;
+    overflow: hidden;
     position: relative;
 }
 
@@ -97,6 +99,7 @@ figure {
     top: 0;
     left: 0;
     overflow-y: hidden;
+    overflow-y: auto;
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
@@ -130,6 +133,8 @@ figure {
 #fh5co-aside #fh5co-main-menu ul {
     /* text-align: center; */
     margin: auto;
+    text-align: center;
+    margin: 0;
     padding: 0;
 }
 
@@ -141,6 +146,7 @@ figure {
 
 #fh5co-aside #fh5co-main-menu ul li {
     margin: 0 0 10px 25%;
+    margin: 0 0 10px 0;
     padding: 0;
     list-style: none;
 }
@@ -150,6 +156,8 @@ figure {
     text-decoration: none;
     /* letter-spacing: .1em; */
     /* text-transform: uppercase; */
+    letter-spacing: .1em;
+    text-transform: uppercase;
     font-size: 15px;
     font-weight: 300;
     position: relative;
@@ -158,6 +166,7 @@ figure {
     transition: 0.3s;
     padding: 10px 10px;
     /* letter-spacing: .2em; */
+    letter-spacing: .2em;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -218,6 +227,10 @@ figure {
     font-weight: 400;
     color: rgba(0, 0, 0, 0.6);
     margin: 0 0 10px 25%;
+    text-align: center;
+    width: 100%;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.6);
 }
 
 @media screen and (max-width: 768px) {
@@ -235,6 +248,7 @@ figure {
     padding: 0;
     margin: 0;
     /* text-align: center; */
+    text-align: center;
 }
 
 #fh5co-aside .fh5co-footer ul li {
@@ -299,6 +313,9 @@ figure {
     /* margin: 0 auto; */
 }
 
+    padding: 4em 0;
+}
+
 #fh5co-main .fh5co-center-content {
     position: relative;
     width: 80%;
@@ -330,6 +347,9 @@ figure {
     #fh5co-main .fh5co-wide-content {
         width: 100%;
         /* padding-top: 1.5em; */
+    #fh5co-main .fh5co-narrow-content {
+        width: 100%;
+        padding: 3.5em 1em;
     }
 }
 
@@ -480,6 +500,12 @@ body.offcanvas .fh5co-nav-toggle {
     width: 100%;
     height: 100%;
     background: black;
+    padding: 3em 0;
+    background: rgb(231, 86, 125);
+}
+
+.fh5co-youtube {
+    background: #000000;
 }
 
 .fh5co-full-height {
@@ -490,6 +516,7 @@ body.offcanvas .fh5co-nav-toggle {
     .fh5co-testimonial {
         /* padding-left: 3em;
         padding-right: 3em; */
+        padding: 3em 0;
     }
 }
 
@@ -501,6 +528,8 @@ body.offcanvas .fh5co-nav-toggle {
     display: block;
     width: 100%;
     height: auto;
+    padding-left: 3em;
+    padding-right: 3em;
 }
 
 @media screen and (max-width: 768px) {
@@ -510,6 +539,7 @@ body.offcanvas .fh5co-nav-toggle {
         display: block;
         width: 100%;
         height: auto;
+        padding-right: 0em;
     }
 }
 
@@ -644,6 +674,26 @@ body.offcanvas .fh5co-nav-toggle {
     margin-right: 0%;
 }
 
+}
+
+.fh5co-cards .fh5co-flex-wrap>div {
+    width: 49.5%;
+    margin-right: 1%;
+    background: #fff;
+    padding: 30px;
+    margin-bottom: 10px;
+    border-radius: 1em;
+}
+
+.fh5co-cards .fh5co-flex-wrap>div:nth-of-type(1) {
+    float: left;
+}
+
+.fh5co-cards .fh5co-flex-wrap>div:nth-of-type(2) {
+    float: right;
+    margin-right: 0%;
+}
+
 @media screen and (max-width: 992px) {
     .fh5co-cards .fh5co-flex-wrap>div {
         width: 100%;
@@ -658,6 +708,7 @@ body.offcanvas .fh5co-nav-toggle {
 .fh5co-cards .fh5co-flex-wrap .fh5co-card h5 {
     text-transform: uppercase;
     font-size: 16px;
+    font-size: 12px;
     letter-spacing: .2em;
     padding: 4px 8px;
     background: #ebebeb;
@@ -795,6 +846,7 @@ body.offcanvas .fh5co-nav-toggle {
     /* display: block; */
     /* margin-top: 5px; */
     font-size: 50px;
+}
 }
 
 .fh5co-feature .fh5co-icon i {
@@ -1036,11 +1088,16 @@ body.offcanvas .fh5co-nav-toggle {
     bottom: 0;
     margin-bottom: -2.5em;
 } */
+.owl-carousel-fullwidth.owl-theme .owl-dots {
+    bottom: 0;
+    margin-bottom: -2.5em;
+}
 
 .owl-theme .owl-dots .owl-dot span {
     width: 10px;
     height: 10px;
     background: rgb(231, 86, 125);
+    background: #fff;
     -webkit-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s;
@@ -1057,6 +1114,7 @@ body.offcanvas .fh5co-nav-toggle {
     background: transparent;
     height: 10px;
     border: 2px solid rgb(133, 236, 235);
+    border: 2px solid #fff;
 }
 
 .btn {
@@ -1099,6 +1157,9 @@ body.offcanvas .fh5co-nav-toggle {
     background: rgb(133, 236, 235);
     color: #fff;
     border: 2px solid rgb(133, 236, 235);
+    background: rgb(231, 86, 125);
+    color: #fff;
+    border: 2px solid rgb(231, 86, 125);
 }
 
 .btn-primary:hover,
@@ -1112,12 +1173,14 @@ body.offcanvas .fh5co-nav-toggle {
     background: transparent;
     color: rgb(231, 86, 125);
     border: 2px solid rgb(133, 236, 235);
+    border: 2px solid rgb(231, 86, 125);
 }
 
 .btn-primary.btn-outline:hover,
 .btn-primary.btn-outline:focus,
 .btn-primary.btn-outline:active {
     background: rgb(133, 236, 235);
+    background: rgb(231, 86, 125);
     color: #fff;
 }
 
@@ -1591,6 +1654,60 @@ p.cursor::after {
 
 
 
+
+
+}
+
+
+/* Cursor Styling */
+
+.cursor::after {
+    content: '';
+    display: inline-block;
+    margin-left: 3px;
+    background-color: rgb(133, 236, 235);
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+h1.cursor::after {
+    height: 24px;
+    width: 13px;
+}
+
+p.cursor::after {
+    height: 13px;
+    width: 6px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    49% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* Rotating Hover*/
+
+.spin {
+    transition: .3s all;
+}
+
+.spin:hover {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
 
 
 /*# sourceMappingURL=style.css.map */

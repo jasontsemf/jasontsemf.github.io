@@ -67,6 +67,12 @@ figure {
     width: 100%;
 }
 
+.videoBox{
+    padding-bottom: 2.5em;
+    /* float: left; */
+    /* width: 100%; */
+}
+
 ::-webkit-selection {
     color: #fff;
     background: rgb(231, 86, 125);

@@ -212,6 +212,10 @@
 		counterWayPoint();
 		burgerMenu();
 		mobileMenuOutsideClick();
+		// new Cocoen(document.querySelector('.cocoen'));
+		document.querySelectorAll('.cocoen').forEach(function(element){
+			new Cocoen(element);
+		});
 	});
 
 

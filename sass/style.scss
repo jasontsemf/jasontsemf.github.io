@@ -168,12 +168,12 @@ figure {
   background: $brand-primary;
 }
 
-#fh5co-page {
+#jason-page {
     width: 100%;
     overflow: hidden;
     position: relative;
 }
-#fh5co-aside {
+#jason-aside {
 	padding-top: 40px;
 	padding-bottom: 40px;
 	width: 15%;
@@ -194,10 +194,10 @@ figure {
 		@include translateX(-270px);
 		// @include translateX(-200%);
 	}
-	#fh5co-logo {
+	#jason-logo {
 		text-align: center;
 	}
-	#fh5co-main-menu {
+	#jason-main-menu {
 		ul {
 			text-align: center;
 			margin: 0;
@@ -255,7 +255,7 @@ figure {
 						}
 					}
 				}
-				&.fh5co-active {
+				&.jason-active {
 					a {
 						color: rgba(0,0,0,1);
 						&:after {
@@ -271,7 +271,7 @@ figure {
 			}
 		}
 	}
-	.fh5co-footer {
+	.jason-footer {
 		position: absolute;
 		bottom: 40px;
 		font-size: 14px;
@@ -309,7 +309,7 @@ figure {
 	}
 }
 
-#fh5co-main {
+#jason-main {
 	width: 85%;
 	float: right;
 	@include transition(.5s);
@@ -319,7 +319,7 @@ figure {
 	@media screen and (max-width: $screen-sm) {
 		width: 100%;
 	}
-	.fh5co-narrow-content {
+	.jason-narrow-content {
 		position: relative;
 		width: 80%;
 		margin: 0 auto;
@@ -334,14 +334,14 @@ figure {
 body {
 	&.offcanvas {
 		overflow-x: hidden;
-		#fh5co-aside {
+		#jason-aside {
 			@include translateX(0);
 			width: 270px;
 			background: $brand-white;
 			z-index: 999;
 			position: fixed;
 		}
-		#fh5co-main, .fh5co-nav-toggle {
+		#jason-main, .jason-nav-toggle {
 			top: 0;
 			@include translateX(270px);
 		}
@@ -377,7 +377,7 @@ body {
 		}
 	}
 }
-.fh5co-services {
+.jason-services {
 	margin-top: 5px;
 	ul {
 		list-style: none;
@@ -401,13 +401,13 @@ body {
 	}
 }
 
-.fh5co-border-bottom  {
+.jason-border-bottom  {
 	border-bottom: 1px solid lighten($brand-black, 94%);
 }
 
 
 
-.fh5co-testimonial {
+.jason-testimonial {
 	padding: 3em 0;
 	background: $brand-primary;
 	@media screen and (max-width: $screen-sm) {
@@ -446,12 +446,12 @@ body {
 	}
 }
 
-.fh5co-counters {
+.jason-counters {
 	padding: 1em 0;
 	background: lighten($brand-black, 90%);
 	background-size: cover;
 	background-attachment: fixed;
-	.fh5co-counter {
+	.jason-counter {
 		font-size: 50px;
 		display: block;
 		color: $brand-white;
@@ -459,7 +459,7 @@ body {
 		width: 100%;
 		margin-bottom: .5em;
 	}
-	.fh5co-counter-label {
+	.jason-counter-label {
 		color: $brand-white;
 		text-transform: uppercase;
 		font-size: 13px;
@@ -469,22 +469,22 @@ body {
 		display: block;
 	}
 }
-.fh5co-lead {
+.jason-lead {
 	font-size: 24px;
 	line-height: 1.5;
 }
-.fh5co-heading-colored {
+.jason-heading-colored {
 	color: $brand-primary;
 }
 
-.fh5co-cards {
+.jason-cards {
 	padding: 1em 0;
 	background: lighten($brand-black, 90%);
 	@media screen and (max-width: $screen-sm) {
 		padding: 1em 0;
 	}
 
-	.fh5co-flex-wrap {
+	.jason-flex-wrap {
 		@include flex();
 		@include flexwrap();
 		> div {
@@ -505,7 +505,7 @@ body {
 				margin-right: 0;
 			}
 		}
-		.fh5co-card {
+		.jason-card {
 			p:last-child {
 				margin-bottom: 0;
 			}
@@ -522,15 +522,15 @@ body {
 }
 
 
-.fh5co-counter {
-	.fh5co-number {
+.jason-counter {
+	.jason-number {
 		font-size: 100px;
 		color: $brand-primary;
 		font-weight: 400;
 		margin: 0;
 		padding: 0;
 		line-height: .7;
-		&.fh5co-left {
+		&.jason-left {
 			float: left;
 			width: 30%;
 			@media screen and (max-width: $screen-sm) {
@@ -539,7 +539,7 @@ body {
 			}
 		}
 	}
-	.fh5co-text {
+	.jason-text {
 		float: right;
 		text-align: left;
 		width: 70%;
@@ -561,7 +561,7 @@ body {
 	}
 }
 
-.fh5co-social {
+.jason-social {
 	padding: 0;
 	margin: 0;
 	text-align: center;
@@ -600,17 +600,17 @@ body {
 	}
 }
 
-.fh5co-more-contact {
+.jason-more-contact {
 	background: lighten($brand-black, 98%);	
 }
 
 
-.fh5co-feature {
+.jason-feature {
 	text-align: left;
 	width: 100%;
 	float: left;
 	padding: 20px;
-	.fh5co-icon {
+	.jason-icon {
 		float: left;
 		width: 10%;
 		display: block;
@@ -623,8 +623,8 @@ body {
 			}
 		}
 	}
-	&.fh5co-feature-sm {
-		.fh5co-icon {
+	&.jason-feature-sm {
+		.jason-icon {
 			i {
 				color: $brand-primary;
 				font-size: 28px;
@@ -634,7 +634,7 @@ body {
 			}
 		}
 	}
-	.fh5co-text {
+	.jason-text {
 		float: right;
 		width: 80%;
 		@media screen and (max-width: $screen-sm) {
@@ -658,10 +658,10 @@ body {
 	}
 }
 
-.fh5co-heading {
+.jason-heading {
 	font-size: 45px;
 	margin-bottom: 1em;
-	&.fh5co-light {
+	&.jason-light {
 		color: $brand-white;
 	}
 	span {
@@ -674,7 +674,7 @@ body {
 }
 
 
-.fh5co-staff {
+.jason-staff {
 	img {
 		margin-bottom: 1em;
 	}
@@ -773,8 +773,8 @@ body {
 	}
 }
 
-.owl-carousel-fullwidth.fh5co-light-arrow .owl-controls .owl-nav .owl-next,
-.owl-carousel-fullwidth.fh5co-light-arrow .owl-controls .owl-nav .owl-prev {
+.owl-carousel-fullwidth.jason-light-arrow .owl-controls .owl-nav .owl-next,
+.owl-carousel-fullwidth.jason-light-arrow .owl-controls .owl-nav .owl-prev {
 	i {
 		color: $brand-white;
 	}
@@ -982,7 +982,7 @@ body {
 
 
 // Burger Menu
-.fh5co-nav-toggle {
+.jason-nav-toggle {
  
   cursor: pointer;
   text-decoration: none;
@@ -1037,22 +1037,22 @@ body {
   }
 }
 
-.fh5co-nav-toggle i::before {
+.jason-nav-toggle i::before {
   top: -7px;
 }
-.fh5co-nav-toggle i::after {
+.jason-nav-toggle i::after {
   bottom: -7px;
 }
-.fh5co-nav-toggle:hover i::before {
+.jason-nav-toggle:hover i::before {
   top: -10px;
 }
-.fh5co-nav-toggle:hover i::after {
+.jason-nav-toggle:hover i::after {
   bottom: -10px;
 }
-.fh5co-nav-toggle.active i {
+.jason-nav-toggle.active i {
 	background: transparent;
 }
-.fh5co-nav-toggle.active i::before {
+.jason-nav-toggle.active i::before {
   top:0;
   -webkit-transform: rotateZ(45deg);
      -moz-transform: rotateZ(45deg);
@@ -1060,7 +1060,7 @@ body {
        -o-transform: rotateZ(45deg);
           transform: rotateZ(45deg);
 }
-.fh5co-nav-toggle.active i::after {
+.jason-nav-toggle.active i::after {
   bottom:0;
   -webkit-transform: rotateZ(-45deg);
      -moz-transform: rotateZ(-45deg);
@@ -1068,7 +1068,7 @@ body {
        -o-transform: rotateZ(-45deg);
           transform: rotateZ(-45deg);
 }
-.fh5co-nav-toggle {
+.jason-nav-toggle {
   	position: fixed;
   	left: 0;
 	top: 0px;

@@ -157,7 +157,7 @@
 
 	var burgerMenu = function() {
 
-		$('.js-fh5co-nav-toggle').on('click', function(event){
+		$('.js-jason-nav-toggle').on('click', function(event){
 			event.preventDefault();
 			var $this = $(this);
 
@@ -178,13 +178,13 @@
 	var mobileMenuOutsideClick = function() {
 
 		$(document).click(function (e) {
-	    var container = $("#fh5co-aside, .js-fh5co-nav-toggle");
+	    var container = $("#jason-aside, .js-jason-nav-toggle");
 	    if (!container.is(e.target) && container.has(e.target).length === 0) {
 
 	    	if ( $('body').hasClass('offcanvas') ) {
 
     			$('body').removeClass('offcanvas');
-    			$('.js-fh5co-nav-toggle').removeClass('active');
+    			$('.js-jason-nav-toggle').removeClass('active');
 			
 	    	}
 	    	
@@ -195,7 +195,7 @@
 			if ( $('body').hasClass('offcanvas') ) {
 
     			$('body').removeClass('offcanvas');
-    			$('.js-fh5co-nav-toggle').removeClass('active');
+    			$('.js-jason-nav-toggle').removeClass('active');
 			
 	    	}
 		});

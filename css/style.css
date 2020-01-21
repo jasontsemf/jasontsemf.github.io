@@ -1444,6 +1444,9 @@ body.offcanvas .jason-nav-toggle {
 
 .img-responsive {
     border-radius: 1em;
+}
+
+.img-responsive-shadow {
     filter:drop-shadow(3px 5px 5px rgb(140, 140, 140));
 }
 

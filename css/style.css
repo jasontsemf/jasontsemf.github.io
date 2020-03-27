@@ -1602,6 +1602,9 @@ p.cursor::after {
     }
 }
 
+.github-code{
+    color: grey !important;
+}
 
 
 

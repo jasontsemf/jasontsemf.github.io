@@ -1626,6 +1626,14 @@ p.cursor::after {
     flex: 2;
 }
 
+.flex-3{
+    flex: 3;
+}
+
+.flex-4{
+    flex: 4;
+}
+
 .flex p{
     padding-left: 30px;
     padding-right: 30px;

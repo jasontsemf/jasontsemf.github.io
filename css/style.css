@@ -296,8 +296,10 @@ figure {
     position: relative;
     width: 80%;
     margin: 0 auto;
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    /* padding-top: 1.5em;
+    padding-bottom: 1.5em; */
 }
 
 #jason-main .jason-wide-content {
@@ -1606,7 +1608,30 @@ p.cursor::after {
     color: grey !important;
 }
 
+.flex{
+    display: flex; align-items: center;
+}
 
+@media screen and (max-width: 1200px) {
+    .flex-col {
+        flex-direction: column;
+    }
+}
 
+.flex-1{
+    flex: 1;
+}
 
+.flex-2{
+    flex: 2;
+}
+
+.flex p{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.flex img{
+    width: 100%;
+}
 /*# sourceMappingURL=style.css.map */

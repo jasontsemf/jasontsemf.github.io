@@ -1616,6 +1616,9 @@ p.cursor::after {
     .flex-col {
         flex-direction: column;
     }
+    .flex-col-rev {
+        flex-direction: column-reverse;
+    }
 }
 
 .flex-1{

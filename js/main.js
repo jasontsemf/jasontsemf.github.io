@@ -49,15 +49,15 @@
 		var owl = $('.owl-carousel-fullwidth');
 		owl.owlCarousel({
 			// items: 1,
-		    // loop: true,
-		    // margin: 0,
+		    loop: true,
+		    margin: 10,
 		    // responsiveClass: true,
 		    // nav: false,
 		    // dots: true,
-		    // smartSpeed: 500,
-			// autoHeight: true
-
-			navigation : true, // Show next and prev buttons
+		    smartSpeed: 500,
+			autoHeight: true,
+			
+			// navigation : true, // Show next and prev buttons
 
 			slideSpeed : 300,
 			paginationSpeed : 400,
@@ -66,7 +66,11 @@
 			itemsDesktop : false,
 			itemsDesktopSmall : false,
 			itemsTablet: false,
-			itemsMobile : false
+			itemsMobile : false,
+			
+			autoplay: true,
+			autoplayTimeout:5000,
+			autoplayHoverPause: false
 		});
 	};
 
@@ -79,7 +83,7 @@
 			nav: false,
 			dots: true,
 			smartSpeed: 500,
-			autoHeight: true,
+			autoHeight: false,
 			responsive:{
 				0:{
 					items:1,
@@ -95,6 +99,43 @@
 		});
 	};
 
+	var standCarousel = function(){
+		var owl = $('.owl-carousel-side');
+		owl.owlCarousel({
+			// items: 1,
+		    loop: true,
+		    margin: 10,
+		    responsiveClass: true,
+		    // nav: false,
+		    dots: true,
+		    smartSpeed: 500,
+			autoHeight: false,
+			minWidth: 0,
+			
+			// navigation : true, // Show next and prev buttons
+
+			slideSpeed : 300,
+			paginationSpeed : 400,
+
+			items : 1, 
+			itemsDesktop : false,
+			itemsDesktopSmall : false,
+			itemsTablet: false,
+			itemsMobile : false,
+			
+			autoplay: true,
+			autoplayTimeout:5000,
+			autoplayHoverPause: false,
+			responsive:{
+				0:{
+					items:1,
+				},
+				600:{
+					items:3,
+				}
+			}
+		});
+	};
 
 	// Animations
 
@@ -208,6 +249,7 @@
 		parallax();
 		testimonialCarousel();
 		galleryCarousel();
+		standCarousel();
 		contentWayPoint();
 		counterWayPoint();
 		burgerMenu();

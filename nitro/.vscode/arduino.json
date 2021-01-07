@@ -1,4 +1,0 @@
-{
-    "board": "arduino:samd:mzero_pro_bl",
-    "sketch": "app.ino"
-}

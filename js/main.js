@@ -219,6 +219,7 @@
 	var mobileMenuOutsideClick = function() {
 
 		$(document).click(function (e) {
+			console.log("changing");
 	    var container = $("#jason-aside, .js-jason-nav-toggle");
 	    if (!container.is(e.target) && container.has(e.target).length === 0) {
 

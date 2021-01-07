@@ -600,6 +600,7 @@ body.offcanvas .jason-nav-toggle {
 }
 
 .jason-captionpad {
+    padding-top: 1em;
     padding-left: 1em;
     padding-right: 1em;
 }

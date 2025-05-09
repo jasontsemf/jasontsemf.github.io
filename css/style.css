@@ -92,6 +92,9 @@ figure {
     width: 100%;
     overflow: auto;
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 #jason-aside {
@@ -270,17 +273,23 @@ figure {
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15%;
 }
 
 @media screen and (max-width: 1200px) {
     #jason-main {
         width: 70%;
+        margin-left: 30%;
     }
 }
 
 @media screen and (max-width: 768px) {
     #jason-main {
         width: 100%;
+        margin-left: 0;
     }
 }
 
@@ -785,6 +794,17 @@ body.offcanvas .jason-nav-toggle {
 
 .jason-more-contact {
     background: #fafafa;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 70vh); /* Subtract the map height */
+}
+
+.jason-more-contact .jason-narrow-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .jason-feature {
@@ -1528,13 +1548,14 @@ p.cursor::after {
 
 .map {
     position: relative;
-    padding-bottom: 50%;
+    padding-bottom: 70vh;
 }
 
 @media screen and (max-width: 768px) {
     .map {
         width: 100%;
         padding-top: 5em;
+        padding-bottom: 50vh;
     }
 }
 

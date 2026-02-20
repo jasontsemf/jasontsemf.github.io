@@ -1,0 +1,17 @@
+{
+    "name": "jasontsemf.github.io",
+    "private": true,
+    "type": "module",
+    "version": "0.1.0",
+    "scripts": {
+        "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+        "build": "ASTRO_TELEMETRY_DISABLED=1 astro build && node scripts/copy-legacy-assets.mjs",
+        "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+        "verify:parity": "node scripts/verify-jcr39-parity.mjs",
+        "build:verify": "npm run build && npm run verify:parity"
+    },
+    "devDependencies": {
+        "astro": "^5.0.0",
+        "typescript": "^5.0.0"
+    }
+}

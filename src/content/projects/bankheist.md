@@ -1,5 +1,6 @@
 ---
 title: Bankheist
+routeKey: bankheist
 route: /bankheist.html
 legacySource: bankheist.html
 status: legacy-wrapped

@@ -1,5 +1,6 @@
 ---
 title: PBC
+routeKey: pbc
 route: /pbc.html
 legacySource: pbc.html
 status: legacy-wrapped

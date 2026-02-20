@@ -1,5 +1,6 @@
 ---
 title: Runvendor
+routeKey: runvendor
 route: /runvendor.html
 legacySource: runvendor.html
 status: legacy-wrapped

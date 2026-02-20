@@ -1,5 +1,6 @@
 ---
 title: Optimice
+routeKey: optimice
 route: /optimice.html
 legacySource: optimice.html
 year: 2017

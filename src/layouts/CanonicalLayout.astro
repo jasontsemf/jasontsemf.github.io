@@ -2,6 +2,7 @@
 import SiteHead from "../components/SiteHead.astro";
 import SidebarNav from "../components/SidebarNav.astro";
 import SiteScripts from "../components/SiteScripts.astro";
+import { ensureContentManifestValidated } from "../lib/content-manifest";
 
 type NavKey = "projects" | "about" | "contact";
 
@@ -32,6 +33,8 @@ const {
 } = Astro.props;
 
 const navToggleClass = `js-jason-nav-toggle jason-nav-toggle${darkToggle ? " dark" : ""}`;
+
+await ensureContentManifestValidated();
 ---
 
 <!DOCTYPE html>

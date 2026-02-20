@@ -1,8 +1,11 @@
 ---
 title: Projects
+routeKey: projects
 route: /projects.html
 legacySource: projects.html
+kind: canonical
 status: migrated
+navKey: projects
 summary: Portfolio listing page.
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Tagit
+routeKey: tagit
 route: /tagit.html
 legacySource: tagit.html
 status: legacy-wrapped

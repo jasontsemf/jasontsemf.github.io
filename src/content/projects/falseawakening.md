@@ -1,5 +1,6 @@
 ---
 title: False Awakening
+routeKey: falseawakening
 route: /falseawakening.html
 legacySource: falseawakening.html
 status: legacy-wrapped

@@ -1,0 +1,58 @@
+---
+import SiteHead from "../components/SiteHead.astro";
+import SidebarNav from "../components/SidebarNav.astro";
+import SiteScripts from "../components/SiteScripts.astro";
+
+type NavKey = "projects" | "about" | "contact";
+
+interface Props {
+    titleSuffix: string;
+    keywords: string;
+    author: string;
+    activeNav?: NavKey;
+    darkToggle?: boolean;
+    mainClass?: string;
+    includeOpenSans?: boolean;
+    duplicateFontAwesome?: boolean;
+    includeTypingCarousel?: boolean;
+    includeGoogleMapScripts?: boolean;
+}
+
+const {
+    titleSuffix,
+    keywords,
+    author,
+    activeNav,
+    darkToggle = false,
+    mainClass,
+    includeOpenSans = true,
+    duplicateFontAwesome = false,
+    includeTypingCarousel = false,
+    includeGoogleMapScripts = false
+} = Astro.props;
+
+const navToggleClass = `js-jason-nav-toggle jason-nav-toggle${darkToggle ? " dark" : ""}`;
+---
+
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <SiteHead
+            titleSuffix={titleSuffix}
+            keywords={keywords}
+            author={author}
+            includeOpenSans={includeOpenSans}
+            duplicateFontAwesome={duplicateFontAwesome}
+        />
+    </head>
+    <body>
+        <div id="jason-page">
+            <a href="#" class={navToggleClass}><i></i></a>
+            <SidebarNav activeNav={activeNav} />
+            <div id="jason-main" class={mainClass}>
+                <slot />
+            </div>
+        </div>
+        <SiteScripts includeTypingCarousel={includeTypingCarousel} includeGoogleMapScripts={includeGoogleMapScripts} />
+    </body>
+</html>

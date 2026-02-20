@@ -1,0 +1,96 @@
+---
+interface Props {
+    titleSuffix: string;
+    description?: string;
+    keywords: string;
+    author: string;
+    includeOpenSans?: boolean;
+    duplicateFontAwesome?: boolean;
+}
+
+const {
+    titleSuffix,
+    description = "Jason Tse's personal website",
+    keywords,
+    author,
+    includeOpenSans = true,
+    duplicateFontAwesome = false
+} = Astro.props;
+---
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Jason Tse &mdash; {titleSuffix}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content={author} />
+
+<!-- Facebook and Twitter integration -->
+<meta property="og:title" content="" />
+<meta property="og:image" content="" />
+<meta property="og:url" content="" />
+<meta property="og:site_name" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:title" content="" />
+<meta name="twitter:image" content="" />
+<meta name="twitter:url" content="" />
+<meta name="twitter:card" content="" />
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FFJCK8QE1P"></script>
+<script is:inline>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-FFJCK8QE1P");
+</script>
+
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="images/j_sq_logo.png" />
+<link rel="icon" href="images/j_sq_logo.png" />
+
+<link
+    href="https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic,700"
+    rel="stylesheet"
+    type="text/css"
+/>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+{
+    includeOpenSans && (
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet" />
+    )
+}
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="css/animate.css" />
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="css/icomoon.css" />
+<!-- Bootstrap  -->
+<link rel="stylesheet" href="css/bootstrap.css" />
+<!-- Owl Carousel -->
+<link rel="stylesheet" href="css/owl.carousel.min.css" />
+<link rel="stylesheet" href="css/owl.theme.default.min.css" />
+<!-- Theme style  -->
+<link rel="stylesheet" href="css/style.css" />
+
+<!-- Modernizr JS -->
+<script is:inline src="js/modernizr-2.6.2.min.js"></script>
+<!-- Font Awesome -->
+<script is:inline src="https://kit.fontawesome.com/3a94259f8f.js" crossorigin="anonymous"></script>
+{
+    duplicateFontAwesome && (
+        <>
+            <!-- Font Awesome -->
+            <script is:inline src="https://kit.fontawesome.com/3a94259f8f.js" crossorigin="anonymous"></script>
+        </>
+    )
+}
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+<script src="js/respond.min.js"></script>
+<![endif]-->

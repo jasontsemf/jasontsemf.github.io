@@ -1,7 +1,7 @@
 import { access, cp, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 import {
-    astroManagedCanonicalRoutes,
+    astroManagedRoutes,
     copiedRootLegacyRoutes,
     passthroughEntries,
     routeToDistPath
@@ -56,7 +56,7 @@ if (!(await pathExists(distDir))) {
 }
 
 let normalizedCanonicalCount = 0;
-for (const route of astroManagedCanonicalRoutes) {
+for (const route of astroManagedRoutes) {
     if (await normalizeAstroCanonicalRoute(route)) {
         normalizedCanonicalCount += 1;
     }
@@ -74,5 +74,5 @@ for (const entry of passthroughEntries) {
 }
 
 console.log(
-    `Normalized ${normalizedCanonicalCount} Astro canonical route(s), copied ${copiedRootLegacyRoutes.length} legacy route file(s), and copied ${passthroughEntries.length} legacy asset path(s) into dist.`
+    `Normalized ${normalizedCanonicalCount} Astro-managed route(s), copied ${copiedRootLegacyRoutes.length} legacy route file(s), and copied ${passthroughEntries.length} legacy asset path(s) into dist.`
 );

@@ -1,0 +1,41 @@
+---
+import CanonicalLayout from "../layouts/CanonicalLayout.astro";
+import type { ProjectEntry } from "../lib/content-manifest";
+
+interface Props {
+    project: ProjectEntry;
+    rawBodyHtml: string;
+}
+
+const { project, rawBodyHtml } = Astro.props;
+const titleSuffix = project.data.titleSuffix ?? project.data.title;
+const pageTitle = `Jason Tse - ${titleSuffix}`;
+const socialDescription = project.data.socialDescription ?? "Creative Technologist";
+const socialUrl = `https://jasontsemf.github.io${project.data.route}`;
+const keywords =
+    "jason tse, tse man fung, creative technologist, design, tech, hardware, startup, nyu, itp, cityu, scm";
+const author = "Jason Tse";
+
+const extraStylesheets = project.data.includeCocoenAssets ? ["cocoen/dist/css/cocoen.min.css"] : undefined;
+const extraScripts = project.data.includeCocoenAssets ? ["cocoen/dist/js/cocoen.min.js"] : undefined;
+---
+
+<CanonicalLayout
+    titleSuffix={titleSuffix}
+    keywords={keywords}
+    author={author}
+    includeOpenSans={false}
+    ogTitle={pageTitle}
+    ogImage={project.data.socialImage}
+    ogUrl={socialUrl}
+    ogSiteName="Jason Tse"
+    ogDescription={socialDescription}
+    twitterTitle={pageTitle}
+    twitterImage={project.data.socialImage}
+    twitterUrl={socialUrl}
+    twitterCard={project.data.socialCard}
+    extraStylesheets={extraStylesheets}
+    extraScripts={extraScripts}
+>
+    <Fragment set:html={rawBodyHtml} />
+</CanonicalLayout>

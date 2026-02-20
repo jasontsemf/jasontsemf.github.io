@@ -2,9 +2,10 @@
 interface Props {
     includeTypingCarousel?: boolean;
     includeGoogleMapScripts?: boolean;
+    extraScripts?: string[];
 }
 
-const { includeTypingCarousel = false, includeGoogleMapScripts = false } = Astro.props;
+const { includeTypingCarousel = false, includeGoogleMapScripts = false, extraScripts = [] } = Astro.props;
 ---
 
 <!-- jQuery -->
@@ -34,6 +35,7 @@ const { includeTypingCarousel = false, includeGoogleMapScripts = false } = Astro
 
 <!-- MAIN JS -->
 <script is:inline src="js/main.js"></script>
+{extraScripts.map((src) => <script is:inline src={src}></script>)}
 {
     includeTypingCarousel && (
         <>

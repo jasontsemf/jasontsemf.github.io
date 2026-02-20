@@ -1,6 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import {
+    astroManagedProjectRoutes,
     copiedRootLegacyRoutes,
     legacyRedirectExpectations,
     parityCriticalRoutes,
@@ -192,6 +193,24 @@ async function verifyStaticDirs() {
     return failures;
 }
 
+async function verifyProjectPagesNoMarkdownArtifacts() {
+    const failures = [];
+    const artifactTokens = ['class="astro-code', "<pre><code>", 'data-language="plaintext"'];
+
+    for (const route of astroManagedProjectRoutes) {
+        const pageFile = routeToDistPath(route);
+        const html = await readFile(path.join(distDir, pageFile), "utf8");
+
+        for (const token of artifactTokens) {
+            if (html.includes(token)) {
+                failures.push(`Markdown render artifact token "${token}" detected in ${pageFile}`);
+            }
+        }
+    }
+
+    return failures;
+}
+
 if (!(await exists(distDir))) {
     console.error("dist directory is missing. Run npm run build before parity verification.");
     process.exit(1);
@@ -203,7 +222,8 @@ const checks = await Promise.all([
     verifyRedirects(),
     verifyCoreNavLinks(),
     verifyCanonicalBehavior(),
-    verifyStaticDirs()
+    verifyStaticDirs(),
+    verifyProjectPagesNoMarkdownArtifacts()
 ]);
 
 const failures = checks.flat();

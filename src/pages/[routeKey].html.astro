@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import ProjectDetailPage from "../components/ProjectDetailPage.astro";
+import type { ProjectEntry } from "../lib/content-manifest";
+
+interface Props {
+    project: ProjectEntry;
+}
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+
+    return projects
+        .filter((entry) => entry.data.status === "migrated")
+        .map((entry) => ({
+            params: { routeKey: entry.data.routeKey },
+            props: { project: entry }
+        }));
+}
+
+const { project } = Astro.props;
+const rawBodyHtml = project.body;
+---
+
+<ProjectDetailPage project={project} rawBodyHtml={rawBodyHtml} />

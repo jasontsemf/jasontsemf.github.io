@@ -95,6 +95,7 @@ const projects = defineCollection({
     schema: z
         .object({
             title: titleSchema,
+            titleSuffix: titleSchema.optional(),
             routeKey: routeKeySchema,
             route: z
                 .string()
@@ -105,7 +106,11 @@ const projects = defineCollection({
             featured: z.boolean().default(false),
             tags: z.array(z.string().trim().min(1).max(32)).max(12).default([]),
             status: contentStatus,
-            summary: summarySchema
+            summary: summarySchema,
+            socialImage: z.string().trim().min(1).max(400).optional(),
+            socialDescription: summarySchema.optional(),
+            socialCard: z.enum(["summary", "summary_large_image"]).default("summary_large_image"),
+            includeCocoenAssets: z.boolean().default(false)
         })
         .superRefine((data, ctx) => {
             const expectedRoute = `/${data.routeKey}.html`;

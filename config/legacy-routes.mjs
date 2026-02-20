@@ -1,4 +1,13 @@
 export const astroManagedCanonicalRoutes = ["/", "/projects.html", "/about.html", "/contact.html"];
+export const astroManagedProjectRoutes = [
+    "/optimice.html",
+    "/bankheist.html",
+    "/pbc.html",
+    "/tagit.html",
+    "/falseawakening.html",
+    "/runvendor.html"
+];
+export const astroManagedRoutes = [...astroManagedCanonicalRoutes, ...astroManagedProjectRoutes];
 
 export const rootLegacyRoutes = [
     { route: "/", source: "index.html", type: "canonical" },
@@ -17,7 +26,7 @@ export const rootLegacyRoutes = [
 ];
 
 export const copiedRootLegacyRoutes = rootLegacyRoutes.filter(
-    (item) => !astroManagedCanonicalRoutes.includes(item.route)
+    (item) => !astroManagedRoutes.includes(item.route)
 );
 
 export const parityCriticalRoutes = [

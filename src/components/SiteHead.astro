@@ -6,6 +6,16 @@ interface Props {
     author: string;
     includeOpenSans?: boolean;
     duplicateFontAwesome?: boolean;
+    ogTitle?: string;
+    ogImage?: string;
+    ogUrl?: string;
+    ogSiteName?: string;
+    ogDescription?: string;
+    twitterTitle?: string;
+    twitterImage?: string;
+    twitterUrl?: string;
+    twitterCard?: string;
+    extraStylesheets?: string[];
 }
 
 const {
@@ -14,7 +24,17 @@ const {
     keywords,
     author,
     includeOpenSans = true,
-    duplicateFontAwesome = false
+    duplicateFontAwesome = false,
+    ogTitle = "",
+    ogImage = "",
+    ogUrl = "",
+    ogSiteName = "",
+    ogDescription = "",
+    twitterTitle = "",
+    twitterImage = "",
+    twitterUrl = "",
+    twitterCard = "",
+    extraStylesheets = []
 } = Astro.props;
 ---
 
@@ -27,15 +47,15 @@ const {
 <meta name="author" content={author} />
 
 <!-- Facebook and Twitter integration -->
-<meta property="og:title" content="" />
-<meta property="og:image" content="" />
-<meta property="og:url" content="" />
-<meta property="og:site_name" content="" />
-<meta property="og:description" content="" />
-<meta name="twitter:title" content="" />
-<meta name="twitter:image" content="" />
-<meta name="twitter:url" content="" />
-<meta name="twitter:card" content="" />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:url" content={ogUrl} />
+<meta property="og:site_name" content={ogSiteName} />
+<meta property="og:description" content={ogDescription} />
+<meta name="twitter:title" content={twitterTitle} />
+<meta name="twitter:image" content={twitterImage} />
+<meta name="twitter:url" content={twitterUrl} />
+<meta name="twitter:card" content={twitterCard} />
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-FFJCK8QE1P"></script>
@@ -77,6 +97,7 @@ const {
 <link rel="stylesheet" href="css/owl.theme.default.min.css" />
 <!-- Theme style  -->
 <link rel="stylesheet" href="css/style.css" />
+{extraStylesheets.map((href) => <link rel="stylesheet" href={href} />)}
 
 <!-- Modernizr JS -->
 <script is:inline src="js/modernizr-2.6.2.min.js"></script>

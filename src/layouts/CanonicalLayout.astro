@@ -8,6 +8,7 @@ type NavKey = "projects" | "about" | "contact";
 
 interface Props {
     titleSuffix: string;
+    description?: string;
     keywords: string;
     author: string;
     activeNav?: NavKey;
@@ -17,10 +18,22 @@ interface Props {
     duplicateFontAwesome?: boolean;
     includeTypingCarousel?: boolean;
     includeGoogleMapScripts?: boolean;
+    ogTitle?: string;
+    ogImage?: string;
+    ogUrl?: string;
+    ogSiteName?: string;
+    ogDescription?: string;
+    twitterTitle?: string;
+    twitterImage?: string;
+    twitterUrl?: string;
+    twitterCard?: string;
+    extraStylesheets?: string[];
+    extraScripts?: string[];
 }
 
 const {
     titleSuffix,
+    description,
     keywords,
     author,
     activeNav,
@@ -29,7 +42,18 @@ const {
     includeOpenSans = true,
     duplicateFontAwesome = false,
     includeTypingCarousel = false,
-    includeGoogleMapScripts = false
+    includeGoogleMapScripts = false,
+    ogTitle,
+    ogImage,
+    ogUrl,
+    ogSiteName,
+    ogDescription,
+    twitterTitle,
+    twitterImage,
+    twitterUrl,
+    twitterCard,
+    extraStylesheets,
+    extraScripts
 } = Astro.props;
 
 const navToggleClass = `js-jason-nav-toggle jason-nav-toggle${darkToggle ? " dark" : ""}`;
@@ -42,10 +66,21 @@ await ensureContentManifestValidated();
     <head>
         <SiteHead
             titleSuffix={titleSuffix}
+            description={description}
             keywords={keywords}
             author={author}
             includeOpenSans={includeOpenSans}
             duplicateFontAwesome={duplicateFontAwesome}
+            ogTitle={ogTitle}
+            ogImage={ogImage}
+            ogUrl={ogUrl}
+            ogSiteName={ogSiteName}
+            ogDescription={ogDescription}
+            twitterTitle={twitterTitle}
+            twitterImage={twitterImage}
+            twitterUrl={twitterUrl}
+            twitterCard={twitterCard}
+            extraStylesheets={extraStylesheets}
         />
     </head>
     <body>
@@ -56,6 +91,10 @@ await ensureContentManifestValidated();
                 <slot />
             </div>
         </div>
-        <SiteScripts includeTypingCarousel={includeTypingCarousel} includeGoogleMapScripts={includeGoogleMapScripts} />
+        <SiteScripts
+            includeTypingCarousel={includeTypingCarousel}
+            includeGoogleMapScripts={includeGoogleMapScripts}
+            extraScripts={extraScripts}
+        />
     </body>
 </html>

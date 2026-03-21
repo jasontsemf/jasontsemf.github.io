@@ -5,6 +5,13 @@ routeKey: optimice
 route: /optimice.html
 legacySource: optimice.html
 year: 2021
+listingTitle: "🖱 OptiMice"
+listingSubtitle: "PCB Design, BLE, MEN Stack, 3D Print, AI"
+listingImage: "project/optimice/v2/optimice_thumb_crop.png"
+listingImageAlt: "optimice"
+listingHref: "optimice.html"
+listingOrder: 10
+detailNavOrder: 10
 status: migrated
 summary: "Project detail page for OptiMice."
 socialImage: "https://jasontsemf.github.io/project/optimice/optimice_crop_thumb.png"
@@ -245,20 +252,6 @@ includeCocoenAssets: true
             </div>
         </div>
     </div>
-    <div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
-        <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
-
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="bankheist.html"><i class="icon-long-arrow-left"></i> <span>Previous
-                        Project</span></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="projects.html"><i class="icon-th-large"></i></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="falseawakening.html"><span>Next Project</span> <i class="icon-long-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
+    <!-- PROJECT_DETAIL_NAV -->
 </div>
 </div>

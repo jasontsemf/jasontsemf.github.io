@@ -5,6 +5,7 @@ routeKey: runvendor
 route: /runvendor.html
 legacySource: runvendor.html
 year: 2016
+detailNavOrder: 60
 status: migrated
 summary: "Project detail page for Run! Vendor."
 socialImage: "https://jasontsemf.github.io/project/falseawakening/false_awakening_title.png"
@@ -225,19 +226,6 @@ includeCocoenAssets: false
             </div>
         </div>
     </div>
-    <div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
-        <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
-
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="tagit.html"><i class="icon-long-arrow-left"></i> <span>Previous Project</span></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="projects.html"><i class="icon-th-large"></i></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="binwatch.html"><span>Next Project</span> <i class="icon-long-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
+    <!-- PROJECT_DETAIL_NAV -->
 </div>
 </div>

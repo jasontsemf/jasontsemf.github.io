@@ -7,6 +7,7 @@ const navKey = z.enum(["projects", "about", "contact"]);
 const slugPattern = /^[a-z0-9-]+$/;
 const routePattern = /^\/(?:[a-z0-9-]+\.html)?$/;
 const htmlSourcePattern = /^[a-z0-9-]+\.html$/;
+const listingHrefPattern = /^(?:\/?[a-z0-9-]+\.html|https?:\/\/\S+)$/;
 
 const titleSchema = z.string().trim().min(1).max(120);
 const summarySchema = z.string().trim().min(10).max(220);
@@ -104,6 +105,20 @@ const projects = defineCollection({
             legacySource: legacySourceSchema,
             year: z.number().int().min(2000).max(2100).optional(),
             featured: z.boolean().default(false),
+            listingTitle: z.string().trim().min(1).max(120).optional(),
+            listingSubtitle: z.string().trim().min(1).max(160).optional(),
+            listingImage: z.string().trim().min(1).max(300).optional(),
+            listingImageAlt: z.string().trim().min(1).max(120).optional(),
+            listingHref: z
+                .string()
+                .trim()
+                .regex(
+                    listingHrefPattern,
+                    "listingHref must be '<name>.html', '/<name>.html', or an absolute http(s) URL."
+                )
+                .optional(),
+            listingOrder: z.number().int().min(0).max(999).default(999),
+            detailNavOrder: z.number().int().min(0).max(999).optional(),
             tags: z.array(z.string().trim().min(1).max(32)).max(12).default([]),
             status: contentStatus,
             summary: summarySchema,
@@ -137,6 +152,46 @@ const projects = defineCollection({
                     code: z.ZodIssueCode.custom,
                     path: ["tags"],
                     message: "tags must be unique."
+                });
+            }
+
+            if (data.status === "migrated" && data.detailNavOrder === undefined) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["detailNavOrder"],
+                    message: "Migrated project detail entries must define detailNavOrder."
+                });
+            }
+
+            if (data.status !== "migrated" && data.detailNavOrder !== undefined) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["detailNavOrder"],
+                    message: "Only migrated project detail entries may define detailNavOrder."
+                });
+            }
+
+            if (data.listingOrder < 999 && !data.listingImage) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["listingImage"],
+                    message: "Projects shown in the listing (listingOrder < 999) must define listingImage."
+                });
+            }
+
+            if (data.listingOrder < 999 && !data.listingSubtitle) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["listingSubtitle"],
+                    message: "Projects shown in the listing (listingOrder < 999) must define listingSubtitle."
+                });
+            }
+
+            if (data.listingImageAlt && !data.listingImage) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["listingImageAlt"],
+                    message: "listingImageAlt requires listingImage."
                 });
             }
         })

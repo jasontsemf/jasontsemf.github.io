@@ -5,6 +5,13 @@ routeKey: pbc
 route: /pbc.html
 legacySource: pbc.html
 year: 2020
+listingTitle: "💳 PBC (Printed Business Card)"
+listingSubtitle: "PCB Design, NFC, Antenna"
+listingImage: "project/pbc/pbc_thumb_crop.png"
+listingImageAlt: "pbc"
+listingHref: "pbc.html"
+listingOrder: 40
+detailNavOrder: 30
 status: migrated
 summary: "Project detail page for Printed Business Card."
 socialImage: "https://jasontsemf.github.io/project/pbc/pbc_thumb_bumbed.png"
@@ -250,20 +257,6 @@ includeCocoenAssets: true
             </div>
         </div>
     </div>
-    <div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
-        <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
-
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="binwatch.html"><i class="icon-long-arrow-left"></i> <span>Previous
-                        Project</span></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="projects.html"><i class="icon-th-large"></i></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="tagit.html"><span>Next Project</span> <i class="icon-long-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
+    <!-- PROJECT_DETAIL_NAV -->
 </div>
 </div>

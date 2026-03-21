@@ -5,6 +5,13 @@ routeKey: bankheist
 route: /bankheist.html
 legacySource: bankheist.html
 year: 2020
+listingTitle: "💸 BankHeist"
+listingSubtitle: "IoT, socket.io, express.js, crypto.js, electron.js, serialport.io"
+listingImage: "project/bankheist/thumb_crop.png"
+listingImageAlt: "bankheist"
+listingHref: "bankheist.html"
+listingOrder: 20
+detailNavOrder: 20
 status: migrated
 summary: "Project detail page for BankHeist."
 socialImage: "https://jasontsemf.github.io/project/bankheist/thumb_crop.png"
@@ -234,19 +241,6 @@ includeCocoenAssets: false
             </div>
         </div>
     </div>
-    <div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
-        <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="optimice.html"><i class="icon-long-arrow-left"></i> <span>Previous
-                        Project</span></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="projects.html"><i class="icon-th-large"></i></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="binwatch.html"><span>Next Project</span> <i class="icon-long-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
+    <!-- PROJECT_DETAIL_NAV -->
 </div>
 </div>

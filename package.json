@@ -11,7 +11,7 @@
         "build:verify": "npm run build && npm run verify:parity"
     },
     "devDependencies": {
-        "astro": "^5.0.0",
+        "astro": "^5.18.0",
         "typescript": "^5.0.0"
     }
 }

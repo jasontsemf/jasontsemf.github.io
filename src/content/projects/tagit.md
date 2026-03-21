@@ -5,6 +5,7 @@ routeKey: tagit
 route: /tagit.html
 legacySource: tagit.html
 year: 2018
+detailNavOrder: 40
 status: migrated
 summary: "Project detail page for Tagit."
 socialImage: "https://jasontsemf.github.io/project/tagit/tagit_kitchen_title.png"
@@ -336,20 +337,6 @@ includeCocoenAssets: false
             </div>
         </div>
     </div>
-    <div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
-        <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="falseawakening.html"><i class="icon-long-arrow-left"></i> <span>Previous
-                        Project</span></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="projects.html"><i class="icon-th-large"></i></a>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                <a href="optimice.html"><span>Next Project</span> <i
-                        class="icon-long-arrow-right"></i></a>
-            </div>
-        </div>
-    </div>
+    <!-- PROJECT_DETAIL_NAV -->
 </div>
 </div>

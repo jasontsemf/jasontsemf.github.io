@@ -2,24 +2,31 @@
 import { getCollection } from "astro:content";
 import ProjectDetailPage from "../components/ProjectDetailPage.astro";
 import type { ProjectEntry } from "../lib/content-manifest";
+import { buildProjectDetailNavByRouteKey, type ProjectDetailNav } from "../lib/project-detail-nav";
 
 interface Props {
     project: ProjectEntry;
+    detailNav?: ProjectDetailNav;
 }
 
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
+    const detailNavByRouteKey = buildProjectDetailNavByRouteKey(projects);
 
     return projects
         .filter((entry) => entry.data.status === "migrated")
-        .map((entry) => ({
-            params: { routeKey: entry.data.routeKey },
-            props: { project: entry }
-        }));
+        .map((entry) => {
+            const detailNav = detailNavByRouteKey.get(entry.data.routeKey);
+
+            return {
+                params: { routeKey: entry.data.routeKey },
+                props: { project: entry, detailNav }
+            };
+        });
 }
 
-const { project } = Astro.props;
+const { project, detailNav } = Astro.props;
 const rawBodyHtml = project.body;
 ---
 
-<ProjectDetailPage project={project} rawBodyHtml={rawBodyHtml} />
+<ProjectDetailPage project={project} rawBodyHtml={rawBodyHtml} detailNav={detailNav} />

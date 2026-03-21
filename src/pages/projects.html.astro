@@ -1,5 +1,33 @@
 ---
+import { getCollection } from "astro:content";
 import CanonicalLayout from "../layouts/CanonicalLayout.astro";
+
+const projectCards = (await getCollection("projects"))
+    .filter((entry) => entry.data.listingOrder < 999)
+    .sort((left, right) => {
+        const orderDelta = left.data.listingOrder - right.data.listingOrder;
+        if (orderDelta !== 0) {
+            return orderDelta;
+        }
+
+        return left.data.routeKey.localeCompare(right.data.routeKey);
+    })
+    .map((entry) => {
+        const listingImage = entry.data.listingImage;
+        if (!listingImage) {
+            throw new Error(
+                `Project '${entry.id}' is missing listingImage while listingOrder is ${entry.data.listingOrder}.`
+            );
+        }
+
+        return {
+            href: entry.data.listingHref ?? entry.data.route.replace(/^\//, ""),
+            image: listingImage,
+            imageAlt: entry.data.listingImageAlt ?? entry.data.routeKey,
+            title: entry.data.listingTitle ?? entry.data.title,
+            subtitle: entry.data.listingSubtitle ?? entry.data.summary
+        };
+    });
 ---
 
 <CanonicalLayout
@@ -13,50 +41,17 @@ import CanonicalLayout from "../layouts/CanonicalLayout.astro";
     <div class="jason-narrow-content-top">
         <h2 class="jason-heading animate-box" data-animate-effect="fadeInLeft">Projects</h2>
         <div class="row animate-box" data-animate-effect="fadeInLeft">
-            <div class="col-md-6 work-item">
-                <a href="optimice.html">
-                    <img src="project/optimice/v2/optimice_thumb_crop.png" alt="optimice" class="img-responsive img-responsive-shadow" />
-                    <h3 class="jason-work-title">🖱 OptiMice</h3>
-                    <p>PCB Design, BLE, MEN Stack, 3D Print, AI</p>
-                </a>
-            </div>
-            <div class="col-md-6 work-item">
-                <a href="bankheist.html">
-                    <img src="project/bankheist/thumb_crop.png" alt="bankheist" class="img-responsive img-responsive-shadow" />
-                    <h3 class="jason-work-title">💸 BankHeist</h3>
-                    <p>IoT, socket.io, express.js, crypto.js, electron.js, serialport.io</p>
-                </a>
-            </div>
-            <div class="col-md-6 work-item">
-                <a href="binwatch.html">
-                    <img src="project/binwatch/binwatch_thumb.jpg" alt="binwatch" class="img-responsive img-responsive-shadow" />
-                    <h3 class="jason-work-title">𝍄 BinWatch</h3>
-                    <p>PCB Design, RTC, Atmega328p-au, Low Power</p>
-                </a>
-            </div>
-            <div class="col-md-6 work-item">
-                <a href="pbc.html">
-                    <img src="project/pbc/pbc_thumb_crop.png" alt="pbc" class="img-responsive img-responsive-shadow" />
-                    <h3 class="jason-work-title">💳 PBC (Printed Business Card)</h3>
-                    <p>PCB Design, NFC, Antenna</p>
-                </a>
-            </div>
-            <!-- <div class="col-md-6 work-item">
-                <a href="tagit.html">
-                    <img src="project/tagit/tagit_kitchen_title.png" alt="tagit"
-                        class="img-responsive img-responsive-shadow">
-                    <h3 class="jason-work-title">🍛 Tagit</h3>
-                    <p>Hardware, IoT, Startup, Interaction Design</p>
-                </a>
-            </div>
-            <div class="col-md-6 work-item">
-                <a href="falseawakening.html">
-                    <img src="project/falseawakening/false_awakening_title.png" alt="falseawakening"
-                        class="img-responsive img-responsive-shadow">
-                    <h3 class="jason-work-title">🧠 False Awakening</h3>
-                    <p>EEG, VR, Dreaming, Interactive Art</p>
-                </a>
-            </div> -->
+            {
+                projectCards.map((card) => (
+                    <div class="col-md-6 work-item">
+                        <a href={card.href}>
+                            <img src={card.image} alt={card.imageAlt} class="img-responsive img-responsive-shadow" />
+                            <h3 class="jason-work-title">{card.title}</h3>
+                            <p>{card.subtitle}</p>
+                        </a>
+                    </div>
+                ))
+            }
             <div class="clearfix visible-md-block visible-sm-block"></div>
             <div class="clearfix visible-md-block"></div>
         </div>

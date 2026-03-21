@@ -1,13 +1,15 @@
 ---
 import CanonicalLayout from "../layouts/CanonicalLayout.astro";
 import type { ProjectEntry } from "../lib/content-manifest";
+import type { ProjectDetailNav } from "../lib/project-detail-nav";
 
 interface Props {
     project: ProjectEntry;
     rawBodyHtml: string;
+    detailNav?: ProjectDetailNav;
 }
 
-const { project, rawBodyHtml } = Astro.props;
+const { project, rawBodyHtml, detailNav } = Astro.props;
 const titleSuffix = project.data.titleSuffix ?? project.data.title;
 const pageTitle = `Jason Tse - ${titleSuffix}`;
 const socialDescription = project.data.socialDescription ?? "Creative Technologist";
@@ -18,6 +20,29 @@ const author = "Jason Tse";
 
 const extraStylesheets = project.data.includeCocoenAssets ? ["cocoen/dist/css/cocoen.min.css"] : undefined;
 const extraScripts = project.data.includeCocoenAssets ? ["cocoen/dist/js/cocoen.min.js"] : undefined;
+
+const detailNavPlaceholder = "<!-- PROJECT_DETAIL_NAV -->";
+const detailNavMarkup = detailNav
+    ? `<div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
+        <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
+            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                <a href="${detailNav.previousHref}"><i class="icon-long-arrow-left"></i> <span>Previous Project</span></a>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                <a href="projects.html"><i class="icon-th-large"></i></a>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                <a href="${detailNav.nextHref}"><span>Next Project</span> <i class="icon-long-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>`
+    : "";
+
+const renderedBodyHtml = rawBodyHtml.includes(detailNavPlaceholder)
+    ? rawBodyHtml.replace(detailNavPlaceholder, detailNavMarkup)
+    : detailNavMarkup
+      ? `${rawBodyHtml}\n${detailNavMarkup}`
+      : rawBodyHtml;
 ---
 
 <CanonicalLayout
@@ -37,5 +62,5 @@ const extraScripts = project.data.includeCocoenAssets ? ["cocoen/dist/js/cocoen.
     extraStylesheets={extraStylesheets}
     extraScripts={extraScripts}
 >
-    <Fragment set:html={rawBodyHtml} />
+    <Fragment set:html={renderedBodyHtml} />
 </CanonicalLayout>

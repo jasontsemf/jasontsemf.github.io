@@ -1,12 +1,37 @@
 ---
 import { getCollection } from "astro:content";
+import BankHeistDetailContent from "../components/project-details/BankHeistDetailContent.astro";
+import FalseAwakeningDetailContent from "../components/project-details/FalseAwakeningDetailContent.astro";
+import OptimiceDetailContent from "../components/project-details/OptimiceDetailContent.astro";
+import PbcDetailContent from "../components/project-details/PbcDetailContent.astro";
 import ProjectDetailPage from "../components/ProjectDetailPage.astro";
+import RunVendorDetailContent from "../components/project-details/RunVendorDetailContent.astro";
+import TagItDetailContent from "../components/project-details/TagItDetailContent.astro";
 import type { ProjectEntry } from "../lib/content-manifest";
 import { buildProjectDetailNavByRouteKey, type ProjectDetailNav } from "../lib/project-detail-nav";
 
 interface Props {
     project: ProjectEntry;
     detailNav?: ProjectDetailNav;
+}
+
+function getProjectDetailContent(routeKey: string) {
+    switch (routeKey) {
+        case "optimice":
+            return OptimiceDetailContent;
+        case "bankheist":
+            return BankHeistDetailContent;
+        case "pbc":
+            return PbcDetailContent;
+        case "tagit":
+            return TagItDetailContent;
+        case "falseawakening":
+            return FalseAwakeningDetailContent;
+        case "runvendor":
+            return RunVendorDetailContent;
+        default:
+            throw new Error(`Missing project detail content component for routeKey '${routeKey}'.`);
+    }
 }
 
 export async function getStaticPaths() {
@@ -26,7 +51,9 @@ export async function getStaticPaths() {
 }
 
 const { project, detailNav } = Astro.props;
-const rawBodyHtml = project.body;
+const DetailContent = getProjectDetailContent(project.data.routeKey);
 ---
 
-<ProjectDetailPage project={project} rawBodyHtml={rawBodyHtml} detailNav={detailNav} />
+<ProjectDetailPage project={project}>
+    <DetailContent detailNav={detailNav} />
+</ProjectDetailPage>

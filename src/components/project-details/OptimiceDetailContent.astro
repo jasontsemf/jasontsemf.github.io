@@ -1,0 +1,247 @@
+---
+import ProjectDetailNav from "./ProjectDetailNav.astro";
+import type { ProjectDetailNav as ProjectDetailNavData } from "../../lib/project-detail-nav";
+
+interface Props {
+    detailNav?: ProjectDetailNavData;
+}
+
+const { detailNav } = Astro.props;
+---
+
+<div class="jason-narrow-content-top">
+    <div class="row">
+
+        <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+            <div class="text-center videoBox">
+                <div style="position: relative; padding-bottom: 50%;">
+                    <iframe class="img-responsive img-responsive-shadow jason-youtube-video-wide"
+                        src="https://www.youtube.com/embed/sF0Zq0M09FU" frameborder="0" gesture="media"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    <!-- <iframe class="img-responsive img-responsive-shadow jason-youtube-video-wide"
+                        src="https://www.youtube.com/embed/0LBgl8wDmw4" frameborder="0" gesture="media"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
+            <h1>🖱 OptiMice</h1>
+            <p>
+                "Bespoke computer mice powered by AI and 3D printing"
+            </p>
+        </div>
+        <div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
+            <h3>
+                <i class="icon-globe github-code"></i>
+                <a href="https://optimice.onrender.com" target="_blank"></i>
+                    Web App Live on Render
+                </a>
+            </h3>
+            <h3>
+                <i class="icon-github github-code"></i>
+                <a href="https://github.com/jasontsemf/OptiMiceDashboard" target="_blank">
+                    Web App Code on GitHub
+                </a>
+            </h3>
+            <h3>
+                <i class="icon-github github-code"></i>
+                <a href="https://github.com/jasontsemf/OptiMice" target="_blank">
+                    Hardware Design & Code on GitHub
+                </a>
+            </h3>
+        </div>
+    </div>
+</div>
+<div class="jason-narrow-content jason-border-bottom">
+    <div class="row">
+        <div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
+            <h2>The Problem</h2>
+            <p><strong>"I love my $10 cheapo mouse more than my $100 Logitech."</strong></p>
+            <p>- just me</p>
+        </div>
+        <div class="col-md-9 animate-box" data-animate-effect="fadeInLeft">
+            <p>
+                Computer mice are designed for the <strong>average male's hand</strong> since their introduction back in 1983, when <a href="https://www.ideo.com/case-study/creating-the-first-usable-mouse">Apple</a> introduced them alongside Lisa. A person with a hand <strong>devaited from the average</strong> will have a very hard time finding the right mouse, not to mention <strong>female users</strong>.
+            </p>
+            <p>
+                The fact that I'm ditching a premium "ergonomic" mouse for an unbranded cheaply made mouse that fits, reveals that instead of a tech problem, there's a <strong>fundamental design flaw</strong> .
+            </p>
+            <p>
+                As customers, we are so used to using computer mice made in standardized shapes and sizes. <strong>Ironically, the mouse, out of all computer peripherals, is the only peripheral that actually is dependent on one's specific grip and hand size</strong>. Even when we shop for clothing, we still have a range of sizes to choose from. Does that mean computer mice have to be one-size-fit-all?
+            </p>
+        </div>
+    </div>
+</div>
+<div class="jason-narrow-content jason-border-bottom">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
+            <h2>The Solution</h2>
+            <p>
+                A computer mouse that's optimized just for you, that is design and made from:
+            </p>
+            <p>
+                <ul>
+                    <strong>
+                        <li>on-demand, decentralized bespoke manufacturing</li>
+                        <li>modern-day technology</li>
+                        <li>data-driven and computational frameworks</li>
+                    </strong>
+                </ul>
+            </p>
+        </div>
+        <p>
+            <img src="project/optimice/v2/roadmap.png" alt="pbc thumb" class="img-responsive animate-box"
+                data-animate-effect="fadeInLeft">
+        </p>
+        <div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
+            <p>
+                OptiMice essentially is an automated pipeline that takes customers' hand data and eventually manufactures a computer mouse out of it.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="jason-cards">
+    <div class="jason-narrow-content jason-border-bottom">
+        <h3>The Web App</h3>
+        <div class="row">
+            <div class="flex flex-col">
+                <div class="flex-2 animate-box">
+                    <p>
+                        <img src="project/optimice/v2/optimice_site_webapp.gif" alt="web app" class="img-responsive"
+                            data-animate-effect="fadeInLeft">
+                    </p>
+                </div>
+                <div class="flex-1 animate-box">
+                    <p class="jason-caption">
+                        An incoming customer will upload a picture of their dominant hand via the web app. Leveraging the <a href="https://mano.is.tue.mpg.de/">MANO machine learning model</a>, a 3D representation of the customer's hand will be generated out of the simple RGB image. Subsequently, the 3D mouse model that conforms to the user's hand size and posture will be <strong>generated procedurally</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jason-narrow-content jason-border-bottom">
+        <h3>The PCB</h3>
+        <div class="row">
+            <div class="flex flex-col-rev">
+                <div class="flex-1 animate-box">
+                    <p class="jason-caption">
+                        With a wide spectrum of <strong>microswitches</strong>  (tactile or silent in different actuation forces), <strong>rotary encoders</strong>  (tactile or smooth), <strong>optical sensors</strong> (IR or laser), and <strong>connectivity methods</strong> (wired or wireless) to choose from, the PCB will be speced just as the customer wanted.
+                    </p>
+                </div>
+                <div class="flex-2 animate-box">
+                    <p>
+                        <img src="project/optimice/v2/fd1c8e8d-d576-4ce3-8ad7-112644cd6fff.PNG" alt="ble mouse" class="img-responsive"
+                            data-animate-effect="fadeInLeft">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="owl-carousel-side animate-box" data-animate-effect="fadeInLeft"
+                style="padding-left: 30px; padding-right: 30px;">
+                <div class="item">
+                    <img src="project/optimice/v2/24855e21-a8eb-4672-9b0f-5984bc3ee39a.PNG" alt="schematic" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img src="project/optimice/v2/optiMiceV2_blocktitle.png" alt="schematic" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img src="project/optimice/v2/optiMiceV2.0_Drawing_v4.png" alt="drawing" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img src="project/optimice/v2/optimice_code.png" alt="drawing" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img src="project/optimice/v2/optimice_components.png" alt="components" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img src="project/optimice/v2/v1_board.png" alt="v1 board" class="img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="jason-narrow-content">
+        <h3>3D Printed Housing</h3>
+        <div class="row">
+            <div class="flex flex-col">
+                <div class="flex-2 animate-box img-responsive">
+                    <p>
+                        <img src="project/optimice/v2/jason_hand_half_minimal v39.gif" alt="phone stand" class="img-responsive"
+                            data-animate-effect="fadeInLeft">
+                    </p>
+
+                </div>
+                <div class="flex-1 animate-box">
+                    <p class="jason-caption">
+                        Thanks to the <strong>additive</strong> nature of 3D printing, a bespoke mouse can be manufactured on-demand, without the restriction of needing and wasting toolings. A customer can config the housing's <strong>color, material, or even texture</strong> of a mouse that fits one's unique hand effortlessly for ultimate personalization.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="owl-carousel-side animate-box" data-animate-effect="fadeInLeft"
+                style="padding-left: 30px; padding-right: 30px;">
+                <div class="item">
+                    <img src="project/optimice/v2/two_third.png" alt="two third" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img src="project/optimice/v2/one_third.png" alt="one third" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img src="project/optimice/v2/print_bind_hand.png" alt="print" class="img-responsive">
+                </div>
+                <div class="item">
+                    <img src="project/optimice/v2/print.gif" alt="print" class="img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="jason-narrow-content">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
+            <div class="animate-box" data-animate-effect="fadeInLeft">
+                <h2>Working In Progress</h2>
+                <ul>
+                    <li>
+                        Web platform
+                    </li>
+                    <ul>
+                        <li>
+                            E-commerce capability
+                        </li>
+                        <li>
+                            Photogrammetry Reconstruction server
+                        </li>
+                    </ul>
+                    <li>
+                        Configuration over Bluetooth via Web Browser
+                    </li>
+                    <ul>
+                        <li>
+                            Program functions of buttons, e.g. system and media control
+                        </li>
+                        <li>
+                            Configure speed, scroll wheel direction, etc
+                        </li>
+                    </ul>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="jason-narrow-content  animate-box" data-animate-effect="fadeInLeft">
+    <div class="animate-box" data-animate-effect="fadeInLeft">
+        <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
+            <div class="col-md-4 col-sm-4 col-md-offset-4 col-xs-4 text-center">
+                <h4>2021 Spring</h4>
+            </div>
+        </div>
+    </div>
+    <ProjectDetailNav detailNav={detailNav} />
+</div>
+</div>

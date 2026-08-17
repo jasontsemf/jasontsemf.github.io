@@ -1,0 +1,33 @@
+---
+import type { ProjectDetailNav as ProjectDetailNavData } from "../../lib/project-detail-nav";
+
+interface Props {
+    detailNav?: ProjectDetailNavData;
+}
+
+const { detailNav } = Astro.props;
+---
+
+{
+    detailNav && (
+        <div class="row work-pagination animate-box" data-animate-effect="fadeInLeft">
+            <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
+                <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                    <a href={detailNav.previousHref}>
+                        <i class="icon-long-arrow-left"></i>{" "}<span>Previous Project</span>
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                    <a href="projects.html">
+                        <i class="icon-th-large"></i>
+                    </a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 text-center">
+                    <a href={detailNav.nextHref}>
+                        <span>Next Project</span>{" "}<i class="icon-long-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    )
+}

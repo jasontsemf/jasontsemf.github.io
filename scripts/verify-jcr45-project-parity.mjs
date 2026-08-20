@@ -38,10 +38,29 @@ function stripDetailNav(html) {
     return html.replace(/<div class="row work-pagination[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/g, " ");
 }
 
+function decodeHtmlEntities(text) {
+    const namedEntities = new Map([
+        ["amp", "&"],
+        ["apos", "'"],
+        ["gt", ">"],
+        ["lt", "<"],
+        ["nbsp", " "],
+        ["quot", '"']
+    ]);
+
+    return text.replace(/&(#x[\da-f]+|#\d+|[a-z]+);/gi, (entity, code) => {
+        if (code.startsWith("#x")) {
+            return String.fromCodePoint(Number.parseInt(code.slice(2), 16));
+        }
+        if (code.startsWith("#")) {
+            return String.fromCodePoint(Number.parseInt(code.slice(1), 10));
+        }
+        return namedEntities.get(code.toLowerCase()) ?? entity;
+    });
+}
+
 function normalizeTextContent(html, pageFile) {
-    return stripDetailNav(stripHtmlComments(getMainSection(html, pageFile)))
-        .replace(/<[^>]+>/g, " ")
-        .replace(/&nbsp;/g, " ")
+    return decodeHtmlEntities(stripDetailNav(stripHtmlComments(getMainSection(html, pageFile))).replace(/<[^>]+>/g, " "))
         .replace(/\s+/g, " ")
         .trim();
 }

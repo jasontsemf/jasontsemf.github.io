@@ -104,6 +104,7 @@ const projects = defineCollection({
                 .regex(/^\/[a-z0-9-]+\.html$/, "project route must match '/<slug>.html'."),
             legacySource: legacySourceSchema,
             year: z.number().int().min(2000).max(2100).optional(),
+            detailDate: z.string().trim().min(4).max(40).optional(),
             featured: z.boolean().default(false),
             listingTitle: z.string().trim().min(1).max(120).optional(),
             listingSubtitle: z.string().trim().min(1).max(160).optional(),
@@ -160,6 +161,14 @@ const projects = defineCollection({
                     code: z.ZodIssueCode.custom,
                     path: ["detailNavOrder"],
                     message: "Migrated project detail entries must define detailNavOrder."
+                });
+            }
+
+            if (data.status === "migrated" && !data.detailDate) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["detailDate"],
+                    message: "Migrated project detail entries must define detailDate."
                 });
             }
 

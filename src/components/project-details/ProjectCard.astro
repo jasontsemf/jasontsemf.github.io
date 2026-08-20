@@ -1,0 +1,17 @@
+---
+interface Props {
+    title: string;
+    imageSrc: string;
+    imageAlt?: string;
+}
+
+const { title, imageSrc, imageAlt = "" } = Astro.props;
+---
+
+<div class="col-md-4 jason-staff animate-box" data-animate-effect="fadeInLeft">
+    <img src={imageSrc} alt={imageAlt} class="img-responsive img-responsive-shadow" />
+    <div class="jason-captionpad">
+        <h3>{title}</h3>
+        <div class="jason-caption"><slot /></div>
+    </div>
+</div>

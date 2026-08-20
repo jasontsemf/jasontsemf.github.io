@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { access, readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
 const repoRoot = process.cwd();
@@ -10,15 +10,6 @@ const migratedProjectEntries = [
     "falseawakening",
     "runvendor"
 ];
-
-const projectDetailComponents = new Map([
-    ["optimice", "OptimiceDetailContent"],
-    ["bankheist", "BankHeistDetailContent"],
-    ["pbc", "PbcDetailContent"],
-    ["tagit", "TagItDetailContent"],
-    ["falseawakening", "FalseAwakeningDetailContent"],
-    ["runvendor", "RunVendorDetailContent"]
-]);
 
 const expectedDetailNavigation = new Map([
     ["optimice", ["pbc.html", "projects.html", "bankheist.html"]],
@@ -39,16 +30,48 @@ function stripFrontmatter(source, filePath) {
     return source.slice(match[0].length);
 }
 
-async function verifyMetadataOnlyProjectEntries() {
+async function exists(filePath) {
+    try {
+        await access(filePath);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+async function verifyMdxAuthoredProjectEntries() {
     const failures = [];
+    const rawHtmlPattern = /<(?:div|p|h[1-6]|img|iframe|ul|ol|li|figure|a)(?:\s|>)/i;
 
     for (const entry of migratedProjectEntries) {
-        const filePath = path.join(repoRoot, "src/content/projects", `${entry}.md`);
+        const filePath = path.join(repoRoot, "src/content/projects", `${entry}.mdx`);
+        const legacyMarkdownPath = path.join(repoRoot, "src/content/projects", `${entry}.md`);
+
+        if (!(await exists(filePath))) {
+            failures.push(`Authoring regression: missing MDX project entry ${path.relative(repoRoot, filePath)}.`);
+            continue;
+        }
+
         const source = await readFile(filePath, "utf8");
         const body = stripFrontmatter(source, filePath).trim();
 
-        if (body.length > 0) {
-            failures.push(`Structured-content regression: ${path.relative(repoRoot, filePath)} still contains body markup.`);
+        if (body.length === 0) {
+            failures.push(`Authoring regression: ${path.relative(repoRoot, filePath)} has no project detail body.`);
+        }
+
+        const hasMarkdownProse = body
+            .split(/\r?\n\s*\r?\n/)
+            .some((block) => !/^(?:import\s|<|#|[-*+]\s|\d+\.\s)/.test(block.trim()) && block.trim().length >= 80);
+        if (!hasMarkdownProse) {
+            failures.push(`Authoring regression: ${path.relative(repoRoot, filePath)} has no normal Markdown prose.`);
+        }
+
+        if (rawHtmlPattern.test(body)) {
+            failures.push(`Authoring regression: ${path.relative(repoRoot, filePath)} contains raw HTML content tags.`);
+        }
+
+        if (await exists(legacyMarkdownPath)) {
+            failures.push(`Authoring regression: obsolete entry ${path.relative(repoRoot, legacyMarkdownPath)} still exists.`);
         }
     }
 
@@ -75,27 +98,51 @@ async function verifyNoRawHtmlFallback() {
     return failures;
 }
 
-async function verifyStructuredComponentMapping() {
+async function verifyGenericContentRoute() {
     const failures = [];
     const projectRoutePath = path.join(repoRoot, "src/pages/[routeKey].html.astro");
     const projectRouteSource = await readFile(projectRoutePath, "utf8");
 
-    for (const [routeKey, componentName] of projectDetailComponents) {
-        const componentPath = path.join(repoRoot, "src/components/project-details", `${componentName}.astro`);
-        const componentSource = await readFile(componentPath, "utf8");
+    if (!/import\s*{[^}]*\brender\b[^}]*}\s*from\s*["']astro:content["']/.test(projectRouteSource)) {
+        failures.push("Authoring regression: the dynamic project route does not import Astro content rendering.");
+    }
 
-        if (!projectRouteSource.includes(`import ${componentName} from`)) {
-            failures.push(`Structured-content regression: ${componentName} is not imported by the project route.`);
-        }
+    if (!/await\s+render\(project\)/.test(projectRouteSource) || !/<Content\s*\/>/.test(projectRouteSource)) {
+        failures.push("Authoring regression: the dynamic project route does not render the collection entry generically.");
+    }
 
-        const routeCasePattern = new RegExp(`case\\s+["']${routeKey}["']:\\s*return\\s+${componentName};`);
-        if (!routeCasePattern.test(projectRouteSource)) {
-            failures.push(`Structured-content regression: routeKey '${routeKey}' is not mapped to ${componentName}.`);
+    for (const routeKey of migratedProjectEntries) {
+        if (projectRouteSource.includes(routeKey)) {
+            failures.push(`Authoring regression: the dynamic project route contains project-specific key '${routeKey}'.`);
         }
+    }
 
-        if (!componentSource.includes('import ProjectDetailNav from "./ProjectDetailNav.astro"')) {
-            failures.push(`Structured-content regression: ${componentName}.astro does not render ProjectDetailNav.`);
-        }
+    const componentDir = path.join(repoRoot, "src/components/project-details");
+    const componentFiles = await readdir(componentDir);
+    const projectSpecificComponents = componentFiles.filter((fileName) => /DetailContent\.astro$/.test(fileName));
+    if (projectSpecificComponents.length > 0) {
+        failures.push(
+            `Authoring regression: project-specific Astro content components remain: ${projectSpecificComponents.join(", ")}.`
+        );
+    }
+
+    return failures;
+}
+
+async function verifyMdxIntegration() {
+    const failures = [];
+    const [astroConfigSource, packageSource] = await Promise.all([
+        readFile(path.join(repoRoot, "astro.config.mjs"), "utf8"),
+        readFile(path.join(repoRoot, "package.json"), "utf8")
+    ]);
+    const packageJson = JSON.parse(packageSource);
+
+    if (!astroConfigSource.includes("@astrojs/mdx") || !/integrations:\s*\[\s*mdx\(/.test(astroConfigSource)) {
+        failures.push("Authoring regression: Astro MDX integration is not enabled.");
+    }
+
+    if (!packageJson.devDependencies?.["@astrojs/mdx"] && !packageJson.dependencies?.["@astrojs/mdx"]) {
+        failures.push("Authoring regression: @astrojs/mdx is not declared in package.json.");
     }
 
     return failures;
@@ -140,9 +187,10 @@ async function verifyBuiltDetailNavigation() {
 }
 
 const failures = [
-    ...(await verifyMetadataOnlyProjectEntries()),
+    ...(await verifyMdxAuthoredProjectEntries()),
     ...(await verifyNoRawHtmlFallback()),
-    ...(await verifyStructuredComponentMapping()),
+    ...(await verifyGenericContentRoute()),
+    ...(await verifyMdxIntegration()),
     ...(await verifyBuiltDetailNavigation())
 ];
 

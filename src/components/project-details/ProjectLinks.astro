@@ -1,0 +1,16 @@
+---
+interface LinkItem {
+    href: string;
+    label: string;
+}
+
+interface Props {
+    links: LinkItem[];
+}
+
+const { links } = Astro.props;
+---
+
+<p class="jason-lead">
+    {links.map((link, index) => <><a href={link.href} class="btn btn-primary btn-outline" target="blank">{link.label}</a>{index < links.length - 1 && <br />}</>)}
+</p>

@@ -1,0 +1,66 @@
+---
+interface ProjectLink {
+    href: string;
+    label: string;
+    icon: "github" | "globe";
+}
+
+interface Props {
+    title: string;
+    tagline: string;
+    mediaType: "embed" | "image";
+    mediaSrc: string;
+    mediaAlt?: string;
+    links?: ProjectLink[];
+}
+
+const { title, tagline, mediaType, mediaSrc, mediaAlt = "", links = [] } = Astro.props;
+---
+
+<div class="jason-narrow-content-top">
+    <div class="row">
+        <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+            {
+                mediaType === "embed" ? (
+                    <div class="text-center videoBox">
+                        <div style="position: relative; padding-bottom: 50%;">
+                            <iframe
+                                class="img-responsive img-responsive-shadow jason-youtube-video-wide"
+                                src={mediaSrc}
+                                frameborder="0"
+                                gesture="media"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <figure class="text-center">
+                        <img
+                            src={mediaSrc}
+                            alt={mediaAlt}
+                            class="img-responsive img-responsive-shadow"
+                            style="margin-left: auto; margin-right: auto;"
+                        />
+                    </figure>
+                )
+            }
+        </div>
+        <div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
+            <h1>{title}</h1>
+            <p>{tagline}</p>
+        </div>
+        {
+            links.length > 0 && (
+                <div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
+                    {links.map((link) => (
+                        <h3>
+                            <i class={`icon-${link.icon} github-code`} />
+                            <a href={link.href} target="_blank">{link.label}</a>
+                        </h3>
+                    ))}
+                </div>
+            )
+        }
+    </div>
+</div>

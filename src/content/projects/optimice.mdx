@@ -1,0 +1,112 @@
+---
+title: "OptiMice"
+titleSuffix: "OptiMice"
+routeKey: optimice
+route: /optimice.html
+legacySource: optimice.html
+year: 2021
+detailDate: "2021 Spring"
+listingTitle: "🖱 OptiMice"
+listingSubtitle: "PCB Design, BLE, MEN Stack, 3D Print, AI"
+listingImage: "project/optimice/v2/optimice_thumb_crop.png"
+listingImageAlt: "optimice"
+listingHref: "optimice.html"
+listingOrder: 10
+detailNavOrder: 10
+status: migrated
+summary: "Project detail page for OptiMice."
+socialImage: "https://jasontsemf.github.io/project/optimice/optimice_crop_thumb.png"
+socialDescription: "Creative Technologist"
+socialCard: summary_large_image
+includeCocoenAssets: true
+---
+
+import ProjectCards from "../../components/project-details/ProjectCards.astro";
+import ProjectCarousel from "../../components/project-details/ProjectCarousel.astro";
+import ProjectHero from "../../components/project-details/ProjectHero.astro";
+import ProjectImage from "../../components/project-details/ProjectImage.astro";
+import ProjectMediaPair from "../../components/project-details/ProjectMediaPair.astro";
+import ProjectSection from "../../components/project-details/ProjectSection.astro";
+import ProjectSplitSection from "../../components/project-details/ProjectSplitSection.astro";
+
+<ProjectHero
+    title="🖱 OptiMice"
+    tagline={'"Bespoke computer mice powered by AI and 3D printing"'}
+    mediaType="embed"
+    mediaSrc="https://www.youtube.com/embed/sF0Zq0M09FU"
+    links={[
+        { icon: "globe", href: "https://optimice.onrender.com", label: "Web App Live on Render" },
+        { icon: "github", href: "https://github.com/jasontsemf/OptiMiceDashboard", label: "Web App Code on GitHub" },
+        { icon: "github", href: "https://github.com/jasontsemf/OptiMice", label: "Hardware Design & Code on GitHub" }
+    ]}
+/>
+
+<ProjectSplitSection heading="The Problem" lead={'"I love my $10 cheapo mouse more than my $100 Logitech." - just me'}>
+
+Computer mice are designed for the **average male's hand** since their introduction back in 1983, when [Apple](https://www.ideo.com/case-study/creating-the-first-usable-mouse) introduced them alongside Lisa. A person with a hand **devaited from the average** will have a very hard time finding the right mouse, not to mention **female users**.
+
+The fact that I'm ditching a premium "ergonomic" mouse for an unbranded cheaply made mouse that fits, reveals that instead of a tech problem, there's a **fundamental design flaw** .
+
+As customers, we are so used to using computer mice made in standardized shapes and sizes. **Ironically, the mouse, out of all computer peripherals, is the only peripheral that actually is dependent on one's specific grip and hand size**. Even when we shop for clothing, we still have a range of sizes to choose from. Does that mean computer mice have to be one-size-fit-all?
+
+</ProjectSplitSection>
+
+<ProjectSection heading="The Solution" border>
+
+A computer mouse that's optimized just for you, that is design and made from:
+
+- **on-demand, decentralized bespoke manufacturing**
+- **modern-day technology**
+- **data-driven and computational frameworks**
+
+<ProjectImage src="project/optimice/v2/roadmap.png" alt="pbc thumb" />
+
+OptiMice essentially is an automated pipeline that takes customers' hand data and eventually manufactures a computer mouse out of it.
+
+</ProjectSection>
+
+<ProjectCards>
+
+<ProjectMediaPair heading="The Web App" imageSrc="project/optimice/v2/optimice_site_webapp.gif" imageAlt="web app">
+
+An incoming customer will upload a picture of their dominant hand via the web app. Leveraging the [MANO machine learning model](https://mano.is.tue.mpg.de/), a 3D representation of the customer's hand will be generated out of the simple RGB image. Subsequently, the 3D mouse model that conforms to the user's hand size and posture will be **generated procedurally**.
+
+</ProjectMediaPair>
+
+<ProjectMediaPair heading="The PCB" imageSrc="project/optimice/v2/fd1c8e8d-d576-4ce3-8ad7-112644cd6fff.PNG" imageAlt="ble mouse" reverse>
+
+With a wide spectrum of **microswitches** (tactile or silent in different actuation forces), **rotary encoders** (tactile or smooth), **optical sensors** (IR or laser), and **connectivity methods** (wired or wireless) to choose from, the PCB will be speced just as the customer wanted.
+
+<ProjectCarousel
+    slot="after"
+    variant="side"
+    items={[
+        { src: "project/optimice/v2/24855e21-a8eb-4672-9b0f-5984bc3ee39a.PNG", alt: "schematic" },
+        { src: "project/optimice/v2/optiMiceV2_blocktitle.png", alt: "schematic" },
+        { src: "project/optimice/v2/optiMiceV2.0_Drawing_v4.png", alt: "drawing" },
+        { src: "project/optimice/v2/optimice_code.png", alt: "drawing" },
+        { src: "project/optimice/v2/optimice_components.png", alt: "components" },
+        { src: "project/optimice/v2/v1_board.png", alt: "v1 board" }
+    ]}
+/>
+
+</ProjectMediaPair>
+
+<ProjectMediaPair heading="3D Printed Housing" imageSrc="project/optimice/v2/jason_hand_half_minimal v39.gif" imageAlt="phone stand" border={false}>
+
+Thanks to the **additive** nature of 3D printing, a bespoke mouse can be manufactured on-demand, without the restriction of needing and wasting toolings. A customer can config the housing's **color, material, or even texture** of a mouse that fits one's unique hand effortlessly for ultimate personalization.
+
+<ProjectCarousel
+    slot="after"
+    variant="side"
+    items={[
+        { src: "project/optimice/v2/two_third.png", alt: "two third" },
+        { src: "project/optimice/v2/one_third.png", alt: "one third" },
+        { src: "project/optimice/v2/print_bind_hand.png", alt: "print" },
+        { src: "project/optimice/v2/print.gif", alt: "print" }
+    ]}
+/>
+
+</ProjectMediaPair>
+
+</ProjectCards>

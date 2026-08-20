@@ -1,0 +1,105 @@
+---
+title: "BankHeist"
+titleSuffix: "BankHeist"
+routeKey: bankheist
+route: /bankheist.html
+legacySource: bankheist.html
+year: 2020
+detailDate: "2020 Winter"
+listingTitle: "💸 BankHeist"
+listingSubtitle: "IoT, socket.io, express.js, crypto.js, electron.js, serialport.io"
+listingImage: "project/bankheist/thumb_crop.png"
+listingImageAlt: "bankheist"
+listingHref: "bankheist.html"
+listingOrder: 20
+detailNavOrder: 20
+status: migrated
+summary: "Project detail page for BankHeist."
+socialImage: "https://jasontsemf.github.io/project/bankheist/thumb_crop.png"
+socialDescription: "Creative Technologist"
+socialCard: summary_large_image
+includeCocoenAssets: false
+---
+
+import ProjectCard from "../../components/project-details/ProjectCard.astro";
+import ProjectCards from "../../components/project-details/ProjectCards.astro";
+import ProjectColumns from "../../components/project-details/ProjectColumns.astro";
+import ProjectHero from "../../components/project-details/ProjectHero.astro";
+import ProjectImage from "../../components/project-details/ProjectImage.astro";
+import ProjectSection from "../../components/project-details/ProjectSection.astro";
+import ProjectSplitSection from "../../components/project-details/ProjectSplitSection.astro";
+
+<ProjectHero
+    title="💸 BankHeist"
+    tagline={'"Signing physical documents remotely over the internet in real time."'}
+    mediaType="embed"
+    mediaSrc="https://www.youtube.com/embed/wwdG1mgFPkc"
+    links={[
+        { icon: "globe", href: "https://bankheist.onrender.com/", label: "Live on Render" },
+        { icon: "github", href: "https://github.com/jasontsemf/BankHeist", label: "Project and README on GitHub" }
+    ]}
+/>
+
+<ProjectSplitSection heading="The Problem" lead="Let's face it. DocuSign seems to be the most modern signing solution out there. However, it is fundamentally flawed in my opinion.">
+
+Not to be mistaken, the idea of e-signature is smart. Ultimately, digital documents are meant to be signed electronically/digitally. Due to its digital nature, you can always send them over the internet, and retrieve them virtually anywhere. No more papers, more environmental friendly. **HOWEVER**, how is an e-signature "a person's name written in a **distinctive way** as a form of identification in authorizing a check or document" (according to the Oxford dictionary), when you can easily "steal" someone else's signature with a phone camera, then import and paste them onto the PDF with a press of a button labeled "click to sign", **behind a screen**, without a person's direct biometric input.
+
+In fact, there are still many reasons supporting that argument that a **"wet signature" is indispensable and inevitable**. In 2016, The United States Trustee (UST) sanctioned a Sacramento-based lawyer, citing Local Bankruptcy Rules [9004-1(c)(1)(C) and (D)] which state that an electronically signed document can only be used where a copy of the document with an original signature (“wet signature”) is also available. DocuSign fell short by failing to prove to the courts that the signature truly counted as an original signature. Indeed, like I argued, a fatal flaw that will defeat all digital signature platforms.
+
+Legal concerns aside, real life business workflows and needs might be some other reasons why e-signature is not completely adopted. Unfortunately, sticking to old school loses all the convenience, secure digital encryption that digital signature offers. Especially during **COVID-19**, it became impossible to have physical documents signed, no matter it is the situation of working remotely from home, or not be able to make business trip.
+
+</ProjectSplitSection>
+
+<ProjectSection heading="The Solution" border>
+
+To pull off a remote wet signature, a tangible network interface/system is needed to bridge the gap between the virtual and physical world. The signature produced by the solution should hold better originality, authenticity and credibility when it is compared to a e-signature. Meanwhile, the solution is going to retain the convenience and secure encryption of being remote and virtual.
+
+<ProjectColumns heading="The Components">
+
+<ProjectCard title="Web Signing Platform" imageSrc="project/bankheist/clients.png" imageAlt="clients">
+
+The secure platform where the receiver creates meeting rooms and invite signers to sign with either a tablet with a stylus or a typical computer with a mouse/touchpad.
+
+</ProjectCard>
+
+<ProjectCard title="AxiDraw" imageSrc="project/bankheist/axidraw.jpg" imageAlt="tag">
+
+The receiver needs a machine that signs with digital input from the signer. AxiDraw is a great CNC drawing machine that draws with high precision via a USB to Serial interface
+
+</ProjectCard>
+
+<ProjectCard title="Serial Desktop App" imageSrc="project/bankheist/serial.png" imageAlt="app mockup">
+
+For the receiver side, a desktop app for talking to the AxiDraw is needed to be installed locally to drive the machine. The web app will pass signing data to the serial app, and get the signature signed with the AxiDraw.
+
+</ProjectCard>
+
+</ProjectColumns>
+
+</ProjectSection>
+
+<ProjectCards>
+
+<ProjectSection heading="How it Works">
+
+<ProjectImage src="project/bankheist/systemdiagram.png" alt="system diagram" />
+
+Prior to a signing session on BankHeist, the signer and the receiver exchange authentication details such as room name and password over a third-party video call (e.g. Zoom). Then, BankHeist connects the signer and the receiver with a secure virtual signing room, leveraging [Socket.io](https://socket.io/) and [Crypto.js](https://www.npmjs.com/package/crypto-js) technology. The password(key) will be always encrypted locally with Advanced Encryption Standard (AES), so that the true password will never exist on the internet.
+
+The strokes of the digital signature captured with [P5.js](https://p5js.org/) on the signer's end will be transferred to the receiver's end over the Socket.io connection. In real time, the receiver's computer retrieve the coordinates, then talks to the local [Electron.js](https://www.electronjs.org/) app, by forwarding the data via the localhost endpoint served by [Express.js](https://expressjs.com/). The app translates the data into serial commands, send it to the AxiDraw machine over a USB connection, utilizing the [SerialPort](https://serialport.io/) Node.js library. As such, pixels on signer's screen are finally being converted into a physical signature on a piece of paper.
+
+Over the course of the signing session, the receiver and the signer will still be connected with the video conference call to prove their physical presence.
+
+BankHeist not only makes this unprecedented remote physical documents signing experience possible, but it also adds an extra layer of authenticity, security to the entire signature process. While it is creating a "wet signature" that DocuSign can never pull off, it preserves the unique convenience that the internet offers.
+
+For further technical specifications, please proceed to the [Project on GitHub](https://github.com/jasontsemf/BankHeist).
+
+</ProjectSection>
+
+</ProjectCards>
+
+<ProjectSection heading="Credits" border>
+
+This is a project in collaboration with [Melissa Powers](https://www.melpowers.com/), for the ITP class "Understanding Networks" by [Tom Igoe](https://github.com/tigoe).
+
+</ProjectSection>

@@ -1,0 +1,18 @@
+---
+interface Props {
+    src: string;
+    alt?: string;
+    shadow?: boolean;
+    centered?: boolean;
+}
+
+const { src, alt = "", shadow = false, centered = false } = Astro.props;
+---
+
+<img
+    src={src}
+    alt={alt}
+    class:list={["img-responsive", "animate-box", { "img-responsive-shadow": shadow }]}
+    data-animate-effect="fadeInLeft"
+    style={centered ? "margin-left: auto; margin-right: auto;" : undefined}
+/>

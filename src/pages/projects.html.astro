@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import CanonicalLayout from "../layouts/CanonicalLayout.astro";
+
+const projectCards = (await getCollection("projects"))
+    .filter((entry) => entry.data.listingOrder < 999)
+    .sort((left, right) => {
+        const orderDelta = left.data.listingOrder - right.data.listingOrder;
+        if (orderDelta !== 0) {
+            return orderDelta;
+        }
+
+        return left.data.routeKey.localeCompare(right.data.routeKey);
+    })
+    .map((entry) => {
+        const listingImage = entry.data.listingImage;
+        if (!listingImage) {
+            throw new Error(
+                `Project '${entry.id}' is missing listingImage while listingOrder is ${entry.data.listingOrder}.`
+            );
+        }
+
+        return {
+            href: entry.data.listingHref ?? entry.data.route.replace(/^\//, ""),
+            image: listingImage,
+            imageAlt: entry.data.listingImageAlt ?? entry.data.routeKey,
+            title: entry.data.listingTitle ?? entry.data.title,
+            subtitle: entry.data.listingSubtitle ?? entry.data.summary
+        };
+    });
+---
+
+<CanonicalLayout
+    titleSuffix="Portfolio"
+    keywords="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive"
+    author="FreeHTML5.co"
+    activeNav="projects"
+    includeOpenSans={true}
+    duplicateFontAwesome={true}
+>
+    <div class="jason-narrow-content-top">
+        <h2 class="jason-heading animate-box" data-animate-effect="fadeInLeft">Projects</h2>
+        <div class="row animate-box" data-animate-effect="fadeInLeft">
+            {
+                projectCards.map((card) => (
+                    <div class="col-md-6 work-item">
+                        <a href={card.href}>
+                            <img src={card.image} alt={card.imageAlt} class="img-responsive img-responsive-shadow" />
+                            <h3 class="jason-work-title">{card.title}</h3>
+                            <p>{card.subtitle}</p>
+                        </a>
+                    </div>
+                ))
+            }
+            <div class="clearfix visible-md-block visible-sm-block"></div>
+            <div class="clearfix visible-md-block"></div>
+        </div>
+        <div class="row animate-box" data-animate-effect="fadeInLeft"></div>
+        <!-- <div class="row animate-box" data-animate-effect="fadeInLeft">
+            <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 work-item">
+                <a href="https://jason1996429.wordpress.com/2019/09/18/visual-language-wk2-redesign-a-airline-boarding-pass/">
+                    <img src="project/boarding_pass_thumb.png" alt="tagit" class="img-responsive img-responsive-shadow">
+                    <h3 class="jason-work-title">🎫 Boarding pass redesign</h3>
+                    <p>UX Design, Visual Design, Typography</p>
+                </a>
+            </div>
+            <div class="clearfix visible-md-block visible-sm-block"></div>
+
+            <div class="clearfix visible-md-block"></div>
+
+        </div> -->
+    </div>
+</CanonicalLayout>

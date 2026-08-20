@@ -1,0 +1,21 @@
+---
+interface Props {
+    heading: string;
+    lead: string;
+    border?: boolean;
+}
+
+const { heading, lead, border = true } = Astro.props;
+---
+
+<div class:list={["jason-narrow-content", { "jason-border-bottom": border }]}>
+    <div class="row">
+        <div class="col-md-3 animate-box" data-animate-effect="fadeInLeft">
+            <h2>{heading}</h2>
+            <p><strong>{lead}</strong></p>
+        </div>
+        <div class="col-md-9 animate-box" data-animate-effect="fadeInLeft">
+            <slot />
+        </div>
+    </div>
+</div>

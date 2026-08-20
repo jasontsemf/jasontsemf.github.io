@@ -1,0 +1,79 @@
+---
+title: "Run! Vendor"
+titleSuffix: "Run! Vendor"
+routeKey: runvendor
+route: /runvendor.html
+legacySource: runvendor.html
+year: 2016
+detailDate: "2016 Spring"
+detailNavOrder: 60
+status: migrated
+summary: "Project detail page for Run! Vendor."
+socialImage: "https://jasontsemf.github.io/project/falseawakening/false_awakening_title.png"
+socialDescription: "Creative Technologist"
+socialCard: summary_large_image
+includeCocoenAssets: false
+---
+
+import ProjectCarouselSection from "../../components/project-details/ProjectCarouselSection.astro";
+import ProjectHero from "../../components/project-details/ProjectHero.astro";
+import ProjectLinks from "../../components/project-details/ProjectLinks.astro";
+import ProjectSection from "../../components/project-details/ProjectSection.astro";
+import ProjectSplitSection from "../../components/project-details/ProjectSplitSection.astro";
+
+<ProjectHero
+    title="💨 Run! Vendor"
+    tagline={'Run! Vendor" is an arcade-style interactive game. Players physically run on a treadmill to control the avatar in the endless running game. The treadmill is powered by a Makeymakey that reads the player\'s running speed with a hall effect sensor. Whenever the player is running too slow, or hits an obstacle, the game ends.'}
+    mediaType="embed"
+    mediaSrc="https://www.youtube.com/embed/kzxvH8OGgsI"
+/>
+
+<ProjectSplitSection heading="The Inspiration" lead="Experiencing someone's struggle firsthand">
+
+There's an indigenous Cantonese saying in Hong Kong called "走鬼". The literal English translation would be "Run! Ghost is here". Local unlicensed food hawkers/vendors refer the officials from the Food and Environmental Hygiene Department who patrol on the streets, the "ghost", as they will be fined or even be put into jail if they are caught. In recent years, street food license is coming to an extinction. By no means, street food vendors are welcomed given all the policies that are imposed by the government. They can barely survive.
+
+Through this immersive and interactive game experience, we are telling the typical story of a food vendor in Hong Kong. Players physically run to survive. We hope players can empathize with the poor by experience their struggle firsthand.
+
+</ProjectSplitSection>
+
+<ProjectCarouselSection
+    heading="The Process"
+    border
+    items={[
+        { src: "project/runvendor/JPEG/runvendor_bg_4by3.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-23.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-19.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-1.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-8.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/me_on_treadmill.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-11.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-10.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-13.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-15.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-18.jpg", alt: "history" },
+        { src: "project/runvendor/JPEG/Pixel_RunVendorReport-21.jpg", alt: "history" }
+    ]}
+/>
+
+<ProjectSection heading="My Contribution" border>
+
+- Technical Lead
+  - Game Coding in Unity3D
+  - Treadmill Hacking/Physical Computing
+  - Fabrication and Woodwork
+- Ideation
+
+</ProjectSection>
+
+<ProjectSection heading="Media Coverage">
+
+<ProjectLinks links={[
+    { href: "https://news.mingpao.com/pns/%e6%95%99%e8%82%b2/article/20161025/s00011/1477333639910/%e5%9f%8e%e5%a4%a7%e7%94%9f%e8%a8%ad%e8%a8%88%e3%80%8c%e8%b5%b0%e9%ac%bc%e3%80%8d%e9%81%8a%e6%88%b2-%e5%8f%8d%e6%80%9d%e5%b0%8f%e8%b2%a9%e8%8b%a6%e5%86%b5", label: "Ming Pao Daily Online" },
+    { href: "project/runvendor/pdf/ITC - 20161025_Ming Pao_A21_城大生設計「走鬼」遊戲 反思小販苦況.pdf", label: "Ming Pao Daily Clipping" },
+    { href: "project/runvendor/pdf/ITC - 20161025_Metro Daily_P12_城大《走鬼》遊戲 反思小販苦況.pdf", label: "Metro Daily Clipping" },
+    { href: "project/runvendor/pdf/ITC - 20161025_Sing Tao_F02_城大生「走鬼」遊戲喚關注時事.pdf", label: "Sing Tao Daily Clipping" },
+    { href: "http://paper.wenweipo.com/2016/10/25/ED1610250004.htm", label: "Wen Wei Po Online" },
+    { href: "project/runvendor/pdf/ITC - 20161025_WWP_A25_城大生製「烏克麗麗」自學神器.pdf", label: "Wen Wei Po Clipping" }
+]} />
+
+</ProjectSection>

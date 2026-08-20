@@ -1,0 +1,46 @@
+---
+interface Props {
+    includeTypingCarousel?: boolean;
+    includeGoogleMapScripts?: boolean;
+    extraScripts?: string[];
+}
+
+const { includeTypingCarousel = false, includeGoogleMapScripts = false, extraScripts = [] } = Astro.props;
+---
+
+<!-- jQuery -->
+<script is:inline src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script is:inline src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script is:inline src="js/bootstrap.min.js"></script>
+<!-- Carousel -->
+<script is:inline src="js/owl.carousel.min.js"></script>
+<!-- Stellar -->
+<script is:inline src="js/jquery.stellar.min.js"></script>
+<!-- Waypoints -->
+<script is:inline src="js/jquery.waypoints.min.js"></script>
+<!-- Counters -->
+<script is:inline src="js/jquery.countTo.js"></script>
+{
+    includeGoogleMapScripts && (
+        <>
+            <!-- Google Map -->
+            <script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false">
+            </script>
+            <script is:inline src="js/google_map.js"></script>
+        </>
+    )
+}
+
+<!-- MAIN JS -->
+<script is:inline src="js/main.js"></script>
+{extraScripts.map((src) => <script is:inline src={src}></script>)}
+{
+    includeTypingCarousel && (
+        <>
+            <!-- Typing Carousl-->
+            <script is:inline src="js/typing_carousel.js"></script>
+        </>
+    )
+}

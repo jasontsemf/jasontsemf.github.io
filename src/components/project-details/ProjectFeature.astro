@@ -1,0 +1,18 @@
+---
+interface Props {
+    icon: string;
+    title: string;
+}
+
+const { icon, title } = Astro.props;
+---
+
+<div class="col-md-6">
+    <div class="jason-feature animate-box" data-animate-effect="fadeInLeft">
+        <div class="jason-icon">{icon}</div>
+        <div class="jason-text">
+            <h3>{title}</h3>
+            <slot />
+        </div>
+    </div>
+</div>

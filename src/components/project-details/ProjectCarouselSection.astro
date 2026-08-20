@@ -1,0 +1,30 @@
+---
+import ProjectCarousel from "./ProjectCarousel.astro";
+
+interface CarouselItem {
+    src: string;
+    alt?: string;
+    caption?: string;
+}
+
+interface Props {
+    heading: string;
+    items: CarouselItem[];
+    variant?: "side" | "full" | "gallery";
+    border?: boolean;
+    wide?: boolean;
+}
+
+const { heading, items, variant = "full", border = false, wide = false } = Astro.props;
+---
+
+<div class:list={[wide ? "jason-wide-content" : "jason-narrow-content", { "jason-border-bottom": border }]}>
+    <div class="row animate-box" data-animate-effect="fadeInLeft">
+        <div class={wide ? undefined : "col-md-8 col-md-offset-2 animate-box"} data-animate-effect="fadeInLeft">
+            <h2>{heading}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <ProjectCarousel items={items} variant={variant} />
+    </div>
+</div>

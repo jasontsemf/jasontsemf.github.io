@@ -1,0 +1,19 @@
+---
+interface Props {
+    heading?: string;
+    border?: boolean;
+    wide?: boolean;
+    className?: string;
+}
+
+const { heading, border = false, wide = false, className } = Astro.props;
+---
+
+<div class:list={[wide ? "jason-wide-content" : "jason-narrow-content", { "jason-border-bottom": border }, className]}>
+    <div class="row">
+        <div class:list={[wide ? "col-md-12" : "col-md-8 col-md-offset-2", "animate-box"]} data-animate-effect="fadeInLeft">
+            {heading && <h2>{heading}</h2>}
+            <slot />
+        </div>
+    </div>
+</div>

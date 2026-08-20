@@ -1,0 +1,32 @@
+---
+interface CarouselItem {
+    src: string;
+    alt?: string;
+    caption?: string;
+}
+
+interface Props {
+    items: CarouselItem[];
+    variant?: "side" | "full" | "gallery";
+}
+
+const { items, variant = "full" } = Astro.props;
+const carouselClass = variant === "side" ? "owl-carousel-side" : variant === "gallery" ? "owl-gallery-carousel" : "owl-carousel-fullwidth";
+---
+
+<div class:list={[carouselClass, "animate-box", { "img-responsive": variant === "full" }]} data-animate-effect="fadeInLeft" style={variant === "side" ? "padding-left: 30px; padding-right: 30px;" : undefined}>
+    {
+        items.map((item) => (
+            <div class="item">
+                {item.caption ? (
+                    <div class="image-container">
+                        <img src={item.src} alt={item.alt ?? ""} class="img-responsive" />
+                        <p class="img-caption">{item.caption}</p>
+                    </div>
+                ) : (
+                    <img src={item.src} alt={item.alt ?? ""} class="img-responsive" />
+                )}
+            </div>
+        ))
+    }
+</div>

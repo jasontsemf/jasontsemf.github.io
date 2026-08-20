@@ -1,0 +1,113 @@
+---
+title: "Printed Business Card"
+titleSuffix: "Printed Business Card"
+routeKey: pbc
+route: /pbc.html
+legacySource: pbc.html
+year: 2020
+detailDate: "2020 Summer"
+listingTitle: "💳 PBC (Printed Business Card)"
+listingSubtitle: "PCB Design, NFC, Antenna"
+listingImage: "project/pbc/pbc_thumb_crop.png"
+listingImageAlt: "pbc"
+listingHref: "pbc.html"
+listingOrder: 40
+detailNavOrder: 30
+status: migrated
+summary: "Project detail page for Printed Business Card."
+socialImage: "https://jasontsemf.github.io/project/pbc/pbc_thumb_bumbed.png"
+socialDescription: "Creative Technologist"
+socialCard: summary_large_image
+includeCocoenAssets: true
+---
+
+import ProjectCards from "../../components/project-details/ProjectCards.astro";
+import ProjectCarousel from "../../components/project-details/ProjectCarousel.astro";
+import ProjectCarouselSection from "../../components/project-details/ProjectCarouselSection.astro";
+import ProjectHero from "../../components/project-details/ProjectHero.astro";
+import ProjectImage from "../../components/project-details/ProjectImage.astro";
+import ProjectMediaPair from "../../components/project-details/ProjectMediaPair.astro";
+import ProjectSection from "../../components/project-details/ProjectSection.astro";
+import ProjectSplitSection from "../../components/project-details/ProjectSplitSection.astro";
+
+<ProjectHero
+    title="💳 Printed Business Card (PBC)"
+    tagline={'"Bridging the physical and digital world, a business card not printed on paper, but FR-4"'}
+    mediaType="embed"
+    mediaSrc="https://mynyu308.autodesk360.com/shares/public/SH919a0QTf3c32634dcf4dbb670429faecd2?mode=embed"
+    links={[
+        { icon: "github", href: "https://github.com/jasontsemf/PrintedBusinessCard", label: "Hardware Design files on GitHub" }
+    ]}
+/>
+
+<ProjectSplitSection heading="The Problem" lead="People still hand out business cards during conferences and events.">
+
+Why in the (technologically advanced) world, are people giving away their contact information printed in ink on a piece of paper and keeping a stack of other's cards, despite the fact that one has easy access to all the necessary information with just a search on Linkedin?
+
+A good business card is an object beyond giving contact information. It is also courtesy. And most importantly, It is the perfect opportunity for you to impress someone you think who worths the effort to connect to. If it is a great business card, the card you designed will end up taking a place or even stand out in a deck of competitive business cards.
+
+</ProjectSplitSection>
+
+<ProjectSection heading="The Solution" border>
+
+<ProjectImage src="project/pbc/pbc_thumb_bumbed.png" alt="pbc thumb" />
+
+The ultimate business card in a PCB form, which bridges the physical and digital world and directs recipients to the creator's personal website via NFC and QR code, while doubling as a card-sized phone stand, in a sleek size and fashion.
+
+</ProjectSection>
+
+<ProjectCards>
+
+<ProjectMediaPair heading="It's a board... It's a card... It's Printed Business Card" imageSrc="project/pbc/board.png" imageAlt="pbc thumb">
+
+The business card is made in a Printed Circuit Board (PCB) form, to essentially impress a recipient, someone very possibly works in tech, with my creativity, convey the message that I am proficient in designing PCBs, at the same time to provide an opportunity for the recipient to evaluate my artistry first-hand. Exploiting my experience of making **PCB art**, the logo and text have an exposed copper finish that brings the shine and clean aesthetic to the board itself.
+
+</ProjectMediaPair>
+
+<ProjectMediaPair heading="Near Field Communication (NFC)" imageSrc="project/pbc/nfc_crop_led.png" imageAlt="nfc" reverse>
+
+Of course, the primary purpose of a business card is to provide contact information. Instead of having letters on papers, the card is incorporated with an NFC chip in a tiny XQFN8 package [(NT3H1101)](https://media.digikey.com/pdf/Data%20Sheets/NXP%20PDFs/NT3H1101_NT3H1201_DS.pdf), which has **energy harvesting** capabilities, along with the precisely calculated antenna, to essentially provide a URL to the phone, which directs the user to my **personal website**, with a contactless tap, plus an onboard **LED** that lights up when contact is made.
+
+</ProjectMediaPair>
+
+<ProjectMediaPair heading="Also a Phone Stand" imageSrc="project/pbc/stand.png" imageAlt="phone stand">
+
+Apart from electronics, the card itself is also a card made out of **solid materials**, where its rigidity can be further leveraged. Inspired by the snap n play model kit frame design, users can easily transform the card into a thin and light, nifty phone stand that can be kept in a wallet. Not only the **physical form** of the card stands out in a pile of boring business cards, but it also becomes a **tool** that provides value in life instead of merely storing someone else's info that might not even be relevant to you. The card, and possibly the creator of this intriguing product, can be remembered ever since.
+
+<ProjectCarousel
+    slot="after"
+    variant="side"
+    items={[
+        { src: "project/pbc/stand_pre_snap.JPG", alt: "pre snap" },
+        { src: "project/pbc/snap_crop.gif", alt: "snap" },
+        { src: "project/pbc/stand_view.JPG", alt: "eat me" }
+    ]}
+/>
+
+</ProjectMediaPair>
+
+<ProjectMediaPair heading="On the other side... is QR code and text" imageSrc="project/pbc/qr_crop.png" imageAlt="qr code" reverse border={false}>
+
+Just in case, an NFC device is not at the reach of the user's hands, or a user only needs one simple piece of my essential information **in a short glance**, I got that covered. The QR code and the simple textual contents placed on the back of the card serve these kinds of secondary use cases with **flexibility**.
+
+</ProjectMediaPair>
+
+</ProjectCards>
+
+<ProjectCarouselSection
+    heading="Eye Candies"
+    border
+    items={[
+        { src: "project/pbc/eyecandies/box.JPG", alt: "history" },
+        { src: "project/pbc/eyecandies/open_box.JPG", alt: "history" },
+        { src: "project/pbc/eyecandies/card.JPG", alt: "history" },
+        { src: "project/pbc/eyecandies/side.JPG", alt: "history" },
+        { src: "project/pbc/eyecandies/side_shadow.JPG", alt: "history" },
+        { src: "project/pbc/eyecandies/card_hue.JPG", alt: "history" },
+        { src: "project/pbc/eyecandies/hue_medium.gif", alt: "history" },
+        { src: "project/pbc/eyecandies/hue_close.gif", alt: "history" },
+        { src: "project/pbc/eyecandies/pan.gif", alt: "history" },
+        { src: "project/pbc/eyecandies/shadow.gif", alt: "history" },
+        { src: "project/pbc/eyecandies/3by3.jpg", alt: "history" }
+    ]}
+/>

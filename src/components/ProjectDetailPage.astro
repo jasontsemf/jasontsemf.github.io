@@ -1,12 +1,15 @@
 ---
 import CanonicalLayout from "../layouts/CanonicalLayout.astro";
+import ProjectDetailNav from "./project-details/ProjectDetailNav.astro";
 import type { ProjectEntry } from "../lib/content-manifest";
+import type { ProjectDetailNav as ProjectDetailNavData } from "../lib/project-detail-nav";
 
 interface Props {
     project: ProjectEntry;
+    detailNav?: ProjectDetailNavData;
 }
 
-const { project } = Astro.props;
+const { project, detailNav } = Astro.props;
 const titleSuffix = project.data.titleSuffix ?? project.data.title;
 const pageTitle = `Jason Tse - ${titleSuffix}`;
 const socialDescription = project.data.socialDescription ?? "Creative Technologist";
@@ -37,4 +40,18 @@ const extraScripts = project.data.includeCocoenAssets ? ["cocoen/dist/js/cocoen.
     extraScripts={extraScripts}
 >
     <slot />
+    <div class="jason-narrow-content animate-box" data-animate-effect="fadeInLeft">
+        {
+            project.data.detailDate && (
+                <div class="animate-box" data-animate-effect="fadeInLeft">
+                    <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0">
+                        <div class="col-md-4 col-sm-4 col-md-offset-4 col-xs-4 text-center">
+                            <h4>{project.data.detailDate}</h4>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+        <ProjectDetailNav detailNav={detailNav} />
+    </div>
 </CanonicalLayout>

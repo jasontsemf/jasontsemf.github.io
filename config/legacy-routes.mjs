@@ -1,4 +1,5 @@
 export const astroManagedCanonicalRoutes = ["/", "/projects.html", "/about.html", "/contact.html"];
+export const astroManagedRedirectRoutes = ["/binwatch.html"];
 export const astroManagedProjectRoutes = [
     "/optimice.html",
     "/bankheist.html",
@@ -7,7 +8,11 @@ export const astroManagedProjectRoutes = [
     "/falseawakening.html",
     "/runvendor.html"
 ];
-export const astroManagedRoutes = [...astroManagedCanonicalRoutes, ...astroManagedProjectRoutes];
+export const astroManagedRoutes = [
+    ...astroManagedCanonicalRoutes,
+    ...astroManagedRedirectRoutes,
+    ...astroManagedProjectRoutes
+];
 
 export const rootLegacyRoutes = [
     { route: "/", source: "index.html", type: "canonical" },

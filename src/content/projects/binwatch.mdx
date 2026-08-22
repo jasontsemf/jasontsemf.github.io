@@ -57,7 +57,7 @@ BinWatch is a fully functional electronic wristwatch that displays time and date
 
 The design uses an **ATmega328P-AU microcontroller**, a **DS3231 real-time clock**, a **4 by 4 LED matrix**, and a single **CR2032 coin cell**. A side-mounted button wakes the display and cycles through the available information, keeping the interface simple while limiting unnecessary power use.
 
-The exposed PCB gives the watch its visual identity and keeps the profile thin. It extends the same “PCB as product” idea that I explored in my [Printed Business Card](pbc.html), but applies it to a wearable object with stricter constraints around size, power, assembly, and comfort.
+The exposed PCB gives the watch its visual identity and keeps the profile thin while introducing stricter constraints around size, power, assembly, and comfort.
 
 </ProjectSplitSection>
 
@@ -75,9 +75,19 @@ The exposed PCB gives the watch its visual identity and keeps the profile thin. 
     ]}
 />
 
-<ProjectSplitSection heading="Inspiration" lead="Make reading time deliberate">
+<ProjectMediaPair
+    heading="Design lineage: Printed Business Card"
+    imageSrc="project/pbc/eyecandies/side_shadow.JPG"
+    imageAlt="Jason Tse’s NFC-powered Printed Business Card shown as a finished enclosure-free PCB product"
+>
 
 I became interested in PCB design after building my first, unsuccessful board for Deqing Sun’s *Prototyping Electronic Devices* class. The failure made the discipline compelling: a working board depends on the circuit, component selection, footprints, routing, fabrication, and physical design all agreeing with one another.
+
+My earlier [Printed Business Card (PBC)](pbc.html) then explored an NFC-powered business card as a finished, enclosure-free PCB product. BinWatch carries that same **“PCB as product”** design language into a wearable device with new constraints around power, comfort, interaction, and mechanical attachment.
+
+</ProjectMediaPair>
+
+<ProjectSplitSection heading="Inspiration" lead="Make reading time deliberate">
 
 For a project in the *Time* class, I wanted to build something more playful than a conventional digital or analog watch. A binary clock turns a quick glance into a small decoding exercise. Each illuminated LED represents a binary value, and the values in each column combine to form the decimal digits for hours and minutes.
 

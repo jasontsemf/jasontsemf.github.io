@@ -1,0 +1,59 @@
+---
+title: "New Project"
+titleSuffix: "New Project"
+routeKey: new-project
+route: /new-project.html
+legacySource: new-project.html
+year: 2026
+detailDate: "2026"
+featured: false
+listingTitle: "New Project"
+listingSubtitle: "Short list of disciplines or technologies"
+listingImage: "project/new-project/new-project-thumb.jpg"
+listingImageAlt: "Concise description of the project thumbnail"
+listingHref: "new-project.html"
+listingOrder: 50
+detailNavOrder: 50
+tags:
+    - Hardware
+    - Software
+status: migrated
+summary: "A concise description of the project and the outcome it produced."
+socialImage: "https://jasontsemf.github.io/project/new-project/new-project-social.jpg"
+socialDescription: "A concise social preview description for the project."
+socialCard: summary_large_image
+includeCocoenAssets: false
+---
+
+import ProjectHero from "../../components/project-details/ProjectHero.astro";
+import ProjectSection from "../../components/project-details/ProjectSection.astro";
+import ProjectSplitSection from "../../components/project-details/ProjectSplitSection.astro";
+
+<ProjectHero
+    title="New Project"
+    tagline="One sentence that explains the project"
+    mediaType="image"
+    mediaSrc="project/new-project/hero.jpg"
+    mediaAlt="Meaningful description of the hero image"
+    links={[
+        { icon: "github", href: "https://github.com/example/project", label: "Project source on GitHub" }
+    ]}
+/>
+
+<ProjectSplitSection heading="Overview" lead="The problem or opportunity">
+
+Describe the project, your role, and the result. Standard **Markdown** works inside components.
+
+</ProjectSplitSection>
+
+<ProjectSection heading="Process" border>
+
+Explain the most important decisions, constraints, and evidence. Import additional components from `src/components/project-details/` only when they improve the story.
+
+</ProjectSection>
+
+<ProjectSection heading="Result">
+
+Summarize the outcome, what you learned, and any relevant links or measurements.
+
+</ProjectSection>

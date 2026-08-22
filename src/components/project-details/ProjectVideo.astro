@@ -2,12 +2,17 @@
 interface Props {
     src: string;
     wide?: boolean;
+    spacingAfter?: boolean;
 }
 
-const { src, wide = false } = Astro.props;
+const { src, wide = false, spacingAfter = false } = Astro.props;
 ---
 
-<div class="animate-box" data-animate-effect="fadeInLeft" style="position: relative; padding-bottom: 50%;">
+<div
+    class:list={["animate-box", { "project-video--spacing-after": spacingAfter }]}
+    data-animate-effect="fadeInLeft"
+    style="position: relative; padding-bottom: 50%;"
+>
     <iframe
         class:list={["img-responsive", "img-responsive-shadow", wide ? "jason-youtube-video-wide" : "jason-vimeo-video"]}
         src={src}
@@ -17,3 +22,9 @@ const { src, wide = false } = Astro.props;
         allowfullscreen
     />
 </div>
+
+<style>
+    .project-video--spacing-after {
+        margin-bottom: 2.5rem;
+    }
+</style>

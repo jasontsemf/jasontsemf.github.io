@@ -50,13 +50,13 @@ For pull requests, include:
 When creating a Linear issue for this repository, assign it to **Jason Tse**.
 
 ### Branching and Release Gate
-- `main` is production. Do all implementation on `dev` only.
-- Do not merge `dev -> main` until the active refactor sequence is complete and verified:
+- `master` is production. Do all implementation on `dev` only.
+- Do not merge `dev -> master` until the active refactor sequence is complete and verified:
   1. `JCR-44`
   2. `JCR-59`
   3. `JCR-45`
   4. `JCR-58`
-- Required release check before any `main` merge: `npm run build:verify` must pass.
+- Required release check before any `master` merge: `npm run build:verify` must pass.
 
 ### Linear Dependency Hygiene
 - Keep Linear `blockedBy` relationships aligned to the intended execution sequence.
@@ -91,7 +91,7 @@ Use the `linear` skill and follow this repo’s `AGENTS.md`.
 
 Context:
 - Repo: /Users/jasontse/Documents/GitHub/jasontsemf.github.io
-- Branch strategy: `main` is production; do all work on `dev` only.
+- Branch strategy: `master` is production; do all work on `dev` only.
 - Immediate next ticket: <TICKET-ID> (<STATUS>) — <TITLE>
 - Do NOT work on <OUT-OF-SCOPE-TICKET> in this session.
 - Keep unrelated local changes intact.

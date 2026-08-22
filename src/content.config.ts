@@ -1,4 +1,6 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 
 const contentStatus = z.enum(["legacy-wrapped", "migrated"]);
 const pageKind = z.enum(["canonical", "redirect", "legacy"]);
@@ -25,7 +27,7 @@ const routeSchema = z
     .regex(routePattern, "route must be '/' or '/<slug>.html'.");
 
 const pages = defineCollection({
-    type: "content",
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/pages" }),
     schema: z
         .object({
             title: titleSchema,
@@ -92,7 +94,7 @@ const pages = defineCollection({
 });
 
 const projects = defineCollection({
-    type: "content",
+    loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
     schema: z
         .object({
             title: titleSchema,

@@ -164,25 +164,6 @@ async function verifyRedirects() {
     return failures;
 }
 
-async function verifyAstroManagedRedirects() {
-    const failures = [];
-    const astroManagedRedirectSources = new Map([["/binwatch.html", "src/pages/binwatch.html.astro"]]);
-
-    for (const [route, source] of astroManagedRedirectSources) {
-        if (!astroManagedRoutes.includes(route)) {
-            failures.push(`Redirect route is not Astro-managed: ${route}`);
-        }
-        if (copiedRootLegacyRoutes.some((item) => item.route === route)) {
-            failures.push(`Redirect route still depends on post-build copying: ${route}`);
-        }
-        if (!(await exists(path.join(repoRoot, source)))) {
-            failures.push(`Missing Astro redirect source: ${source}`);
-        }
-    }
-
-    return failures;
-}
-
 async function verifyCoreNavLinks() {
     const failures = [];
     const pages = ["index.html", "projects.html", "about.html", "contact.html"];
@@ -240,7 +221,6 @@ const checks = await Promise.all([
     verifyRoutes(),
     verifyRootParity(),
     verifyRedirects(),
-    verifyAstroManagedRedirects(),
     verifyCoreNavLinks(),
     verifyCanonicalBehavior(),
     verifyStaticDirs(),

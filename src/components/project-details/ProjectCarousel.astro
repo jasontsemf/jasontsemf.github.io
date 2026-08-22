@@ -12,9 +12,14 @@ interface Props {
 
 const { items, variant = "full" } = Astro.props;
 const carouselClass = variant === "side" ? "owl-carousel-side" : variant === "gallery" ? "owl-gallery-carousel" : "owl-carousel-fullwidth";
+const hasCaptions = items.some((item) => Boolean(item.caption));
 ---
 
-<div class:list={[carouselClass, "animate-box", { "img-responsive": variant === "full" }]} data-animate-effect="fadeInLeft" style={variant === "side" ? "padding-left: 30px; padding-right: 30px;" : undefined}>
+<div
+    class:list={[carouselClass, "animate-box", { "img-responsive": variant === "full", "project-carousel--captioned": hasCaptions }]}
+    data-animate-effect="fadeInLeft"
+    style={variant === "side" ? "padding-left: 30px; padding-right: 30px;" : undefined}
+>
     {
         items.map((item) => (
             <div class="item">
@@ -30,3 +35,9 @@ const carouselClass = variant === "side" ? "owl-carousel-side" : variant === "ga
         ))
     }
 </div>
+
+<style>
+    .project-carousel--captioned {
+        padding-bottom: 1.5rem;
+    }
+</style>

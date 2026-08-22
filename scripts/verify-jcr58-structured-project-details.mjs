@@ -5,6 +5,7 @@ const repoRoot = process.cwd();
 const migratedProjectEntries = [
     "optimice",
     "bankheist",
+    "binwatch",
     "pbc",
     "tagit",
     "falseawakening",
@@ -14,6 +15,7 @@ const migratedProjectEntries = [
 const expectedDetailNavigation = new Map([
     ["optimice", ["pbc.html", "projects.html", "bankheist.html"]],
     ["bankheist", ["optimice.html", "projects.html", "binwatch.html"]],
+    ["binwatch", ["bankheist.html", "projects.html", "pbc.html"]],
     ["pbc", ["binwatch.html", "projects.html", "optimice.html"]],
     ["tagit", []],
     ["falseawakening", []],

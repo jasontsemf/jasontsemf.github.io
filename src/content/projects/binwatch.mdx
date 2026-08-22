@@ -1,0 +1,293 @@
+---
+title: "BinWatch"
+titleSuffix: "BinWatch"
+routeKey: binwatch
+route: /binwatch.html
+legacySource: binwatch.html
+year: 2020
+detailDate: "2020 Fall"
+listingTitle: "𝍄 BinWatch"
+listingSubtitle: "PCB Design, RTC, Atmega328p-au, Low Power"
+listingImage: "project/binwatch/binwatch_thumb.jpg"
+listingImageAlt: "binwatch"
+listingHref: "binwatch.html"
+listingOrder: 30
+detailNavOrder: 30
+tags:
+    - PCB Design
+    - Embedded Systems
+    - ATmega328P-AU
+    - RTC
+    - Low Power
+status: migrated
+summary: "A custom naked-PCB wristwatch that displays time and date in binary on a 4 by 4 LED matrix."
+socialImage: "https://jasontsemf.github.io/project/binwatch/detail/dsc0024-copy.jpg"
+socialDescription: "A custom naked-PCB wristwatch that displays time and date in binary on a 4 by 4 LED matrix."
+socialCard: summary_large_image
+includeCocoenAssets: false
+---
+
+import ProjectCards from "../../components/project-details/ProjectCards.astro";
+import ProjectCarouselSection from "../../components/project-details/ProjectCarouselSection.astro";
+import ProjectHero from "../../components/project-details/ProjectHero.astro";
+import ProjectImage from "../../components/project-details/ProjectImage.astro";
+import ProjectMediaPair from "../../components/project-details/ProjectMediaPair.astro";
+import ProjectSection from "../../components/project-details/ProjectSection.astro";
+import ProjectSplitSection from "../../components/project-details/ProjectSplitSection.astro";
+import ProjectVideo from "../../components/project-details/ProjectVideo.astro";
+
+<ProjectHero
+    title="𝍄 BinWatch"
+    tagline={'A naked-PCB wristwatch that displays time and date in binary on a 4 by 4 LED matrix.'}
+    mediaType="image"
+    mediaSrc="project/binwatch/detail/dsc0024-copy.jpg"
+    mediaAlt="BinWatch displaying illuminated LEDs while worn on a wrist"
+    links={[
+        {
+            icon: "globe",
+            href: "https://jason1996429.wordpress.com/2020/12/09/time-final-binwatch/",
+            label: "Original 2020 project archive"
+        }
+    ]}
+/>
+
+<ProjectSplitSection heading="Overview" lead="PCB as the product">
+
+BinWatch is a fully functional electronic wristwatch that displays time and date in binary. Rather than hiding the electronics inside a conventional enclosure, I designed the circuit board, components, traces, and mounting hardware to become the product itself.
+
+The design uses an **ATmega328P-AU microcontroller**, a **DS3231 real-time clock**, a **4 by 4 LED matrix**, and a single **CR2032 coin cell**. A side-mounted button wakes the display and cycles through the available information, keeping the interface simple while limiting unnecessary power use.
+
+The exposed PCB gives the watch its visual identity and keeps the profile thin while introducing stricter constraints around size, power, assembly, and comfort.
+
+</ProjectSplitSection>
+
+<ProjectCarouselSection
+    heading="The final watch"
+    variant="gallery"
+    border
+    items={[
+        { src: "project/binwatch/detail/dsc0012-copy.jpg", alt: "BinWatch resting on a desk beside a keyboard" },
+        { src: "project/binwatch/detail/dsc0013-copy.jpg", alt: "BinWatch and black strap viewed from an angle" },
+        { src: "project/binwatch/detail/img_20201212_111944-copy.jpg", alt: "Completed BinWatch with woven black watch strap" },
+        { src: "project/binwatch/detail/img_20201212_112231-copy.jpg", alt: "Close-up of the BinWatch microcontroller and side button" },
+        { src: "project/binwatch/detail/img_20201212_112307-copy.jpg", alt: "Macro photograph of components on the BinWatch PCB" },
+        { src: "project/binwatch/detail/dsc0024-copy.jpg", alt: "BinWatch displaying time while worn on a wrist" }
+    ]}
+/>
+
+<ProjectMediaPair
+    heading="Design lineage: Printed Business Card"
+    imageSrc="project/pbc/eyecandies/side_shadow.JPG"
+    imageAlt="Jason Tse’s NFC-powered Printed Business Card shown as a finished enclosure-free PCB product"
+>
+
+I became interested in PCB design after building my first, unsuccessful board for Deqing Sun’s *Prototyping Electronic Devices* class. The failure made the discipline compelling: a working board depends on the circuit, component selection, footprints, routing, fabrication, and physical design all agreeing with one another.
+
+My earlier [Printed Business Card (PBC)](pbc.html) then explored an NFC-powered business card as a finished, enclosure-free PCB product. BinWatch carries that same **“PCB as product”** design language into a wearable device with new constraints around power, comfort, interaction, and mechanical attachment.
+
+</ProjectMediaPair>
+
+<ProjectSplitSection heading="Inspiration" lead="Make reading time deliberate">
+
+For a project in the *Time* class, I wanted to build something more playful than a conventional digital or analog watch. A binary clock turns a quick glance into a small decoding exercise. Each illuminated LED represents a binary value, and the values in each column combine to form the decimal digits for hours and minutes.
+
+<ProjectImage src="project/binwatch/detail/ezgif-4-082b79ababaa.jpg" alt="Diagram explaining how a binary clock represents hours, minutes, and seconds" centered />
+
+In the example above, the hour columns resolve to 10 and the minute columns resolve to 37. BinWatch adapts that familiar binary-clock pattern to a compact wristwatch, expressed through my own circuit and PCB layout.
+
+</ProjectSplitSection>
+
+<ProjectSection heading="Design and engineering decisions" border>
+
+As the design became smaller, the visual and technical decisions became inseparable. Every added component affected board area and power draw; every physical choice constrained routing and assembly. Once the PCB was manufactured, there would be little room for improvisation.
+
+</ProjectSection>
+
+<ProjectCards>
+
+<ProjectMediaPair
+    heading="Microcontroller and real-time clock"
+    imageSrc="project/binwatch/detail/ezgif-4-79a7192ff080-1.jpg"
+    imageAlt="Reference clock circuit using counters and a quartz oscillator"
+>
+
+I considered building the clock from counters and a 32.768 kHz crystal. That approach was appealingly direct, but it required more components, more board area, and a more difficult path for adding interactions later.
+
+I instead chose the **ATmega328P-AU**, the surface-mount microcontroller used in compact Arduino-compatible boards. It let me reuse a familiar toolchain and implement the watch behavior in software. A **DS3231 RTC** handles accurate timekeeping and provides calendar data without asking the microcontroller to maintain time continuously.
+
+</ProjectMediaPair>
+
+<ProjectMediaPair
+    heading="Battery, LEDs, and interface"
+    imageSrc="project/binwatch/detail/screen-shot-2020-11-16-at-8.37.00-pm-1.png"
+    imageAlt="LED series resistor calculation for the BinWatch circuit"
+    reverse
+>
+
+A rechargeable LiPo would have required charging and protection circuitry, adding both complexity and volume. I chose a replaceable **3 V CR2032 coin cell** and designed around low current consumption instead.
+
+Yellow LEDs balanced visibility, color, and power use. The watch uses one physical button as its only interface: the display remains off until the user asks for information. Software provides the interaction without adding more power-hungry hardware.
+
+</ProjectMediaPair>
+
+</ProjectCards>
+
+<ProjectSection heading="Final specification" border>
+
+- Custom, enclosure-free PCB sized for a standard 20 mm watch band
+- ATmega328P-AU running with an 8 MHz resonator
+- DS3231 real-time clock with calendar support
+- 4 by 4 yellow LED matrix
+- Single side-mounted input button
+- CR2032 coin-cell power
+- ICSP and serial programming interfaces
+- Board fabrication in China, with components sourced and hand-soldered in Brooklyn
+
+</ProjectSection>
+
+<ProjectSection heading="Schematic and board design">
+
+The schematic centers on the ATmega328P-AU and DS3231, with the LED matrix, resonator, button, battery, and programming interfaces arranged around them. I included dedicated ICSP and serial connections after learning, on an earlier PCB, how fragile direct wires soldered to microcontroller pins can be.
+
+Before routing the board, I reviewed the schematic repeatedly. A schematic error would propagate directly into the manufactured hardware.
+
+Component footprints became part of the industrial design. Standard surface-mount packages were predictable, but the side button and battery holder varied considerably between suppliers. I checked footprints and 3D models against actual Digi-Key availability before committing to a part. I also maintained the bill of materials while designing, rather than discovering availability and cost problems after the layout was complete.
+
+</ProjectSection>
+
+<ProjectCarouselSection
+    heading="From circuit to PCB"
+    variant="full"
+    border
+    items={[
+        {
+            src: "project/binwatch/detail/screen-shot-2020-12-09-at-9.51.32-am-1.png",
+            alt: "BinWatch schematic in Autodesk Eagle",
+            caption: "Schematic"
+        },
+        {
+            src: "project/binwatch/detail/screen-shot-2020-12-09-at-9.51.43-am.png",
+            alt: "BinWatch routed PCB layout in Autodesk Eagle",
+            caption: "Board layout"
+        },
+        {
+            src: "project/binwatch/detail/screen-shot-2020-12-09-at-10.31.23-am.png",
+            alt: "SnapEDA component footprint search during BinWatch development",
+            caption: "Footprint research"
+        },
+        {
+            src: "project/binwatch/detail/screen-shot-2020-12-09-at-9.59.47-am.png",
+            alt: "BinWatch bill of materials spreadsheet",
+            caption: "Bill of materials"
+        }
+    ]}
+/>
+
+<ProjectSection heading="Parts, testing, and soldering">
+
+With custom boards, spare parts are not optional. A damaged pad or overheated component can stop the entire build, so I ordered multiple PCBs and extra quantities of the small components most likely to be lost or damaged.
+
+That caution proved worthwhile. Despite working carefully, I ruined the first board and microcontroller with excess solder and pressure on the pins. The next attempt benefited from that failure: I tested components in stages, controlled the amount of solder more carefully, and verified the board before moving on.
+
+</ProjectSection>
+
+<ProjectCarouselSection
+    heading="Assembly process"
+    variant="gallery"
+    border
+    items={[
+        { src: "project/binwatch/detail/img_20201202_133122.jpg", alt: "Manufactured BinWatch PCBs arriving in packaging" },
+        { src: "project/binwatch/detail/img_20201203_045414.jpg", alt: "Digi-Key component shipment for BinWatch" },
+        { src: "project/binwatch/detail/img_20201203_050348.jpg", alt: "BinWatch components organized before assembly" },
+        { src: "project/binwatch/detail/img_20201203_071034.jpg", alt: "ATmega328P-AU component beside the unassembled PCB" },
+        { src: "project/binwatch/detail/img_20201203_053558.jpg", alt: "Testing a yellow LED on the BinWatch PCB" },
+        { src: "project/binwatch/detail/img_20201212_235316.jpg", alt: "Partially assembled BinWatch PCB" }
+    ]}
+/>
+
+<ProjectSection heading="Assembly tests" border>
+
+<ProjectVideo src="https://www.youtube.com/embed/_0ExR1Ost6Q" wide spacingAfter />
+
+<ProjectVideo src="https://www.youtube.com/embed/LuZu9lDxAq8" wide />
+
+</ProjectSection>
+
+<ProjectSection heading="Bootloader and programming">
+
+Before uploading the watch firmware, the empty ATmega328P-AU needed a bootloader. I used [MiniCore](https://github.com/MCUdude/MiniCore), which supports configurable clock speeds and allowed the microcontroller to run at a lower frequency for reduced power consumption. An Arduino, configured as an in-system programmer, burned the bootloader onto the watch.
+
+The PCB’s USB serial pins did not work reliably with the FTDI programmer. I therefore continued programming through the Arduino-as-ISP connection. Uploading this way erased the bootloader each time, but it gave me a dependable route for iterating on the firmware and finishing the watch.
+
+</ProjectSection>
+
+<ProjectCarouselSection
+    heading="Programming workflow"
+    variant="full"
+    border
+    items={[
+        {
+            src: "project/binwatch/detail/screen-shot-2020-12-09-at-10.09.11-am.png",
+            alt: "MiniCore documentation used for the ATmega328P bootloader",
+            caption: "MiniCore configuration"
+        },
+        {
+            src: "project/binwatch/detail/screen-shot-2020-12-03-at-6.36.26-pm.png",
+            alt: "Arduino ISP sketch prepared for programming BinWatch",
+            caption: "Arduino as ISP"
+        },
+        {
+            src: "project/binwatch/detail/screen-shot-2020-12-09-at-10.08.25-am-1.png",
+            alt: "BinWatch firmware open in the Arduino IDE",
+            caption: "Watch firmware"
+        },
+        {
+            src: "project/binwatch/detail/img_20201203_191059.jpg",
+            alt: "Arduino wired to BinWatch for in-system programming",
+            caption: "Programming fixture"
+        },
+        {
+            src: "project/binwatch/detail/screen-shot-2020-12-03-at-7.12.01-pm.png",
+            alt: "Arduino IDE programmer selection menu",
+            caption: "Programmer setup"
+        }
+    ]}
+/>
+
+<ProjectMediaPair
+    heading="Watch-band bracket"
+    imageSrc="project/binwatch/detail/img_20201207_001928.jpg"
+    imageAlt="BinWatch PCB prepared for its watch-band bracket"
+>
+
+I placed mounting holes slightly more than 20 mm apart while laying out the PCB. After fabrication, I transferred the board geometry from Eagle into Fusion 360 and designed a small bracket around those mounting points. The printed bracket connects the exposed circuit board to a standard 20 mm watch band without requiring a conventional enclosure.
+
+</ProjectMediaPair>
+
+<ProjectCarouselSection
+    heading="Bracket development"
+    variant="full"
+    border
+    items={[
+        {
+            src: "project/binwatch/detail/screen-shot-2020-12-09-at-10.35.44-am.png",
+            alt: "BinWatch and bracket modeled in Fusion 360",
+            caption: "Fusion 360 assembly"
+        },
+        {
+            src: "project/binwatch/detail/binwatchbracket_2020-dec-09_03-44-07pm-000_customizedview24514051051.png",
+            alt: "Rendered BinWatch bracket and PCB assembly",
+            caption: "Bracket render"
+        }
+    ]}
+/>
+
+<ProjectSection heading="Result">
+
+BinWatch became both a wearable clock and an exercise in designing across electrical, software, mechanical, and visual constraints. The failures were as useful as the finished board: they changed how I verify schematics, choose footprints, order spares, expose programming interfaces, and plan for assembly before sending a PCB to fabrication.
+
+The finished watch was later [featured by JLCPCB on Instagram](https://www.instagram.com/p/CIvMxqNLPAl/). The original long-form build notes remain available in the [2020 WordPress archive](https://jason1996429.wordpress.com/2020/12/09/time-final-binwatch/).
+
+<ProjectVideo src="https://www.youtube.com/embed/9Se1lnJ2OZc" wide />
+
+</ProjectSection>

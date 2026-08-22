@@ -1,8 +1,9 @@
 export const astroManagedCanonicalRoutes = ["/", "/projects.html", "/about.html", "/contact.html"];
-export const astroManagedRedirectRoutes = ["/binwatch.html"];
+export const astroManagedRedirectRoutes = [];
 export const astroManagedProjectRoutes = [
     "/optimice.html",
     "/bankheist.html",
+    "/binwatch.html",
     "/pbc.html",
     "/tagit.html",
     "/falseawakening.html",
@@ -25,7 +26,7 @@ export const rootLegacyRoutes = [
     { route: "/tagit.html", source: "tagit.html", type: "canonical" },
     { route: "/falseawakening.html", source: "falseawakening.html", type: "canonical" },
     { route: "/runvendor.html", source: "runvendor.html", type: "canonical" },
-    { route: "/binwatch.html", source: "binwatch.html", type: "redirect" },
+    { route: "/binwatch.html", source: "binwatch.html", type: "canonical" },
     { route: "/portfolio.html", source: "portfolio.html", type: "redirect" },
     { route: "/work.html", source: "work.html", type: "legacy" }
 ];
@@ -48,10 +49,6 @@ export const parityCriticalRoutes = [
 ];
 
 export const legacyRedirectExpectations = [
-    {
-        route: "/binwatch.html",
-        destination: "https://jason1996429.wordpress.com/2020/12/09/time-final-binwatch/"
-    },
     {
         route: "/portfolio.html",
         destination: "https://jasontsemf.github.io/projects.html"

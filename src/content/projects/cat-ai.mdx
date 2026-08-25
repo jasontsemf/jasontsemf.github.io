@@ -1,6 +1,6 @@
 ---
 title: "Cat.AI"
-titleSuffix: "Cat.AI MAX78000 Edge-AI Case Study"
+titleSuffix: "Cat.AI — My First Embedded Edge-AI Project"
 routeKey: cat-ai
 route: /cat-ai.html
 legacySource: cat-ai.html
@@ -8,7 +8,7 @@ year: 2024
 detailDate: "2024"
 featured: true
 listingTitle: "Cat.AI"
-listingSubtitle: "Edge AI, MAX78000, PyTorch, CNN Deployment, PWM"
+listingSubtitle: "First Edge-AI Project, MAX78000, PyTorch, Quantization, CNN Deployment"
 listingImage: "project/cat-ai/cat-ai-digikey.jpg"
 listingImageAlt: "Cat.AI pet feeder demonstrated in DigiKey's Potentially Genius series"
 listingHref: "cat-ai.html"
@@ -21,12 +21,12 @@ tags:
     - PyTorch
     - CNN
     - Embedded Systems
-    - PWM
-    - Servo Control
+    - Model Deployment
+    - On-Device Inference
 status: migrated
-summary: "An offline cat-versus-dog classifier on the MAX78000 that translates camera inference into PWM-controlled feeder doors."
+summary: "My first embedded edge-AI project: a simple MAX78000 CNN workflow from dataset preparation and quantization to on-device inference."
 socialImage: "https://jasontsemf.github.io/project/cat-ai/cat-ai-digikey.jpg"
-socialDescription: "A MAX78000 edge-AI pet feeder that classifies cats and dogs locally, then drives servo doors from the inference result."
+socialDescription: "My first embedded edge-AI project: learning the MAX78000 CNN workflow from dataset preparation to on-device inference."
 socialCard: summary_large_image
 includeCocoenAssets: false
 ---
@@ -40,7 +40,7 @@ import ProjectSplitSection from "../../components/project-details/ProjectSplitSe
 
 <ProjectHero
     title="Cat.AI"
-    tagline="Local computer vision that turns a cat-versus-dog decision into a physical response"
+    tagline="My first embedded edge-AI project: learning the CNN workflow from dataset to on-device inference"
     mediaType="embed"
     mediaSrc="https://www.youtube.com/embed/Sm5xr-bLaCM"
     links={[
@@ -57,39 +57,47 @@ import ProjectSplitSection from "../../components/project-details/ProjectSplitSe
     ]}
 />
 
-<ProjectSplitSection heading="Overview" lead="From camera frame to feeder door, without cloud inference">
+<ProjectSplitSection heading="Overview" lead="A simple first project that taught me the complete embedded-CNN workflow">
 
 Tomorrow Lab created **Cat.AI** for DigiKey's *Potentially Genius* series in collaboration with Analog Devices. The prototype watches the area in front of a pet-food bowl, classifies the visitor as a cat or dog on the **MAX78000**, and opens the food compartment only for a cat.
 
-The result is a complete edge-AI loop: collect representative images, train and quantize a convolutional neural network with the vendor SDK, deploy it to constrained hardware, run inference from the camera, and convert the classification result into **PWM-controlled servo motion**.
+This was my **first embedded edge-AI project**. The classifier itself was intentionally simple, but that simplicity made it a clear introduction to the full AI workflow: prepare representative data, train a CNN, quantize it for microcontroller constraints, synthesize device-specific code, and run inference on the target.
+
+The project gave me a practical foundation for understanding how an embedded CNN moves from a desktop training workflow to on-device execution. Its output then drove a simple feeder mechanism, demonstrating how local inference can become product behavior.
 
 </ProjectSplitSection>
 
-<ProjectSection heading="The perception-to-actuation pipeline" border wide>
+<ProjectSection heading="The five-step workflow I learned" border wide>
 
 <ProjectColumns>
 
 <ProjectFeature icon="01" title="Prepare the dataset">
 
-I recorded high-frame-rate video of stuffed cats and dogs across different angles and backgrounds, extracted still frames, then labelled and organized the images into class folders. The variation was deliberate: the model needed representative inputs rather than a single clean studio view.
+The workflow starts with representative inputs. High-frame-rate video of stuffed cats and dogs was recorded across different angles and backgrounds, then split into still frames, labelled, and organized into class folders. This showed me why a model needs variation in its training data rather than a single clean studio view.
 
 </ProjectFeature>
 
 <ProjectFeature icon="02" title="Train with the vendor SDK">
 
-I ran Analog Devices' SDK-provided, PyTorch-based cat-versus-dog training workflow on a GPU-equipped computer. The training process produced a checkpoint containing the learned model weights and biases.
+Analog Devices authored and supplied a PyTorch-based training workflow for the MAX78000. Using those tools on a GPU-equipped computer taught me how a prepared dataset and model definition become a checkpoint containing learned weights and biases.
 
 </ProjectFeature>
 
-<ProjectFeature icon="03" title="Quantize and synthesize">
+<ProjectFeature icon="03" title="Quantize for the microcontroller">
 
-Using the SDK's supplied scripts, I quantized the trained checkpoint for the MAX78000 CNN accelerator and synthesized the device-specific representation into generated C code.
+The supplier's quantization tools convert the trained model from desktop floating-point weights into a representation that fits the MAX78000 CNN accelerator. This step introduced the tradeoff between model accuracy and the precision, memory, and compute constraints of embedded hardware.
 
 </ProjectFeature>
 
-<ProjectFeature icon="04" title="Deploy and actuate">
+<ProjectFeature icon="04" title="Synthesize device code">
 
-I put the generated network onto the MAX78000, integrated it into the camera application, and developed the firmware path that translated inference output into PWM signals for the feeder's micro servos.
+Analog Devices' synthesis tools turn the quantized network into device-specific C code. This showed me how model layers, weights, and hardware configuration are transformed into source that can execute on the MAX78000 CNN accelerator.
+
+</ProjectFeature>
+
+<ProjectFeature icon="05" title="Deploy and run inference">
+
+The generated network is integrated with the camera application, loaded onto the MAX78000, and exercised with live image input. The result is a complete on-device path from captured frame to cat-versus-dog classification without cloud inference.
 
 </ProjectFeature>
 
@@ -97,13 +105,11 @@ I put the generated network onto the MAX78000, integrated it into the camera app
 
 </ProjectSection>
 
-<ProjectSplitSection heading="My role" lead="Embedded deployment and product integration were the core contribution">
+<ProjectSplitSection heading="What I learned" lead="The value was understanding the complete chain, not inventing a new model architecture">
 
-My work covered dataset preparation, use of the vendor's model workflow, deployment to the MAX78000, and the final embedded bridge from inference to motion.
+Cat.AI gave me a practical introduction to the complete embedded-CNN lifecycle. I learned how dataset quality affects training, why a desktop model must be quantized for constrained hardware, how supplier-authored synthesis tools generate target-specific code, and how that code fits into a larger embedded application.
 
-**Ownership boundary:** I did not author Analog Devices' PyTorch training framework, quantization scripts, synthesis tools, or code generator. I used and understood those supplied tools. My strongest contribution was turning their generated model into a working embedded application, then connecting the classifier's output to deterministic PWM servo control.
-
-That distinction matters. The case study is not a claim that I built an ML compiler. It demonstrates that I can carry a model across the difficult last mile from a training artifact to a responsive physical product.
+Just as importantly, I learned that inference is only one part of an embedded-AI product. Camera input, data preparation, model conversion, target deployment, and application logic all have to work together. This simple project established the foundation I would reuse for more advanced edge-AI systems.
 
 </ProjectSplitSection>
 
@@ -122,21 +128,19 @@ The platform's constraints also shaped the workflow. A desktop-trained PyTorch c
 
 </ProjectSection>
 
-<ProjectSection heading="Embedded integration">
+<ProjectSection heading="From inference to product behavior">
 
-The generated network was only one subsystem. A usable prototype still needed to acquire camera input, run inference, interpret the cat-versus-dog output, and drive a mechanism safely and predictably.
+Once the on-device AI pipeline was working, the classification output was connected to the feeder's product behavior. A cat result opened the food compartment, while a dog result kept it closed.
 
-I integrated the model into the MAX78000 application and implemented the inference-to-actuation path. A cat classification commanded the motorized doors to open; a dog classification kept access closed. PWM outputs controlled the micro servos that moved those doors.
-
-This is the practical value of edge AI in a physical product: perception is useful only when it is connected to reliable system behavior.
+The mechanism used straightforward PWM-controlled micro servos. They were not the technical focus; they simply made the result of the embedded CNN visible in the physical prototype.
 
 </ProjectSection>
 
-<ProjectSplitSection heading="Result" lead="A publicly demonstrated offline edge-AI prototype">
+<ProjectSplitSection heading="Result" lead="A small but complete embedded edge-AI foundation">
 
 Cat.AI delivered a working perception-to-actuation demonstration for DigiKey. The onboard camera observed the approaching subject, the MAX78000 classified the image locally, and the firmware used that result to control the feeder doors.
 
-The project also established a reusable engineering pattern for embedded AI: start with representative data, preserve accuracy through hardware-aware conversion, verify the model on the target, and treat actuation as part of the system rather than an afterthought.
+As a first embedded edge-AI project, its value was not complexity. Its value was making every AI stage visible in one working system and establishing a reusable engineering pattern: start with representative data, use the supplier's hardware-aware training and conversion workflow, and verify the model through on-device inference.
 
 </ProjectSplitSection>
 

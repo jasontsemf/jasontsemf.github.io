@@ -3,6 +3,7 @@ import path from "node:path";
 
 const repoRoot = process.cwd();
 const migratedProjectEntries = [
+    "cat-ai",
     "optimice",
     "bankheist",
     "binwatch",
@@ -13,10 +14,11 @@ const migratedProjectEntries = [
 ];
 
 const expectedDetailNavigation = new Map([
-    ["optimice", ["pbc.html", "projects.html", "bankheist.html"]],
+    ["cat-ai", ["pbc.html", "projects.html", "optimice.html"]],
+    ["optimice", ["cat-ai.html", "projects.html", "bankheist.html"]],
     ["bankheist", ["optimice.html", "projects.html", "binwatch.html"]],
     ["binwatch", ["bankheist.html", "projects.html", "pbc.html"]],
-    ["pbc", ["binwatch.html", "projects.html", "optimice.html"]],
+    ["pbc", ["binwatch.html", "projects.html", "cat-ai.html"]],
     ["tagit", []],
     ["falseawakening", []],
     ["runvendor", []]

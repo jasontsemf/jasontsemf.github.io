@@ -328,6 +328,7 @@ figure {
 @media screen and (max-width: 768px) {
     #jason-main .jason-narrow-content-top {
         width: 100%;
+        box-sizing: border-box;
         padding-left: 2em;
         padding-right: 2em;
         padding-top: 4.5em;
@@ -337,6 +338,7 @@ figure {
 @media screen and (max-width: 768px) {
     #jason-main .jason-narrow-content {
         width: 100%;
+        box-sizing: border-box;
         padding-left: 2em;
         padding-right: 2em;
         padding-top: 1.5em;
@@ -352,6 +354,7 @@ figure {
 @media screen and (max-width: 768px) {
     #jason-main .jason-center-content {
         width: 100%;
+        box-sizing: border-box;
         padding-left: 2em;
         padding-right: 2em;
     }
@@ -1154,6 +1157,17 @@ body.offcanvas .jason-nav-toggle {
 .btn-primary.btn-outline:active {
     background: rgb(133, 236, 235);
     color: #fff;
+}
+
+@media screen and (max-width: 480px) {
+    .project-link-button {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-right: 0;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
 }
 
 .btn-success {

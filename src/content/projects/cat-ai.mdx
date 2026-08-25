@@ -1,0 +1,172 @@
+---
+title: "Cat.AI"
+titleSuffix: "Cat.AI MAX78000 Edge-AI Case Study"
+routeKey: cat-ai
+route: /cat-ai.html
+legacySource: cat-ai.html
+year: 2024
+detailDate: "2024"
+featured: true
+listingTitle: "Cat.AI"
+listingSubtitle: "Edge AI, MAX78000, PyTorch, CNN Deployment, PWM"
+listingImage: "project/cat-ai/cat-ai-digikey.jpg"
+listingImageAlt: "Cat.AI pet feeder demonstrated in DigiKey's Potentially Genius series"
+listingHref: "cat-ai.html"
+listingOrder: 5
+detailNavOrder: 5
+tags:
+    - Edge AI
+    - TinyML
+    - MAX78000
+    - PyTorch
+    - CNN
+    - Embedded Systems
+    - PWM
+    - Servo Control
+status: migrated
+summary: "An offline cat-versus-dog classifier on the MAX78000 that translates camera inference into PWM-controlled feeder doors."
+socialImage: "https://jasontsemf.github.io/project/cat-ai/cat-ai-digikey.jpg"
+socialDescription: "A MAX78000 edge-AI pet feeder that classifies cats and dogs locally, then drives servo doors from the inference result."
+socialCard: summary_large_image
+includeCocoenAssets: false
+---
+
+import ProjectColumns from "../../components/project-details/ProjectColumns.astro";
+import ProjectFeature from "../../components/project-details/ProjectFeature.astro";
+import ProjectHero from "../../components/project-details/ProjectHero.astro";
+import ProjectLinks from "../../components/project-details/ProjectLinks.astro";
+import ProjectSection from "../../components/project-details/ProjectSection.astro";
+import ProjectSplitSection from "../../components/project-details/ProjectSplitSection.astro";
+
+<ProjectHero
+    title="Cat.AI"
+    tagline="Local computer vision that turns a cat-versus-dog decision into a physical response"
+    mediaType="embed"
+    mediaSrc="https://www.youtube.com/embed/Sm5xr-bLaCM"
+    links={[
+        {
+            icon: "globe",
+            href: "https://www.digikey.com/en/videos/d/digi-key-electronics/cat-ai-potentially-genius-digikey",
+            label: "Official DigiKey case study"
+        },
+        {
+            icon: "globe",
+            href: "https://www.analog.com/en/products/max78000.html",
+            label: "MAX78000 product documentation"
+        }
+    ]}
+/>
+
+<ProjectSplitSection heading="Overview" lead="From camera frame to feeder door, without cloud inference">
+
+Tomorrow Lab created **Cat.AI** for DigiKey's *Potentially Genius* series in collaboration with Analog Devices. The prototype watches the area in front of a pet-food bowl, classifies the visitor as a cat or dog on the **MAX78000**, and opens the food compartment only for a cat.
+
+The result is a complete edge-AI loop: collect representative images, train and quantize a convolutional neural network with the vendor SDK, deploy it to constrained hardware, run inference from the camera, and convert the classification result into **PWM-controlled servo motion**.
+
+</ProjectSplitSection>
+
+<ProjectSection heading="The perception-to-actuation pipeline" border wide>
+
+<ProjectColumns>
+
+<ProjectFeature icon="01" title="Prepare the dataset">
+
+I recorded high-frame-rate video of stuffed cats and dogs across different angles and backgrounds, extracted still frames, then labelled and organized the images into class folders. The variation was deliberate: the model needed representative inputs rather than a single clean studio view.
+
+</ProjectFeature>
+
+<ProjectFeature icon="02" title="Train with the vendor SDK">
+
+I ran Analog Devices' SDK-provided, PyTorch-based cat-versus-dog training workflow on a GPU-equipped computer. The training process produced a checkpoint containing the learned model weights and biases.
+
+</ProjectFeature>
+
+<ProjectFeature icon="03" title="Quantize and synthesize">
+
+Using the SDK's supplied scripts, I quantized the trained checkpoint for the MAX78000 CNN accelerator and synthesized the device-specific representation into generated C code.
+
+</ProjectFeature>
+
+<ProjectFeature icon="04" title="Deploy and actuate">
+
+I put the generated network onto the MAX78000, integrated it into the camera application, and developed the firmware path that translated inference output into PWM signals for the feeder's micro servos.
+
+</ProjectFeature>
+
+</ProjectColumns>
+
+</ProjectSection>
+
+<ProjectSplitSection heading="My role" lead="Embedded deployment and product integration were the core contribution">
+
+My work covered dataset preparation, use of the vendor's model workflow, deployment to the MAX78000, and the final embedded bridge from inference to motion.
+
+**Ownership boundary:** I did not author Analog Devices' PyTorch training framework, quantization scripts, synthesis tools, or code generator. I used and understood those supplied tools. My strongest contribution was turning their generated model into a working embedded application, then connecting the classifier's output to deterministic PWM servo control.
+
+That distinction matters. The case study is not a claim that I built an ML compiler. It demonstrates that I can carry a model across the difficult last mile from a training artifact to a responsive physical product.
+
+</ProjectSplitSection>
+
+<ProjectSection heading="Why the MAX78000" border>
+
+The [MAX78000](https://www.analog.com/en/products/max78000.html) combines an Arm Cortex-M4 system-control processor, a camera interface, and a dedicated convolutional-neural-network accelerator. It is designed to execute neural networks at the edge with tight power and memory constraints.
+
+For Cat.AI, that architecture kept the complete decision loop on the device:
+
+- Camera frames remained local rather than being sent to a cloud service.
+- The CNN accelerator handled the classification workload.
+- Firmware on the microcontroller converted the result into a physical control action.
+- The product could demonstrate its core behavior without an internet connection.
+
+The platform's constraints also shaped the workflow. A desktop-trained PyTorch checkpoint could not simply be copied onto the microcontroller. The model had to be quantized, checked after quantization, synthesized for the MAX78000 accelerator, generated as C, and integrated with the rest of the firmware.
+
+</ProjectSection>
+
+<ProjectSection heading="Embedded integration">
+
+The generated network was only one subsystem. A usable prototype still needed to acquire camera input, run inference, interpret the cat-versus-dog output, and drive a mechanism safely and predictably.
+
+I integrated the model into the MAX78000 application and implemented the inference-to-actuation path. A cat classification commanded the motorized doors to open; a dog classification kept access closed. PWM outputs controlled the micro servos that moved those doors.
+
+This is the practical value of edge AI in a physical product: perception is useful only when it is connected to reliable system behavior.
+
+</ProjectSection>
+
+<ProjectSplitSection heading="Result" lead="A publicly demonstrated offline edge-AI prototype">
+
+Cat.AI delivered a working perception-to-actuation demonstration for DigiKey. The onboard camera observed the approaching subject, the MAX78000 classified the image locally, and the firmware used that result to control the feeder doors.
+
+The project also established a reusable engineering pattern for embedded AI: start with representative data, preserve accuracy through hardware-aware conversion, verify the model on the target, and treat actuation as part of the system rather than an afterthought.
+
+</ProjectSplitSection>
+
+<ProjectSection heading="Verified public evidence">
+
+The official DigiKey episode documents the project concept, the dataset preparation, the SDK's PyTorch training flow, quantization and synthesis, generated C for the MAX78000, and PWM control of the servo motors. Analog Devices' documentation independently describes the device architecture and the dataset-to-C deployment workflow used by the platform.
+
+<ProjectLinks
+    links={[
+        {
+            href: "https://www.youtube.com/watch?v=Sm5xr-bLaCM",
+            label: "Watch Cat.AI on DigiKey's YouTube channel"
+        },
+        {
+            href: "https://www.digikey.com/en/videos/d/digi-key-electronics/cat-ai-potentially-genius-digikey",
+            label: "Read the official DigiKey video page"
+        },
+        {
+            href: "https://github.com/analogdevicesinc/MaximAI_Documentation/blob/main/Guides/MAX78000_Workflow_Guide.md",
+            label: "Review the MAX78000 workflow guide"
+        },
+        {
+            href: "https://github.com/analogdevicesinc/ai8x-training",
+            label: "View the vendor model-training tools"
+        },
+        {
+            href: "https://github.com/analogdevicesinc/ai8x-synthesis",
+            label: "View the vendor quantization and synthesis tools"
+        }
+    ]}
+/>
+
+</ProjectSection>

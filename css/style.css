@@ -423,6 +423,27 @@ body.offcanvas .jason-nav-toggle {
     margin-bottom: 30px;
 }
 
+.project-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.project-grid::before,
+.project-grid::after {
+    display: none;
+}
+
+.project-grid .work-item {
+    float: none;
+    width: auto;
+}
+
+@media screen and (min-width: 992px) {
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 .work-item a {
     border: none;
     text-align: center;
@@ -438,6 +459,13 @@ body.offcanvas .jason-nav-toggle {
     transition: 0.5s;
     border-radius: 1em;
 
+}
+
+.project-grid .work-item a img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    float: none;
 }
 
 .work-item a h3 {

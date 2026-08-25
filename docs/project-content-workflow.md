@@ -57,7 +57,7 @@ The build validates these fields through `src/content.config.ts`.
 | `detailDate` | Required for `migrated` | Display text shown above generated detail navigation, 4 to 40 characters. |
 | `featured` | Optional | Boolean; defaults to `false`. Reserved project metadata. |
 | `listingTitle` | Optional | Card title, 1 to 120 characters. Defaults to `title`. |
-| `listingSubtitle` | Required when listed | Card subtitle, 1 to 160 characters. Required when `listingOrder < 999`. |
+| `listingSubtitle` | Required when listed | Comma-separated card labels, 1 to 160 characters total. Use three to five short, reusable disciplines or technology categories. Required when `listingOrder < 999`. |
 | `listingImage` | Required when listed | Card image path, 1 to 300 characters. Required when `listingOrder < 999`. |
 | `listingImageAlt` | Optional | Card image alternative text, 1 to 120 characters. Requires `listingImage`. |
 | `listingHref` | Optional | Card target: `<name>.html`, `/<name>.html`, or an absolute HTTP(S) URL. Defaults to `route` without its leading slash. |
@@ -72,6 +72,10 @@ The build validates these fields through `src/content.config.ts`.
 | `includeCocoenAssets` | Optional | Boolean; defaults to `false`. Enable only when the page uses the bundled Cocoen comparison assets. |
 
 The build also rejects duplicate routes across page and project collections. It is the final authority if this guide and the schema ever diverge.
+
+### Project-card label convention
+
+Treat `listingSubtitle` as a compact taxonomy, not a second description. Use three to five comma-separated labels that a reader can scan and that can be reused across projects, such as `Edge AI`, `Embedded Systems`, or `3D Printing`. Keep narrative claims, project milestones, model or device part numbers, and low-level package inventories in `summary`, `tags`, or the detail-page content instead.
 
 ## Shared MDX components
 

@@ -12,5 +12,5 @@ const { links } = Astro.props;
 ---
 
 <p class="jason-lead">
-    {links.map((link, index) => <><a href={link.href} class="btn btn-primary btn-outline" target="blank">{link.label}</a>{index < links.length - 1 && <br />}</>)}
+    {links.map((link, index) => <><a href={link.href} class="btn btn-primary btn-outline project-link-button" target="_blank" rel="noopener noreferrer">{link.label}</a>{index < links.length - 1 && <br />}</>)}
 </p>

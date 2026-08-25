@@ -1,6 +1,7 @@
 export const astroManagedCanonicalRoutes = ["/", "/projects.html", "/about.html", "/contact.html"];
 export const astroManagedRedirectRoutes = [];
 export const astroManagedProjectRoutes = [
+    "/cat-ai.html",
     "/optimice.html",
     "/bankheist.html",
     "/binwatch.html",

@@ -1,0 +1,87 @@
+name: Promote dev to production
+
+on:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: production-promotion
+    cancel-in-progress: false
+
+jobs:
+    verify-and-promote:
+        name: Verify dev and promote master
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        permissions:
+            contents: write
+            pages: write
+        steps:
+            - name: Require the production workflow definition
+              run: |
+                  if [[ "$GITHUB_REF" != "refs/heads/master" ]]; then
+                      echo "Run this workflow from the master branch." >&2
+                      exit 1
+                  fi
+            - name: Check out dev
+              uses: actions/checkout@v7.0.1
+              with:
+                  ref: dev
+                  fetch-depth: 0
+            - name: Confirm a safe fast-forward promotion
+              id: promotion
+              run: |
+                  git fetch --no-tags origin master dev
+
+                  dev_sha="$(git rev-parse origin/dev)"
+                  checked_out_sha="$(git rev-parse HEAD)"
+
+                  if [[ "$checked_out_sha" != "$dev_sha" ]]; then
+                      echo "dev changed while the workflow was starting; rerun the promotion." >&2
+                      exit 1
+                  fi
+
+                  if ! git merge-base --is-ancestor origin/master "$dev_sha"; then
+                      echo "master is not an ancestor of dev; reconcile the branches before promoting." >&2
+                      exit 1
+                  fi
+
+                  echo "dev_sha=$dev_sha" >> "$GITHUB_OUTPUT"
+            - name: Set up Node.js
+              uses: actions/setup-node@v7.0.0
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - name: Install dependencies
+              run: npm ci
+            - name: Build and validate dev
+              run: npm run verify:ci
+            - name: Configure GitHub Pages
+              uses: actions/configure-pages@v6.0.0
+            - name: Upload verified Pages artifact
+              uses: actions/upload-pages-artifact@v5.0.0
+              with:
+                  path: ./dist
+            - name: Fast-forward master to verified dev
+              env:
+                  DEV_SHA: ${{ steps.promotion.outputs.dev_sha }}
+              run: git push origin "$DEV_SHA:refs/heads/master"
+
+    deploy:
+        name: Deploy verified production artifact
+        needs: verify-and-promote
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        permissions:
+            contents: read
+            pages: write
+            id-token: write
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v5.0.0

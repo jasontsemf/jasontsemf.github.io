@@ -310,6 +310,39 @@ figure {
     /* margin: 0 auto; */
 }
 
+#jason-main .jason-project-workflow {
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+
+#jason-main .jason-project-workflow > .row > .col-md-12 > h2 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.jason-project-columns-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2em;
+}
+
+.jason-project-columns-grid > [class*="col-"] {
+    float: none;
+    width: auto;
+}
+
+@media screen and (max-width: 768px) {
+    #jason-main .jason-project-workflow {
+        padding-top: 1.5em;
+        padding-bottom: 1.5em;
+    }
+
+    .jason-project-columns-grid {
+        grid-template-columns: 1fr;
+        row-gap: 1em;
+    }
+}
+
 #jason-main .jason-center-content {
     position: relative;
     width: 80%;
@@ -328,6 +361,7 @@ figure {
 @media screen and (max-width: 768px) {
     #jason-main .jason-narrow-content-top {
         width: 100%;
+        box-sizing: border-box;
         padding-left: 2em;
         padding-right: 2em;
         padding-top: 4.5em;
@@ -337,6 +371,7 @@ figure {
 @media screen and (max-width: 768px) {
     #jason-main .jason-narrow-content {
         width: 100%;
+        box-sizing: border-box;
         padding-left: 2em;
         padding-right: 2em;
         padding-top: 1.5em;
@@ -352,6 +387,7 @@ figure {
 @media screen and (max-width: 768px) {
     #jason-main .jason-center-content {
         width: 100%;
+        box-sizing: border-box;
         padding-left: 2em;
         padding-right: 2em;
     }
@@ -1154,6 +1190,17 @@ body.offcanvas .jason-nav-toggle {
 .btn-primary.btn-outline:active {
     background: rgb(133, 236, 235);
     color: #fff;
+}
+
+@media screen and (max-width: 480px) {
+    .project-link-button {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-right: 0;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
 }
 
 .btn-success {

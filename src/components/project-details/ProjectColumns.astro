@@ -2,14 +2,15 @@
 interface Props {
     heading?: string;
     wide?: boolean;
+    grid?: boolean;
 }
 
-const { heading, wide = false } = Astro.props;
+const { heading, wide = false, grid = false } = Astro.props;
 ---
 
 <div class="row">
     {heading && <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft"><h3>{heading}</h3></div>}
-    <div class:list={[wide ? "jason-wide-content" : "col-md-12", "animate-box"]} data-animate-effect="fadeInLeft">
+    <div class:list={[wide ? "jason-wide-content" : "col-md-12", "animate-box", { "jason-project-columns-grid": grid }]} data-animate-effect="fadeInLeft">
         <slot />
     </div>
 </div>

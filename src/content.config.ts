@@ -112,7 +112,6 @@ const projects = defineCollection({
                 .string()
                 .trim()
                 .regex(/^\/[a-z0-9-]+\.html$/, "project route must match '/<slug>.html'."),
-            legacySource: legacySourceSchema,
             year: z.number().int().min(2000).max(2100).optional(),
             detailDate: z.string().trim().min(4).max(40).optional(),
             featured: z.boolean().default(false),
@@ -140,21 +139,12 @@ const projects = defineCollection({
         })
         .superRefine((data, ctx) => {
             const expectedRoute = `/${data.routeKey}.html`;
-            const expectedSource = `${data.routeKey}.html`;
 
             if (data.route !== expectedRoute) {
                 ctx.addIssue({
                     code: z.ZodIssueCode.custom,
                     path: ["route"],
                     message: `route must match slug-derived value '${expectedRoute}'.`
-                });
-            }
-
-            if (data.legacySource !== expectedSource) {
-                ctx.addIssue({
-                    code: z.ZodIssueCode.custom,
-                    path: ["legacySource"],
-                    message: `legacySource must match slug-derived value '${expectedSource}'.`
                 });
             }
 

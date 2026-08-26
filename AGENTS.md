@@ -1,19 +1,21 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-This repository is a static portfolio site. Root-level pages (for example `index.html`, `about.html`, `projects.html`) are the main entry points. Shared front-end assets live in `css/`, `js/`, `images/`, `fonts/`, and `download/`.
+This repository is an Astro-built static portfolio site. Canonical pages live in `src/pages/`, project details in `src/content/projects/`, and shared front-end assets in `css/`, `js/`, `images/`, `fonts/`, and `download/`. The root `portfolio.html` redirect and `work.html` compatibility page are intentionally retained static exceptions.
 
 Project-specific media and documentation are grouped under `project/<project-name>/` (for example `project/optimice/`, `project/tagit/`, `project/runvendor/`). Experimental or standalone mini-sites live in directories like `keyboardranger/`, `ResizeCounter/`, `date/`, and `snap/`.
 
 Treat `backup/` and `ignore/` as archival/reference content unless a task explicitly targets them.
 
 ## Build, Test, and Development Commands
-No root build pipeline is required for routine edits.
-
-- `python3 -m http.server 8080`
-  Starts a local static server from the repo root for manual QA.
-- `open http://localhost:8080` (macOS)
-  Opens the local site preview.
+- `npm ci`
+  Installs the pinned root dependencies from `package-lock.json`.
+- `npm run dev`
+  Starts the Astro development server for local authoring and browser QA.
+- `npm run build`
+  Generates the production site in `dist/` and copies classified compatibility and standalone assets.
+- `npm run verify:ci`
+  Runs the production build plus canonical-source, route, project-content, static-HTML inventory, structured-detail, and internal-link checks. This is the required root validation gate.
 - `cd cocoen && npm install`
   Installs dependencies for the bundled `cocoen/` library project.
 - `cd cocoen && npm run start | npm run build | npm test`
@@ -28,11 +30,12 @@ Match the existing code style in touched files:
 - Keep page-specific assets close to their project directory when adding new files.
 
 ## Testing Guidelines
-There is no root automated test suite. Validate changes manually in the browser:
+Run `npm run verify:ci` for every root-site change. Then validate affected generated routes in the browser:
 
 - Confirm layout at desktop and mobile widths.
 - Verify navigation links and downloadable files.
 - Check browser console for JavaScript errors.
+- Preview through `npm run dev` during authoring or serve the generated `dist/` directory after `npm run build`; do not treat root source files as the published site.
 
 If you modify `cocoen/`, run `cd cocoen && npm test` before submitting.
 

@@ -44,7 +44,7 @@ The cleanup used two checks before deletion:
 ## Intentionally retained
 
 - `backup/` and `ignore/` archival content. Only Finder metadata was removed from those trees.
-- Root legacy HTML used by JCR-39 and JCR-45 parity verification.
+- Root legacy HTML then used by JCR-39 and JCR-45 parity verification. JCR-109 and JCR-110 later retired the core-page and project-page baselines; only classified compatibility routes remain.
 - Legacy microsites and their local assets: `date/`, `ResizeCounter/`, `snap/`, `keyboardranger/`, and `cocoen/`.
 - Historical résumé PDFs and unreferenced project source media, which may be intentional archival or downloadable material.
 - BinWatch migration paths and JCR-100 work areas, to avoid overlapping the active isolated JCR-100 work.

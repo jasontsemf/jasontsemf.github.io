@@ -1,17 +1,19 @@
 # JCR-45 Project Parity Audit
 
 - Issue: `JCR-45`
-- Verification date: March 21, 2026
+- Original verification date: March 21, 2026
 - Runtime: Node `22` via `.nvmrc`
-- Scope: Astro-managed project detail pages plus the generated `/projects.html` listing
+- Historical scope: Astro-managed project detail pages plus the generated `/projects.html` listing
 
-## Verification contract
+> **Superseded baseline:** JCR-110 removed the six root project-detail snapshots formerly used by this audit. Project MDX and generated behavior are now authoritative; this document records the migration gate rather than defining a current root-file authoring baseline.
+
+## Current verification contract
 
 1. `dist/projects.html` must render the visible project cards declared by typed frontmatter in `src/content/projects/`.
-2. Each Astro-managed project detail page must preserve legacy text content in `#jason-main`.
-3. Each Astro-managed project detail page must preserve legacy media references and outbound links in `#jason-main`.
+2. Migrated detail entries must remain MDX-authored and render through the generic `src/pages/[routeKey].html.astro` route.
+3. Generated project routes, media, outbound links, and detail navigation must pass the structured-content and internal-link checks.
 
-Covered detail routes:
+Covered migrated routes include:
 
 - `/optimice.html`
 - `/bankheist.html`
@@ -19,26 +21,18 @@ Covered detail routes:
 - `/tagit.html`
 - `/falseawakening.html`
 - `/runvendor.html`
+- `/binwatch.html`
+- `/cat-ai.html`
 
-## Accepted JCR-59 exception
+## Navigation ownership
 
-- Previous/Next detail-page navigation is intentionally excluded from JCR-45 parity comparison.
-- Reason: `JCR-59` moved those controls to curated data-driven rendering, and root `*.html` files are stale snapshots for that behavior.
-- QA for Previous/Next flow must use generated output (`dist/` or `astro dev`), not the legacy root files.
+JCR-59 moved Previous/Next controls to curated data-driven rendering. QA for that flow uses generated output (`dist/` or `astro dev`) and `scripts/verify-jcr58-structured-project-details.mjs`.
 
 ## Automation
 
-- `scripts/verify-jcr45-project-parity.mjs`
-- Wired into `npm run verify:parity`
+- `scripts/verify-project-content.mjs` validates the project listing against normalized typed frontmatter.
+- `scripts/verify-jcr58-structured-project-details.mjs` validates MDX authorship, generic route rendering, and detail navigation.
+- `scripts/verify-internal-links.mjs` validates generated local page and asset references.
+- All are wired into `npm run verify:ci`.
 
-For the listing, the verifier parses project frontmatter and compares its sorted card contract with generated `dist/projects.html`; root `projects.html` is no longer an authoring baseline. Retained project-detail baselines are compared with generated `dist/*.html` output after:
-
-- limiting comparison to `#jason-main`
-- stripping HTML comments
-- excluding the JCR-59-managed `work-pagination` block
-- normalizing text whitespace
-
-## Session result
-
-- `npm run build:verify` passed under Node `22`.
-- No remaining in-scope markdown/content parity gaps were found for JCR-45.
+The deleted root project files are no longer read by build or verification code.

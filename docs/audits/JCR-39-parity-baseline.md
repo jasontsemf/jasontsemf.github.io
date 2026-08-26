@@ -1,6 +1,6 @@
 # JCR-39 Parity Baseline (Single Source of Truth)
 
-> **Historical snapshot:** JCR-109 removed the root `index.html`, `projects.html`, `about.html`, and `contact.html` authoring baselines. Their maintained sources are now the corresponding `src/pages/*.astro` files, shared Astro shell components, and typed content collections.
+> **Historical snapshot:** JCR-109 removed the root core-page authoring baselines, and JCR-110 removed the root project-page baselines. Current sources are `src/pages/*.astro`, shared Astro components, and typed content collections; `.html` names below are public outputs, not root authoring files unless explicitly classified as retained compatibility routes.
 
 - Issue: `JCR-39`
 - Snapshot date: February 19, 2026
@@ -14,22 +14,22 @@
 
 | Route | Source file | Current behavior |
 | --- | --- | --- |
-| `/` | `index.html` | Homepage with typing animation and side-nav shell |
-| `/projects.html` | `projects.html` | Portfolio listing page |
-| `/about.html` | `about.html` | About page |
-| `/contact.html` | `contact.html` | Contact page with embedded map |
-| `/optimice.html` | `optimice.html` | Project detail page |
-| `/bankheist.html` | `bankheist.html` | Project detail page |
-| `/pbc.html` | `pbc.html` | Project detail page |
-| `/tagit.html` | `tagit.html` | Project detail page |
-| `/falseawakening.html` | `falseawakening.html` | Project detail page |
-| `/runvendor.html` | `runvendor.html` | Project detail page |
+| `/` | `src/pages/index.astro` | Homepage with typing animation and side-nav shell |
+| `/projects.html` | `src/pages/projects.html.astro` | Portfolio listing page |
+| `/about.html` | `src/pages/about.html.astro` | About page |
+| `/contact.html` | `src/pages/contact.html.astro` | Contact page with embedded map |
+| `/optimice.html` | `src/content/projects/optimice.mdx` | Astro-generated project detail page |
+| `/bankheist.html` | `src/content/projects/bankheist.mdx` | Astro-generated project detail page |
+| `/binwatch.html` | `src/content/projects/binwatch.mdx` | Astro-generated project detail page |
+| `/pbc.html` | `src/content/projects/pbc.mdx` | Astro-generated project detail page |
+| `/tagit.html` | `src/content/projects/tagit.mdx` | Astro-generated project detail page |
+| `/falseawakening.html` | `src/content/projects/falseawakening.mdx` | Astro-generated project detail page |
+| `/runvendor.html` | `src/content/projects/runvendor.mdx` | Astro-generated project detail page |
 
 ### 1.2 Redirect and legacy routes
 
 | Route | Source file | Current behavior |
 | --- | --- | --- |
-| `/binwatch.html` | `binwatch.html` | Meta refresh redirect to WordPress URL |
 | `/portfolio.html` | `portfolio.html` | Meta refresh redirect to `/projects.html` |
 | `/work.html` | `work.html` | Legacy template-like page still directly reachable |
 
@@ -112,8 +112,8 @@ Behavior must remain functionally equivalent after migration unless explicitly a
 - [ ] Home typing loop still runs in `index.html` via `js/typing_carousel.js` (`#output` target).
 - [ ] Cocoen before/after compare remains operational on pages that include `.cocoen` (`optimice.html`, `pbc.html`, `js/main.js` initialization loop).
 - [ ] Contact page map experience is unchanged relative to baseline (embedded iframe plus legacy Google Maps script path behavior).
-- [ ] Redirect semantics remain unchanged for `binwatch.html` and `portfolio.html`.
-- [ ] Duplicate Font Awesome includes currently present on `index.html`, `about.html`, and `projects.html` are either preserved for parity phase or intentionally deduplicated with no visual/functional regression.
+- [ ] Generated `/binwatch.html` project behavior and retained `portfolio.html` redirect semantics remain correct.
+- [ ] Shared Astro shell output avoids accidental duplicate Font Awesome includes on generated core pages.
 
 ## 5. Parity Acceptance Criteria (Migration Gate)
 

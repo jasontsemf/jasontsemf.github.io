@@ -122,6 +122,48 @@ function parseFrontmatter(source, contentFile) {
     return data;
 }
 
+function normalizeSchemaString(value) {
+    return value.trim();
+}
+
+function normalizeRenderedText(value) {
+    return normalizeSchemaString(value).replace(/\s+/g, " ");
+}
+
+function projectDataToListingCard(data) {
+    const route = normalizeSchemaString(data.route);
+    const routeKey = normalizeSchemaString(data.routeKey);
+
+    return {
+        href: data.listingHref ? normalizeSchemaString(data.listingHref) : route.replace(/^\//, ""),
+        image: normalizeSchemaString(data.listingImage),
+        alt: data.listingImageAlt ? normalizeSchemaString(data.listingImageAlt) : routeKey,
+        title: normalizeRenderedText(data.listingTitle ?? data.title),
+        subtitle: normalizeRenderedText(data.listingSubtitle ?? data.summary)
+    };
+}
+
+function verifyListingNormalizationContract() {
+    const normalized = projectDataToListingCard({
+        route: "  /example.html  ",
+        routeKey: "  example  ",
+        listingImage: "  project/example/card.png  ",
+        listingTitle: "  Example   Project  ",
+        listingSubtitle: "  Typed content\n  remains canonical.  "
+    });
+    const expected = {
+        href: "example.html",
+        image: "project/example/card.png",
+        alt: "example",
+        title: "Example Project",
+        subtitle: "Typed content remains canonical."
+    };
+
+    return JSON.stringify(normalized) === JSON.stringify(expected)
+        ? []
+        : ["Project listing frontmatter normalization contract drifted."];
+}
+
 async function getExpectedProjectCards() {
     const contentFiles = await listProjectContentFiles(projectContentDir);
     const entries = await Promise.all(
@@ -138,15 +180,11 @@ async function getExpectedProjectCards() {
             if (orderDelta !== 0) {
                 return orderDelta;
             }
-            return left.data.routeKey.localeCompare(right.data.routeKey);
+            return normalizeSchemaString(left.data.routeKey).localeCompare(
+                normalizeSchemaString(right.data.routeKey)
+            );
         })
-        .map((entry) => ({
-            href: entry.data.listingHref ?? entry.data.route.replace(/^\//, ""),
-            image: entry.data.listingImage,
-            alt: entry.data.listingImageAlt ?? entry.data.routeKey,
-            title: entry.data.listingTitle ?? entry.data.title,
-            subtitle: entry.data.listingSubtitle ?? entry.data.summary
-        }));
+        .map((entry) => projectDataToListingCard(entry.data));
 }
 
 async function verifyProjectDetailParity() {
@@ -194,6 +232,7 @@ async function verifyProjectsListingContract() {
 }
 
 const failures = [
+    ...verifyListingNormalizationContract(),
     ...(await verifyProjectDetailParity()),
     ...(await verifyProjectsListingContract())
 ];

@@ -1,5 +1,7 @@
 # JCR-39 Parity Baseline (Single Source of Truth)
 
+> **Historical snapshot:** JCR-109 removed the root `index.html`, `projects.html`, `about.html`, and `contact.html` authoring baselines. Their maintained sources are now the corresponding `src/pages/*.astro` files, shared Astro shell components, and typed content collections.
+
 - Issue: `JCR-39`
 - Snapshot date: February 19, 2026
 - Owner: Jason Tse

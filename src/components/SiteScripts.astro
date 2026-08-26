@@ -1,11 +1,10 @@
 ---
 interface Props {
     includeTypingCarousel?: boolean;
-    includeGoogleMapScripts?: boolean;
     extraScripts?: string[];
 }
 
-const { includeTypingCarousel = false, includeGoogleMapScripts = false, extraScripts = [] } = Astro.props;
+const { includeTypingCarousel = false, extraScripts = [] } = Astro.props;
 ---
 
 <!-- jQuery -->
@@ -22,17 +21,6 @@ const { includeTypingCarousel = false, includeGoogleMapScripts = false, extraScr
 <script is:inline src="js/jquery.waypoints.min.js"></script>
 <!-- Counters -->
 <script is:inline src="js/jquery.countTo.js"></script>
-{
-    includeGoogleMapScripts && (
-        <>
-            <!-- Google Map -->
-            <script is:inline src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false">
-            </script>
-            <script is:inline src="js/google_map.js"></script>
-        </>
-    )
-}
-
 <!-- MAIN JS -->
 <script is:inline src="js/main.js"></script>
 {extraScripts.map((src) => <script is:inline src={src}></script>)}

@@ -2,7 +2,6 @@
 title: About
 routeKey: about
 route: /about.html
-legacySource: about.html
 kind: canonical
 status: migrated
 navKey: about

@@ -33,7 +33,7 @@ const pages = defineCollection({
             title: titleSchema,
             routeKey: routeKeySchema,
             route: routeSchema,
-            legacySource: legacySourceSchema,
+            legacySource: legacySourceSchema.optional(),
             kind: pageKind,
             status: contentStatus,
             navKey: navKey.optional(),
@@ -51,11 +51,19 @@ const pages = defineCollection({
                 });
             }
 
-            if (data.legacySource !== expectedSource) {
+            if (data.kind !== "canonical" && data.legacySource !== expectedSource) {
                 ctx.addIssue({
                     code: z.ZodIssueCode.custom,
                     path: ["legacySource"],
                     message: `legacySource must match slug-derived value '${expectedSource}'.`
+                });
+            }
+
+            if (data.kind === "canonical" && data.legacySource !== undefined) {
+                ctx.addIssue({
+                    code: z.ZodIssueCode.custom,
+                    path: ["legacySource"],
+                    message: "Canonical pages are Astro-owned and must not define a legacySource."
                 });
             }
 

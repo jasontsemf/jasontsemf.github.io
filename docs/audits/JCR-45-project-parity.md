@@ -7,7 +7,7 @@
 
 ## Verification contract
 
-1. `dist/projects.html` must preserve the visible project cards from legacy `projects.html`.
+1. `dist/projects.html` must render the visible project cards declared by typed frontmatter in `src/content/projects/`.
 2. Each Astro-managed project detail page must preserve legacy text content in `#jason-main`.
 3. Each Astro-managed project detail page must preserve legacy media references and outbound links in `#jason-main`.
 
@@ -31,7 +31,7 @@ Covered detail routes:
 - `scripts/verify-jcr45-project-parity.mjs`
 - Wired into `npm run verify:parity`
 
-The verifier compares legacy root files against generated `dist/*.html` output after:
+For the listing, the verifier parses project frontmatter and compares its sorted card contract with generated `dist/projects.html`; root `projects.html` is no longer an authoring baseline. Retained project-detail baselines are compared with generated `dist/*.html` output after:
 
 - limiting comparison to `#jason-main`
 - stripping HTML comments

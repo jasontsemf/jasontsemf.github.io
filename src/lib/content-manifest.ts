@@ -32,7 +32,7 @@ function assertCanonicalRouteParity(pages: PageEntry[]) {
 
     for (const route of requiredCanonicalPageRoutes) {
         if (!canonicalRoutes.has(route)) {
-            throw new Error(`Missing canonical page route '${route}' required for legacy parity.`);
+            throw new Error(`Missing required canonical page route '${route}'.`);
         }
     }
 

@@ -17,7 +17,6 @@ interface Props {
     includeOpenSans?: boolean;
     duplicateFontAwesome?: boolean;
     includeTypingCarousel?: boolean;
-    includeGoogleMapScripts?: boolean;
     ogTitle?: string;
     ogImage?: string;
     ogUrl?: string;
@@ -42,7 +41,6 @@ const {
     includeOpenSans = true,
     duplicateFontAwesome = false,
     includeTypingCarousel = false,
-    includeGoogleMapScripts = false,
     ogTitle,
     ogImage,
     ogUrl,
@@ -93,7 +91,6 @@ await ensureContentManifestValidated();
         </div>
         <SiteScripts
             includeTypingCarousel={includeTypingCarousel}
-            includeGoogleMapScripts={includeGoogleMapScripts}
             extraScripts={extraScripts}
         />
     </body>

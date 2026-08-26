@@ -17,10 +17,6 @@ export const astroManagedRoutes = [
 ];
 
 export const rootLegacyRoutes = [
-    { route: "/", source: "index.html", type: "canonical" },
-    { route: "/projects.html", source: "projects.html", type: "canonical" },
-    { route: "/about.html", source: "about.html", type: "canonical" },
-    { route: "/contact.html", source: "contact.html", type: "canonical" },
     { route: "/optimice.html", source: "optimice.html", type: "canonical" },
     { route: "/bankheist.html", source: "bankheist.html", type: "canonical" },
     { route: "/pbc.html", source: "pbc.html", type: "canonical" },
@@ -37,6 +33,7 @@ export const copiedRootLegacyRoutes = rootLegacyRoutes.filter(
 );
 
 export const parityCriticalRoutes = [
+    ...astroManagedCanonicalRoutes,
     ...rootLegacyRoutes.map((item) => item.route),
     "/date/index.html",
     "/date/heart.html",

@@ -7,7 +7,7 @@
         "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
         "build": "ASTRO_TELEMETRY_DISABLED=1 astro build && node scripts/copy-legacy-assets.mjs",
         "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
-        "verify:parity": "node scripts/verify-jcr39-parity.mjs && node scripts/verify-jcr45-project-parity.mjs && node scripts/verify-jcr58-structured-project-details.mjs",
+        "verify:parity": "node scripts/verify-canonical-sources.mjs && node scripts/verify-jcr39-parity.mjs && node scripts/verify-jcr45-project-parity.mjs && node scripts/verify-jcr58-structured-project-details.mjs",
         "verify:links": "node scripts/verify-internal-links.mjs",
         "build:verify": "npm run build && npm run verify:parity",
         "verify:ci": "npm run build:verify && npm run verify:links"
@@ -15,6 +15,7 @@
     "devDependencies": {
         "@astrojs/mdx": "^7.0.7",
         "astro": "~7.1.6",
+        "js-yaml": "^4.3.1",
         "typescript": "^5.0.0"
     }
 }

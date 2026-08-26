@@ -118,12 +118,7 @@ async function verifyCanonicalBehavior() {
     failures.push(
         ...verifyTokenOrder(
             contactHtml,
-            [
-                ...commonScriptOrder,
-                "https://maps.googleapis.com/maps/api/js?key=",
-                "js/google_map.js",
-                "js/main.js"
-            ],
+            [...commonScriptOrder, "js/main.js"],
             "contact.html"
         )
     );

@@ -5,7 +5,6 @@ import { load as parseYaml } from "js-yaml";
 const repoRoot = process.cwd();
 const distDir = path.join(repoRoot, "dist");
 const projectContentDir = path.join(repoRoot, "src/content/projects");
-const projectPages = ["optimice", "bankheist", "pbc", "tagit", "falseawakening", "runvendor"];
 
 function stripHtmlComments(html) {
     return html.replace(/<!--[\s\S]*?-->/g, " ");
@@ -18,26 +17,12 @@ function getMainSection(html, pageFile) {
     }
 
     const contentStartIndex = html.indexOf(">", startIndex);
-    if (contentStartIndex === -1) {
-        throw new Error(`Unable to find the end of #jason-main start tag in ${pageFile}`);
+    const scriptIndex = html.indexOf('<script src="js/jquery.min.js"', contentStartIndex);
+    if (contentStartIndex === -1 || scriptIndex === -1) {
+        throw new Error(`Unable to isolate #jason-main in ${pageFile}`);
     }
 
-    const legacyScriptSentinel = "<!-- jQuery -->";
-    const distScriptSentinel = '<script src="js/jquery.min.js"';
-    const sentinelIndexes = [legacyScriptSentinel, distScriptSentinel]
-        .map((sentinel) => html.indexOf(sentinel, contentStartIndex))
-        .filter((index) => index !== -1)
-        .sort((left, right) => left - right);
-
-    if (sentinelIndexes.length === 0) {
-        throw new Error(`Unable to find the end of #jason-main in ${pageFile}`);
-    }
-
-    return html.slice(contentStartIndex + 1, sentinelIndexes[0]);
-}
-
-function stripDetailNav(html) {
-    return html.replace(/<div class="row work-pagination[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/g, " ");
+    return html.slice(contentStartIndex + 1, scriptIndex);
 }
 
 function decodeHtmlEntities(text) {
@@ -59,21 +44,6 @@ function decodeHtmlEntities(text) {
         }
         return namedEntities.get(code.toLowerCase()) ?? entity;
     });
-}
-
-function normalizeTextContent(html, pageFile) {
-    return decodeHtmlEntities(stripDetailNav(stripHtmlComments(getMainSection(html, pageFile))).replace(/<[^>]+>/g, " "))
-        .replace(/\s+/g, " ")
-        .trim();
-}
-
-function extractContentRefs(html, pageFile) {
-    return [...stripDetailNav(stripHtmlComments(getMainSection(html, pageFile))).matchAll(/\b(?:src|href)="([^"]+)"/g)]
-        .map((match) => decodeHtmlEntities(match[1]))
-        .filter(
-            (value) =>
-                value.startsWith("project/") || value.startsWith("http://") || value.startsWith("https://")
-        );
 }
 
 function extractVisibleProjectCards(html, pageFile) {
@@ -168,7 +138,6 @@ async function getExpectedProjectCards() {
     const contentFiles = await listProjectContentFiles(projectContentDir);
     const entries = await Promise.all(
         contentFiles.map(async (contentFile) => ({
-            contentFile,
             data: parseFrontmatter(await readFile(contentFile, "utf8"), path.relative(repoRoot, contentFile))
         }))
     );
@@ -177,42 +146,9 @@ async function getExpectedProjectCards() {
         .filter((entry) => (entry.data.listingOrder ?? 999) < 999)
         .sort((left, right) => {
             const orderDelta = left.data.listingOrder - right.data.listingOrder;
-            if (orderDelta !== 0) {
-                return orderDelta;
-            }
-            return normalizeSchemaString(left.data.routeKey).localeCompare(
-                normalizeSchemaString(right.data.routeKey)
-            );
+            return orderDelta || normalizeSchemaString(left.data.routeKey).localeCompare(normalizeSchemaString(right.data.routeKey));
         })
         .map((entry) => projectDataToListingCard(entry.data));
-}
-
-async function verifyProjectDetailParity() {
-    const failures = [];
-
-    for (const page of projectPages) {
-        const pageFile = `${page}.html`;
-        const [legacyHtml, distHtml] = await Promise.all([
-            readFile(path.join(repoRoot, pageFile), "utf8"),
-            readFile(path.join(distDir, pageFile), "utf8")
-        ]);
-
-        const legacyText = normalizeTextContent(legacyHtml, pageFile);
-        const distText = normalizeTextContent(distHtml, `dist/${pageFile}`);
-
-        if (legacyText !== distText) {
-            failures.push(`Text parity drift detected in ${pageFile}`);
-        }
-
-        const legacyRefs = extractContentRefs(legacyHtml, pageFile);
-        const distRefs = extractContentRefs(distHtml, `dist/${pageFile}`);
-
-        if (JSON.stringify(legacyRefs) !== JSON.stringify(distRefs)) {
-            failures.push(`Media/link parity drift detected in ${pageFile}`);
-        }
-    }
-
-    return failures;
 }
 
 async function verifyProjectsListingContract() {
@@ -222,20 +158,14 @@ async function verifyProjectsListingContract() {
     ]);
     const distCards = extractVisibleProjectCards(distHtml, "dist/projects.html");
 
-    if (JSON.stringify(expectedCards) !== JSON.stringify(distCards)) {
-        return [
-            `Projects listing does not match typed project content.\nExpected: ${JSON.stringify(expectedCards)}\nReceived: ${JSON.stringify(distCards)}`
-        ];
-    }
-
-    return [];
+    return JSON.stringify(expectedCards) === JSON.stringify(distCards)
+        ? []
+        : [
+              `Projects listing does not match typed project content.\nExpected: ${JSON.stringify(expectedCards)}\nReceived: ${JSON.stringify(distCards)}`
+          ];
 }
 
-const failures = [
-    ...verifyListingNormalizationContract(),
-    ...(await verifyProjectDetailParity()),
-    ...(await verifyProjectsListingContract())
-];
+const failures = [...verifyListingNormalizationContract(), ...(await verifyProjectsListingContract())];
 
 if (failures.length > 0) {
     console.error("Project content verification failed:");

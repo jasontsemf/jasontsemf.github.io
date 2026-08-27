@@ -356,6 +356,11 @@ figure {
         width: 100%;
         margin-left: 0;
     }
+
+    .fadeInLeft {
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+    }
 }
 
 @media screen and (max-width: 768px) {

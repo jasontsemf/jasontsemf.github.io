@@ -351,6 +351,34 @@ figure {
     text-align: left;
 }
 
+@-webkit-keyframes fadeInLeftMobile {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(-12px, 0, 0);
+        transform: translate3d(-12px, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInLeftMobile {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(-12px, 0, 0);
+        transform: translate3d(-12px, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
 @media screen and (max-width: 768px) {
     #jason-main {
         width: 100%;
@@ -358,8 +386,8 @@ figure {
     }
 
     .fadeInLeft {
-        -webkit-animation-name: fadeIn;
-        animation-name: fadeIn;
+        -webkit-animation-name: fadeInLeftMobile;
+        animation-name: fadeInLeftMobile;
     }
 }
 

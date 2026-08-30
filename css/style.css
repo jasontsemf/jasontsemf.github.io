@@ -1253,6 +1253,13 @@ body.offcanvas .jason-nav-toggle {
     color: #fff;
 }
 
+.project-hero-link {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 0.5em;
+    align-items: baseline;
+}
+
 @media screen and (max-width: 480px) {
     .project-link-button {
         display: block;

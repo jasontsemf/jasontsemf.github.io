@@ -11,7 +11,7 @@
             --line: #dedbd6;
             --paper: #fffdf9;
             --canvas: #ece9e4;
-            --accent: #e7567d;
+            --accent: #b92f59;
             --accent-soft: #fff0f4;
             --max: 1100px;
         }
@@ -38,7 +38,7 @@
         main { min-width: 0; }
         .content { width: min(var(--max), calc(100% - 88px)); margin: 0 auto; padding: 70px 0 96px; }
         .eyebrow { margin: 0 0 12px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-        h1 { max-width: 780px; margin: 0; font-size: clamp(40px, 6vw, 74px); line-height: .98; letter-spacing: -.055em; }
+        h1 { max-width: 900px; margin: 0; font-size: clamp(40px, 6vw, 74px); line-height: .98; letter-spacing: -.055em; }
         h2 { margin: 0; font-size: clamp(27px, 4vw, 42px); letter-spacing: -.035em; }
         h3 { margin: 0; font-size: 22px; line-height: 1.12; }
         p { color: var(--muted); line-height: 1.55; }
@@ -185,7 +185,14 @@
         </div>
     </div>
     <script>
-        const state = { variant: 'a', view: 'projects', size: 'desktop', filter: 'all' };
+        const query = new URLSearchParams(location.search);
+        const requestedView = location.hash.replace('#', '');
+        const state = {
+            variant: query.get('variant') === 'b' ? 'b' : 'a',
+            view: ['projects', 'archive', 'detail'].includes(requestedView) ? requestedView : 'projects',
+            size: 'desktop',
+            filter: 'all'
+        };
         const update = () => {
             document.querySelectorAll('[data-variant-panel]').forEach((node) => { node.hidden = node.dataset.variantPanel !== state.variant; });
             document.querySelectorAll('[data-view-panel]').forEach((node) => { node.hidden = node.dataset.viewPanel !== state.view; });
@@ -197,7 +204,7 @@
         document.querySelectorAll('[data-variant]').forEach((button) => button.addEventListener('click', () => { state.variant = button.dataset.variant; state.view = 'projects'; update(); }));
         document.querySelectorAll('[data-view]').forEach((button) => button.addEventListener('click', () => { state.view = button.dataset.view; update(); }));
         document.querySelectorAll('[data-size]').forEach((button) => button.addEventListener('click', () => { state.size = button.dataset.size; update(); }));
-        document.querySelectorAll('.route-link').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); state.view = link.dataset.route; update(); scrollTo({ top: 0, behavior: 'smooth' }); }));
+        document.querySelectorAll('.route-link').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); state.view = link.dataset.route; history.replaceState(null, '', `#${state.view}`); update(); scrollTo({ top: 0, behavior: 'smooth' }); }));
         document.querySelectorAll('[data-filter]').forEach((button) => button.addEventListener('click', () => {
             const variant = button.closest('[data-variant-panel]');
             const category = button.dataset.filter;

@@ -19,7 +19,7 @@ The archive introduction should explain that category and placement indicate nar
 
 ## Variants and views covered
 
-The responsive prototype in [`index.html`](index.html) compares two label and layout directions:
+The responsive prototype in [`index.htm`](index.htm) compares two label and layout directions:
 
 - **A · Project Archive (recommended):** explicit archive naming, grouped sections, and the clearest explanation of why projects sit in the secondary tier.
 - **B · More Projects:** a warmer title and denser visual grid. It is easier to browse but less precise, and “Personal” is more ambiguous than “Side Projects.”

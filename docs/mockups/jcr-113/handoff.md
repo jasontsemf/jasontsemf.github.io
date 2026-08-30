@@ -38,7 +38,7 @@ The same semantic structure reflows at desktop and mobile widths. Filters remain
 - Concise professional entries live in **Client Work** and state Jason’s contribution explicitly.
 - Historical case studies move to **Earlier Work** when they no longer support the lead career narrative.
 - Experiments and self-directed work live in **Side Projects**.
-- **Cat.AI remains Featured Work in the mockup.** The archive schema can accommodate it later, likely as Client Work or Side Projects depending on approved context, without requiring that move now.
+- **Cat.AI remains Featured Work in the mockup.** If stronger anchor case studies later displace it, the archive schema can accommodate it as Client Work without requiring that move now or duplicating its narrative across both tiers.
 
 ## Minimum concise-entry contract
 
@@ -63,8 +63,8 @@ A concise entry should not gain bespoke long-form sections, carousels, process c
 3. Choose the archive route. Recommended canonical route: `/archive.html`; preserve existing project routes and add redirects only when a route is intentionally retired.
 4. Decide whether filters update the URL/query string. Recommended: progressive enhancement with all entries present in HTML and optional `?category=` state.
 5. Confirm whether concise entries use one shared detail template or outbound-only cards. Recommended: shared concise template when contribution/context needs explanation; direct outbound links only when the external page already credits Jason clearly.
-6. Define Cat.AI’s future category only if it leaves Featured Work; no move is required by this design.
-7. Replace all illustrative content and the `example.com` link in the prototype. The mockup must never be published as production content.
+6. Define Cat.AI’s future placement only if it leaves Featured Work; Client Work is the recommended archive category, and no move is required by this design.
+7. Replace all illustrative placeholder content before implementation. The mockup must never be published as production content.
 
 ## Accessibility and responsive requirements
 
@@ -78,4 +78,4 @@ A concise entry should not gain bespoke long-form sections, carousels, process c
 
 ## Out of scope honored
 
-This artifact does not implement production pages or data models and does not add the three Tomorrow Lab projects. Sample “Connected Product Platform” content is explicitly illustrative.
+This artifact does not implement production pages or data models and does not add the three Tomorrow Lab projects. Generic placeholder cards are explicitly illustrative.

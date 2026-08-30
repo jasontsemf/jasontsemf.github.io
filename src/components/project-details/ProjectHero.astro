@@ -54,7 +54,7 @@ const { title, tagline, mediaType, mediaSrc, mediaAlt = "", links = [] } = Astro
             links.length > 0 && (
                 <div class="col-md-8 col-md-offset-2 animate-box" data-animate-effect="fadeInLeft">
                     {links.map((link) => (
-                        <h3>
+                        <h3 class="project-hero-link">
                             <i class={`icon-${link.icon} github-code`} />
                             <a href={link.href} target="_blank">{link.label}</a>
                         </h3>

@@ -16,6 +16,14 @@
 *
 * ======================================================= */
 
+:root {
+    --jason-accent: #ff6200;
+    --jason-accent-soft: rgba(255, 98, 0, 0.2);
+    --jason-rule: #deded8;
+    --jason-radius: 1em;
+    --jason-motion: 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
@@ -32,16 +40,19 @@ body {
 }
 
 a {
-    color: rgb(231, 86, 125);
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
+    color: #333;
+    text-decoration-color: var(--jason-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: .14em;
+    -webkit-transition: color var(--jason-motion);
+    -o-transition: color var(--jason-motion);
+    transition: color var(--jason-motion);
 }
 
 a:hover,
 a:active,
 a:focus {
-    color: rgb(231, 86, 125);
+    color: #000;
     outline: none;
 }
 
@@ -74,18 +85,18 @@ figure {
 }
 
 ::-webkit-selection {
-    color: #fff;
-    background: rgb(231, 86, 125);
+    color: #0f0e12;
+    background: var(--jason-accent);
 }
 
 ::-moz-selection {
-    color: #fff;
-    background: rgb(231, 86, 125);
+    color: #0f0e12;
+    background: var(--jason-accent);
 }
 
 ::selection {
-    color: #fff;
-    background: rgb(231, 86, 125);
+    color: #0f0e12;
+    background: var(--jason-accent);
 }
 
 #jason-page {
@@ -113,7 +124,7 @@ figure {
 }
 
 #jason-aside.border {
-    border-right: 1px solid #e6e6e6;
+    border-right: 1px solid var(--jason-rule);
 }
 
 @media screen and (max-width: 1200px) {
@@ -160,14 +171,14 @@ figure {
     text-decoration: none;
     /* letter-spacing: .1em; */
     /* text-transform: uppercase; */
-    font-size: 15px;
-    font-weight: 300;
+    font-size: 14px;
+    font-weight: 400;
     position: relative;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
     padding: 10px 10px;
-    /* letter-spacing: .2em; */
+    letter-spacing: .035em;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -178,18 +189,18 @@ figure {
     bottom: 7px;
     left: 10px;
     right: 10px;
-    background-color: rgb(231, 86, 125);
+    background-color: var(--jason-accent);
     visibility: hidden;
     -webkit-transform: scaleX(0);
     -moz-transform: scaleX(0);
     -ms-transform: scaleX(0);
     -o-transform: scaleX(0);
     transform: scaleX(0);
-    -webkit-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -moz-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -ms-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -o-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-transition: transform var(--jason-motion);
+    -moz-transition: transform var(--jason-motion);
+    -ms-transition: transform var(--jason-motion);
+    -o-transition: transform var(--jason-motion);
+    transition: transform var(--jason-motion);
 }
 
 #jason-aside #jason-main-menu ul li a:hover {
@@ -264,7 +275,7 @@ figure {
 #jason-aside .jason-footer ul li a:focus {
     text-decoration: none;
     outline: none;
-    color: rgb(231, 86, 125);
+    color: var(--jason-accent);
 }
 
 #jason-main {
@@ -479,24 +490,24 @@ body.offcanvas .jason-nav-toggle {
 
 .work-item a {
     border: none;
+    display: block;
     text-align: center;
 }
 
 .work-item a img {
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
     margin-bottom: 10px;
     float: left;
-    border: 10px solid rgba(255, 0, 0, 0.001);
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
-    border-radius: 1em;
-
+    border: 0;
+    -webkit-transition: box-shadow var(--jason-motion);
+    -o-transition: box-shadow var(--jason-motion);
+    transition: box-shadow var(--jason-motion);
+    border-radius: var(--jason-radius);
 }
 
 .project-grid .work-item a img {
     width: 100%;
     aspect-ratio: 16 / 9;
+    box-sizing: border-box;
     object-fit: cover;
     float: none;
 }
@@ -509,7 +520,7 @@ body.offcanvas .jason-nav-toggle {
 
 .work-item a p {
     font-size: 14px;
-    color: #cccccc;
+    color: #666660;
     margin-bottom: 0;
 }
 
@@ -522,7 +533,7 @@ body.offcanvas .jason-nav-toggle {
 .work-item a:hover img,
 .work-item a:active img,
 .work-item a:focus img {
-    border: 10px solid rgba(0, 0, 0, 0.185);
+    box-shadow: 0 0 0 8px var(--jason-accent-soft);
 }
 
 .jason-services {
@@ -544,7 +555,7 @@ body.offcanvas .jason-nav-toggle {
 }
 
 .work-pagination a:hover {
-    color: rgb(231, 86, 125);
+    color: var(--jason-accent);
     text-decoration: none;
 }
 
@@ -719,7 +730,7 @@ body.offcanvas .jason-nav-toggle {
 }
 
 .jason-heading-colored {
-    color: rgb(231, 86, 125);
+    color: var(--jason-accent);
 }
 
 .jason-cards {
@@ -751,7 +762,7 @@ body.offcanvas .jason-nav-toggle {
     background: #fff;
     padding: 30px;
     margin-bottom: 10px;
-    border-radius: 1em;
+    border-radius: var(--jason-radius);
     margin-left: auto;
     margin-right: auto;
 }
@@ -790,7 +801,7 @@ body.offcanvas .jason-nav-toggle {
 
 .jason-counter .jason-number {
     font-size: 100px;
-    color: rgb(231, 86, 125);
+    color: var(--jason-accent);
     font-weight: 400;
     margin: 0;
     padding: 0;
@@ -870,7 +881,7 @@ body.offcanvas .jason-nav-toggle {
 }
 
 .jason-social li a:hover {
-    color: rgb(231, 86, 125);
+    color: var(--jason-accent);
 }
 
 .jason-social li a:hover,
@@ -878,7 +889,7 @@ body.offcanvas .jason-nav-toggle {
 .jason-social li a:focus {
     outline: none;
     text-decoration: none;
-    color: rgb(231, 86, 125);
+    color: var(--jason-accent);
 }
 
 #map {
@@ -930,7 +941,7 @@ body.offcanvas .jason-nav-toggle {
 }
 
 .jason-feature .jason-icon i {
-    color: rgb(231, 86, 125);
+    color: var(--jason-accent);
     font-size: 70px;
 }
 
@@ -941,7 +952,7 @@ body.offcanvas .jason-nav-toggle {
 }
 
 .jason-feature.jason-feature-sm .jason-icon i {
-    color: rgb(231, 86, 125);
+    color: var(--jason-accent);
     font-size: 28px;
 }
 
@@ -1172,7 +1183,7 @@ body.offcanvas .jason-nav-toggle {
 .owl-theme .owl-dots .owl-dot span {
     width: 10px;
     height: 10px;
-    background: rgb(231, 86, 125);
+    background: var(--jason-accent);
     -webkit-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s;
@@ -1181,14 +1192,14 @@ body.offcanvas .jason-nav-toggle {
 
 .owl-theme .owl-dots .owl-dot span:hover {
     background: none;
-    border: 3px solid rgb(231, 86, 125);
+    border: 3px solid var(--jason-accent);
 }
 
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
     background: transparent;
     height: 10px;
-    border: 2px solid rgb(133, 236, 235);
+    border: 2px solid var(--jason-accent);
 }
 
 .btn {
@@ -1201,11 +1212,11 @@ body.offcanvas .jason-nav-toggle {
     -moz-border-radius: 0px;
     -ms-border-radius: 0px;
     border-radius: 0px;
-    -webkit-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
+    -webkit-transition: var(--jason-motion);
+    -o-transition: var(--jason-motion);
+    transition: var(--jason-motion);
     padding: 8px 20px !important;
-    border-radius: 0.4em;
+    border-radius: 4px;
 }
 
 .btn.btn-sm {
@@ -1228,29 +1239,31 @@ body.offcanvas .jason-nav-toggle {
 }
 
 .btn-primary {
-    background: rgb(133, 236, 235);
-    color: #fff;
-    border: 2px solid rgb(133, 236, 235);
+    background: var(--jason-accent);
+    color: #0f0e12;
+    border: 2px solid var(--jason-accent);
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-    background: #ec1919 !important;
-    border-color: #ec1919 !important;
+    background: #fff !important;
+    color: #0f0e12 !important;
+    border-color: var(--jason-accent) !important;
 }
 
 .btn-primary.btn-outline {
     background: transparent;
-    color: rgb(231, 86, 125);
-    border: 2px solid rgb(133, 236, 235);
+    color: #0f0e12;
+    border: 2px solid var(--jason-accent);
 }
 
 .btn-primary.btn-outline:hover,
 .btn-primary.btn-outline:focus,
 .btn-primary.btn-outline:active {
-    background: rgb(133, 236, 235);
-    color: #fff;
+    background: var(--jason-accent) !important;
+    color: #0f0e12 !important;
+    border-color: var(--jason-accent) !important;
 }
 
 .project-hero-link {
@@ -1258,6 +1271,10 @@ body.offcanvas .jason-nav-toggle {
     grid-template-columns: auto minmax(0, 1fr);
     column-gap: 0.5em;
     align-items: baseline;
+}
+
+.project-hero-link-icon {
+    color: var(--jason-accent);
 }
 
 @media screen and (max-width: 480px) {
@@ -1410,7 +1427,7 @@ body.offcanvas .jason-nav-toggle {
 .form-control:focus {
     outline: none;
     box-shadow: none;
-    border-color: rgb(231, 86, 125);
+    border-color: var(--jason-accent);
 }
 
 #message {
@@ -1584,11 +1601,11 @@ body.offcanvas .jason-nav-toggle {
 }
 
 .img-responsive {
-    border-radius: 1em;
+    border-radius: var(--jason-radius);
 }
 
 .img-responsive-shadow {
-    filter:drop-shadow(3px 5px 5px rgb(140, 140, 140));
+    filter: none;
 }
 
 
@@ -1610,7 +1627,7 @@ body.offcanvas .jason-nav-toggle {
     content: '';
     display: inline-block;
     margin-left: 3px;
-    background-color: rgb(133, 236, 235);
+    background-color: var(--jason-accent);
     animation-name: blink;
     animation-duration: 0.5s;
     animation-iteration-count: infinite;

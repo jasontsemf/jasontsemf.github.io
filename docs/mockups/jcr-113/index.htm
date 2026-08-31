@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JCR-113 Project Archive Mockup</title>
+    <style>
+        :root {
+            --ink: #191919;
+            --muted: #696969;
+            --line: #dedbd6;
+            --paper: #fffdf9;
+            --canvas: #ece9e4;
+            --accent: #b92f59;
+            --accent-soft: #fff0f4;
+            --max: 1100px;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; color: var(--ink); background: var(--canvas); font-family: Arial, Helvetica, sans-serif; }
+        button, a { font: inherit; }
+        button:focus-visible, a:focus-visible { outline: 3px solid #1574d1; outline-offset: 3px; }
+        .prototype-bar { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; color: #fff; background: #202020; }
+        .prototype-bar strong { font-size: 14px; }
+        .prototype-controls { display: flex; flex-wrap: wrap; gap: 8px; }
+        .prototype-controls button { min-height: 44px; padding: 9px 14px; color: #fff; border: 1px solid #777; border-radius: 22px; background: transparent; cursor: pointer; }
+        .prototype-controls button[aria-pressed="true"] { color: #111; border-color: #fff; background: #fff; }
+        .prototype-note { margin: 0; font-size: 12px; color: #d2d2d2; }
+        .frame { width: 100%; min-height: calc(100vh - 66px); margin: 0 auto; overflow: hidden; background: var(--paper); transition: width .2s ease; }
+        .frame.mobile { width: min(390px, 100%); box-shadow: 0 0 0 1px #aaa; }
+        .site-shell { display: grid; grid-template-columns: 180px minmax(0, 1fr); min-height: calc(100vh - 66px); }
+        .side { padding: 42px 26px; border-right: 1px solid var(--line); }
+        .brand { display: inline-block; margin-bottom: 44px; color: var(--ink); font-weight: 800; text-decoration: none; }
+        .brand span { color: var(--accent); }
+        .side nav { display: grid; gap: 18px; }
+        .side nav a { width: fit-content; color: var(--muted); font-size: 14px; text-decoration: none; }
+        .side nav a.active { color: var(--ink); font-weight: 700; border-bottom: 2px solid var(--accent); }
+        .mobile-head { display: none; }
+        main { min-width: 0; }
+        .content { width: min(var(--max), calc(100% - 88px)); margin: 0 auto; padding: 70px 0 96px; }
+        .eyebrow { margin: 0 0 12px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+        h1 { max-width: 900px; margin: 0; font-size: clamp(40px, 6vw, 74px); line-height: .98; letter-spacing: -.055em; }
+        h2 { margin: 0; font-size: clamp(27px, 4vw, 42px); letter-spacing: -.035em; }
+        h3 { margin: 0; font-size: 22px; line-height: 1.12; }
+        p { color: var(--muted); line-height: 1.55; }
+        .intro { max-width: 650px; margin: 22px 0 0; font-size: 18px; }
+        .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin: 72px 0 24px; }
+        .section-head p { max-width: 480px; margin: 0; }
+        .text-link { display: inline-flex; min-height: 44px; align-items: center; color: var(--ink); font-weight: 700; text-underline-offset: 5px; }
+        .featured-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 22px; }
+        .feature-card { display: flex; min-height: 380px; padding: 28px; flex-direction: column; justify-content: end; color: #fff; border-radius: 22px; background: #333; text-decoration: none; overflow: hidden; position: relative; isolation: isolate; }
+        .feature-card::before { content: ""; position: absolute; inset: 0; z-index: -2; background: var(--image) center / cover; }
+        .feature-card::after { content: ""; position: absolute; inset: 25% 0 0; z-index: -1; background: linear-gradient(transparent, rgba(0,0,0,.83)); }
+        .feature-card.small { min-height: 380px; }
+        .feature-card .tag { align-self: flex-start; margin-bottom: auto; padding: 7px 10px; color: #222; border-radius: 20px; background: rgba(255,255,255,.92); font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+        .feature-card p { margin: 10px 0 0; color: #fff; }
+        .archive-callout { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px; margin-top: 26px; padding: 26px 28px; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+        .archive-callout p { margin: 8px 0 0; }
+        .button-link { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; padding: 10px 17px; color: #fff; border-radius: 24px; background: var(--ink); font-weight: 700; text-decoration: none; }
+        .archive-hero { padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+        .archive-hero h1 { font-size: clamp(46px, 7vw, 86px); }
+        .filter-row { display: flex; flex-wrap: wrap; gap: 9px; margin: 30px 0 42px; }
+        .filter-row button { min-height: 44px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 24px; background: #fff; cursor: pointer; }
+        .filter-row button[aria-pressed="true"] { color: #fff; border-color: var(--ink); background: var(--ink); }
+        .group { margin-top: 54px; }
+        .group-title { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+        .group-title p { margin: 0; font-size: 13px; }
+        .archive-list { display: grid; }
+        .archive-card { display: grid; grid-template-columns: 160px minmax(0, 1fr) auto; gap: 24px; align-items: center; padding: 22px 0; color: inherit; border-bottom: 1px solid var(--line); text-decoration: none; }
+        .thumb { width: 160px; aspect-ratio: 16/10; border-radius: 12px; background: var(--image, #ddd) center / cover; }
+        .archive-card .meta { margin: 0 0 5px; color: #ba365b; font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+        .archive-card p { max-width: 620px; margin: 7px 0 0; font-size: 14px; }
+        .arrow { font-size: 24px; }
+        .detail-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, .75fr); gap: 52px; align-items: start; margin-top: 48px; }
+        .detail-image { min-height: 360px; border-radius: 20px; background: url('../../../project/cat-ai/cat-ai-listing.png') center / cover, #ddd; }
+        .detail-copy dl { display: grid; grid-template-columns: 110px 1fr; gap: 12px 20px; margin: 30px 0; padding: 24px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        dt { color: #555; font-size: 14px; }
+        dd { margin: 0; font-weight: 700; line-height: 1.45; }
+        .external-note { margin-top: 14px; color: #555; font-size: 13px; }
+        .view[hidden], .variant[hidden], .archive-card[hidden], .group[hidden] { display: none; }
+        .variant-b .featured-grid { grid-template-columns: repeat(3, 1fr); }
+        .variant-b .feature-card { min-height: 310px; }
+        .variant-b .archive-callout { border-left: 5px solid var(--accent); border-radius: 4px; }
+        .variant-b .archive-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 20px; }
+        .variant-b .archive-card { grid-template-columns: 1fr; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+        .variant-b .thumb { width: 100%; }
+        .variant-b .arrow { display: none; }
+        .decision-ribbon { margin-top: 68px; padding: 18px 22px; border-radius: 12px; background: var(--accent-soft); font-size: 13px; line-height: 1.5; }
+        @media (max-width: 700px) {
+            .site-shell { display: block; }
+            .side { display: none; }
+            .mobile-head { display: flex; min-height: 64px; padding: 0 20px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+            .mobile-head .brand { margin: 0; }
+            .menu { min-width: 44px; min-height: 44px; border: 0; background: none; font-size: 22px; }
+            .content { width: auto; padding: 46px 20px 70px; }
+            h1 { font-size: 45px; }
+            .intro { font-size: 16px; }
+            .section-head { display: block; margin-top: 58px; }
+            .section-head p { margin-top: 10px; }
+            .featured-grid, .variant-b .featured-grid { grid-template-columns: 1fr; }
+            .feature-card, .feature-card.small, .variant-b .feature-card { min-height: 330px; }
+            .archive-callout { grid-template-columns: 1fr; gap: 16px; }
+            .button-link { width: 100%; }
+            .archive-card, .variant-b .archive-card { grid-template-columns: 104px minmax(0, 1fr); gap: 14px; }
+            .archive-card .arrow { display: none; }
+            .thumb, .variant-b .thumb { width: 104px; }
+            .archive-card p { display: none; }
+            .group-title { display: block; }
+            .group-title p { margin-top: 5px; }
+            .variant-b .archive-list { grid-template-columns: 1fr; }
+            .detail-card { grid-template-columns: 1fr; gap: 28px; }
+            .detail-image { min-height: 230px; }
+            .detail-copy dl { grid-template-columns: 90px 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="prototype-bar">
+        <div>
+            <strong>JCR-113 archive concept</strong>
+            <p class="prototype-note">Prototype only. Use controls to inspect routes and responsive behavior.</p>
+        </div>
+        <div class="prototype-controls" aria-label="Prototype controls">
+            <button data-variant="a" aria-pressed="true">A · Project Archive</button>
+            <button data-variant="b" aria-pressed="false">B · More Projects</button>
+            <button data-view="projects" aria-pressed="true">Projects entry</button>
+            <button data-view="archive" aria-pressed="false">Archive index</button>
+            <button data-view="detail" aria-pressed="false">Concise entry</button>
+            <button data-size="desktop" aria-pressed="true">Desktop</button>
+            <button data-size="mobile" aria-pressed="false">Mobile</button>
+        </div>
+    </header>
+    <div class="frame" id="frame">
+        <div class="site-shell">
+            <aside class="side">
+                <a class="brand" href="#">jason<span>.</span></a>
+                <nav aria-label="Primary navigation">
+                    <a href="#">Home</a><a href="#">About</a><a class="active" href="#">Projects</a><a href="#">Contact</a>
+                </nav>
+            </aside>
+            <main>
+                <header class="mobile-head"><a class="brand" href="#">jason<span>.</span></a><button class="menu" aria-label="Open menu">☰</button></header>
+                <div class="variant variant-a" data-variant-panel="a">
+                    <section class="view" data-view-panel="projects">
+                        <div class="content">
+                            <p class="eyebrow">Selected work</p>
+                            <h1>Embedded systems that make physical products work.</h1>
+                            <p class="intro">A focused set of case studies showing production firmware, sensing, edge AI, actuation, and multidisciplinary product engineering.</p>
+                            <div class="section-head"><div><p class="eyebrow">Featured case studies</p><h2>Current professional evidence</h2></div><p>Full stories with context, ownership, technical decisions, validation, and outcomes.</p></div>
+                            <div class="featured-grid">
+                                <a class="feature-card" href="#" style="--image:url('../../../project/cat-ai/cat-ai-listing.png')"><span class="tag">Featured case study</span><h3>Cat.AI</h3><p>Embedded edge AI from dataset preparation to on-device inference.</p></a>
+                                <a class="feature-card small" href="#" style="--image:url('../../../project/bankheist/thumb_crop.png')"><span class="tag">Technical case study</span><h3>BankHeist</h3><p>Browser-to-robot teleoperation and serial motion control.</p></a>
+                            </div>
+                            <div class="archive-callout"><div><h3>More project work</h3><p>Concise client work, earlier projects, and side projects are collected in the Project Archive.</p></div><a class="button-link route-link" data-route="archive" href="#archive">Browse Project Archive →</a></div>
+                            <p class="decision-ribbon"><strong>Hierarchy:</strong> Selected Work remains recruiter-facing. The archive is one level quieter and never competes with featured case studies in the first viewport.</p>
+                        </div>
+                    </section>
+                    <section class="view" data-view-panel="archive" hidden>
+                        <div class="content">
+                            <div class="archive-hero"><p class="eyebrow">Project Archive</p><h1>More things I’ve helped make.</h1><p class="intro">A concise record of professional collaborations, earlier work, and experiments. Each entry points to the best public source when a full case study would add little.</p></div>
+                            <div class="filter-row" aria-label="Filter projects"><button data-filter="all" aria-pressed="true">All</button><button data-filter="client" aria-pressed="false">Client work</button><button data-filter="earlier" aria-pressed="false">Earlier work</button><button data-filter="side" aria-pressed="false">Side projects</button></div>
+                            <section class="group" data-group="client"><div class="group-title"><h2>Client work</h2><p>Professional contributions · concise public record</p></div><div class="archive-list">
+                                <a class="archive-card route-link" data-route="detail" data-category="client" href="#detail"><span class="thumb" style="--image:url('../../../project/cat-ai/cat-ai-listing.png')"></span><span><span class="meta">2023 · Client work · Edge AI</span><h3>Cat.AI</h3><p>Tomorrow Lab prototype for DigiKey’s Potentially Genius series. My contribution covered the embedded-CNN workflow and inference-to-actuation integration.</p></span><span class="arrow" aria-hidden="true">↗</span></a>
+                                <a class="archive-card" data-category="client" href="#"><span class="thumb" style="--image:#e9e1d6"></span><span><span class="meta">Year · Client work · Discipline</span><h3>Concise project title</h3><p>One sentence of public context, followed by a precise statement of Jason’s contribution.</p></span><span class="arrow" aria-hidden="true">↗</span></a>
+                            </div></section>
+                            <section class="group" data-group="earlier"><div class="group-title"><h2>Earlier work</h2><p>Strong historical work, preserved without equal prominence</p></div><div class="archive-list"><a class="archive-card" data-category="earlier" href="#"><span class="thumb" style="--image:url('../../../project/optimice/v2/optimice_thumb_crop.png')"></span><span><span class="meta">2020 · Earlier work · Interaction</span><h3>OptiMice</h3><p>An earlier interactive project retained at its stable legacy route.</p></span><span class="arrow">→</span></a></div></section>
+                            <section class="group" data-group="side"><div class="group-title"><h2>Side projects</h2><p>Self-directed experiments and playful builds</p></div><div class="archive-list"><a class="archive-card" data-category="side" href="#"><span class="thumb" style="--image:#dbe8e5"></span><span><span class="meta">Ongoing · Side project · Experiment</span><h3>Small experiments</h3><p>Useful personal work with a lighter publishing threshold.</p></span><span class="arrow">→</span></a></div></section>
+                        </div>
+                    </section>
+                    <section class="view" data-view-panel="detail" hidden>
+                        <div class="content"><a class="text-link route-link" data-route="archive" href="#archive">← Project Archive</a><div class="detail-card"><div class="detail-image" role="img" aria-label="Cat.AI feeder beside a laptop displaying a detected cat"></div><div class="detail-copy"><p class="eyebrow">2023 · Client work · Edge AI</p><h1>Cat.AI</h1><p>Tomorrow Lab created this cat-versus-dog feeder prototype for DigiKey’s <em>Potentially Genius</em> series using the MAX78000.</p><dl><dt>My contribution</dt><dd>Dataset preparation, vendor-tool workflow, on-device inference integration, and servo actuation.</dd><dt>Context</dt><dd>Tomorrow Lab for DigiKey, in collaboration with Analog Devices.</dd><dt>Format</dt><dd>Concise archive entry. No duplicate long-form narrative.</dd></dl><a class="button-link" href="https://www.digikey.com/en/videos/d/digi-key-electronics/cat-ai-potentially-genius-digikey">View the official DigiKey project ↗</a><p class="external-note">External destination is named before navigation. The current Cat.AI case study can remain featured; this screen demonstrates its fallback placement only.</p></div></div></div>
+                    </section>
+                </div>
+                <div class="variant variant-b" data-variant-panel="b" hidden>
+                    <section class="view" data-view-panel="projects">
+                        <div class="content"><p class="eyebrow">Work</p><h1>Selected engineering work.</h1><p class="intro">Full case studies for the work most relevant to production embedded systems, robotics, and practical edge AI.</p><div class="section-head"><div><p class="eyebrow">Case studies</p><h2>Featured work</h2></div></div><div class="featured-grid"><a class="feature-card" href="#" style="--image:url('../../../project/cat-ai/cat-ai-listing.png')"><span class="tag">Case study</span><h3>Cat.AI</h3></a><a class="feature-card" href="#" style="--image:url('../../../project/bankheist/thumb_crop.png')"><span class="tag">Case study</span><h3>BankHeist</h3></a><a class="feature-card" href="#" style="--image:#b9b2aa"><span class="tag">Case study</span><h3>Future anchor</h3></a></div><div class="archive-callout"><div><p class="eyebrow">Secondary collection</p><h3>More Projects</h3><p>Short records of client collaborations, earlier work, and side projects.</p></div><a class="button-link route-link" data-route="archive" href="#archive">See all projects →</a></div><p class="decision-ribbon"><strong>Tradeoff:</strong> “More Projects” is warmer and less archival, but it makes the destination’s purpose less explicit than “Project Archive.”</p></div>
+                    </section>
+                    <section class="view" data-view-panel="archive" hidden>
+                        <div class="content"><div class="archive-hero"><p class="eyebrow">More Projects</p><h1>A wider view of the work.</h1><p class="intro">Filter a single visual grid by Professional, Earlier, or Personal. Faster to browse, but categories carry less explanatory context.</p></div><div class="filter-row"><button data-filter="all" aria-pressed="true">All projects</button><button data-filter="client" aria-pressed="false">Professional</button><button data-filter="earlier" aria-pressed="false">Earlier</button><button data-filter="side" aria-pressed="false">Personal</button></div><section class="group" data-group="all"><div class="archive-list"><a class="archive-card route-link" data-route="detail" data-category="client" href="#detail"><span class="thumb" style="--image:url('../../../project/cat-ai/cat-ai-listing.png')"></span><span><span class="meta">2023 · Professional</span><h3>Cat.AI</h3><p>Embedded-CNN workflow and inference-to-actuation integration.</p></span></a><a class="archive-card" data-category="earlier" href="#"><span class="thumb" style="--image:url('../../../project/optimice/v2/optimice_thumb_crop.png')"></span><span><span class="meta">2020 · Earlier</span><h3>OptiMice</h3><p>Historical interactive work at its stable route.</p></span></a><a class="archive-card" data-category="side" href="#"><span class="thumb" style="--image:#dbe8e5"></span><span><span class="meta">Ongoing · Personal</span><h3>Small experiments</h3><p>Self-directed and playful technical work.</p></span></a></div></section></div>
+                    </section>
+                    <section class="view" data-view-panel="detail" hidden>
+                        <div class="content"><a class="text-link route-link" data-route="archive" href="#archive">← More Projects</a><div class="detail-card"><div class="detail-image" role="img" aria-label="Cat.AI feeder beside a laptop displaying a detected cat"></div><div class="detail-copy"><p class="eyebrow">2023 · Professional</p><h1>Cat.AI</h1><p>A lightweight record with context and contribution before handing visitors to the authoritative source.</p><dl><dt>Contribution</dt><dd>Dataset preparation, vendor-tool workflow, on-device inference integration, and servo actuation.</dd><dt>Source</dt><dd>DigiKey Potentially Genius</dd></dl><a class="button-link" href="https://www.digikey.com/en/videos/d/digi-key-electronics/cat-ai-potentially-genius-digikey">View official project ↗</a></div></div></div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+        const query = new URLSearchParams(location.search);
+        const requestedView = location.hash.replace('#', '');
+        const state = {
+            variant: query.get('variant') === 'b' ? 'b' : 'a',
+            view: ['projects', 'archive', 'detail'].includes(requestedView) ? requestedView : 'projects',
+            size: 'desktop',
+            filter: 'all'
+        };
+        const update = () => {
+            document.querySelectorAll('[data-variant-panel]').forEach((node) => { node.hidden = node.dataset.variantPanel !== state.variant; });
+            document.querySelectorAll('[data-view-panel]').forEach((node) => { node.hidden = node.dataset.viewPanel !== state.view; });
+            document.querySelectorAll('[data-variant]').forEach((node) => node.setAttribute('aria-pressed', node.dataset.variant === state.variant));
+            document.querySelectorAll('[data-view]').forEach((node) => node.setAttribute('aria-pressed', node.dataset.view === state.view));
+            document.querySelectorAll('[data-size]').forEach((node) => node.setAttribute('aria-pressed', node.dataset.size === state.size));
+            document.getElementById('frame').classList.toggle('mobile', state.size === 'mobile');
+        };
+        document.querySelectorAll('[data-variant]').forEach((button) => button.addEventListener('click', () => { state.variant = button.dataset.variant; state.view = 'projects'; update(); }));
+        document.querySelectorAll('[data-view]').forEach((button) => button.addEventListener('click', () => { state.view = button.dataset.view; update(); }));
+        document.querySelectorAll('[data-size]').forEach((button) => button.addEventListener('click', () => { state.size = button.dataset.size; update(); }));
+        document.querySelectorAll('.route-link').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); state.view = link.dataset.route; history.replaceState(null, '', `#${state.view}`); update(); scrollTo({ top: 0, behavior: 'smooth' }); }));
+        document.querySelectorAll('[data-filter]').forEach((button) => button.addEventListener('click', () => {
+            const variant = button.closest('[data-variant-panel]');
+            const category = button.dataset.filter;
+            variant.querySelectorAll('[data-filter]').forEach((node) => node.setAttribute('aria-pressed', node === button));
+            if (state.variant === 'a') {
+                variant.querySelectorAll('[data-group]').forEach((group) => { group.hidden = category !== 'all' && group.dataset.group !== category; });
+            } else {
+                variant.querySelectorAll('[data-category]').forEach((card) => { card.hidden = category !== 'all' && card.dataset.category !== category; });
+            }
+        }));
+        update();
+    </script>
+</body>
+</html>
